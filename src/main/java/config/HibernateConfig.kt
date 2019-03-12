@@ -15,7 +15,7 @@ import javax.sql.DataSource
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:persistence-local.properties")
-@Profile("default")
+@Profile("local")
 class PostgresHibernateConfigLocal : DataSourceConfig() {
 
     @Autowired

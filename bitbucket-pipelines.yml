@@ -1,0 +1,21 @@
+# #######################################################
+#
+# IMPORTANT CONFIG VARS
+# HEROKU_APP_KEY - APP key generated from your heroku account, this should be set as a repository variable
+#
+# #######################################################
+
+
+image: wingrunr21/alpine-heroku-cli
+
+
+pipelines:
+  default:
+    - step:
+        name: Deploy to Heroku
+        services:
+          - docker
+        script:
+          - docker login --username=_ --password=$HEROKU_APP_KEY registry.heroku.com
+          - heroku container:push web -a whitecrow-pm
+          - heroku container:release web -a whitecrow-pm
