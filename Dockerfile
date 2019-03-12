@@ -1,11 +1,7 @@
 FROM openjdk:8-alpine
 
+VOLUME /tmp
 
-RUN apk add bash
+COPY ./build/libs/whitecrow.jar whitecrow.jar
 
-COPY . /tmp
-WORKDIR /tmp
-
-EXPOSE 8080
-
-CMD ["java","-jar","./build/libs/whitecrow.jar"]
+CMD ["java", "-jar", "/whitecrow.jar"]

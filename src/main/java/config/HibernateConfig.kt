@@ -12,12 +12,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement
 import java.net.URI
 import javax.sql.DataSource
 
-
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:persistence-local.properties")
-@Profile("local")
-class PostgresHibernateConfig : DataSourceConfig() {
+@Profile("default")
+class PostgresHibernateConfigLocal : DataSourceConfig() {
 
     @Autowired
     private lateinit var environment: Environment
@@ -35,22 +34,25 @@ class PostgresHibernateConfig : DataSourceConfig() {
 
 @Configuration
 @EnableTransactionManagement
-@Profile("heroku")
-class PostgresHibernateHerokuConfig : DataSourceConfig() {
+@Profile("production")
+class PostgresHibernateConfigProd : DataSourceConfig() {
 
+    /**
+     * Production datasource, works with postgres ENV format from heroku
+     */
     @Bean
     override fun dataSource(): DataSource {
-//        val dbUri = URI(System.getenv("spring.database.url"))
-//
-//        val username = dbUri.userInfo.split(":")[0]
-//        val password = dbUri.userInfo.split(":")[1]
-//        val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require"
-//        println(dbUrl)
-        val basicDataSource = BasicDataSource()
-        basicDataSource.url = System.getenv("JDBC_DATABASE_URL")
-        basicDataSource.driverClassName = "org.postgresql.Driver"
-        basicDataSource.username = System.getenv("JDBC_DATABASE_USERNAME")
-        basicDataSource.password = System.getenv("JDBC_DATABASE_PASSWORD")
-        return basicDataSource
+        val dbUri = URI(System.getenv("DATABASE_URL"))
+        val username = dbUri.userInfo.split(":")[0]
+        val password = dbUri.userInfo.split(":")[1]
+        val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require" //for remote connections
+        val config = BasicDataSource()
+        config.url = dbUrl
+        config.username = username
+        config.password = password
+        config.driverClassName = "org.postgresql.Driver"
+        return config
     }
+
+
 }
