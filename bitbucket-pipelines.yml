@@ -2,9 +2,9 @@
 #
 # IMPORTANT CONFIG VARS
 # HEROKU_APP_KEY - APP key generated from your heroku account, this should be set as a repository variable
-#
+# APP_NAME - Name of the heroku app to publish to
 # #######################################################
-
+image: java:8
 pipelines:
   default:
     - step:
@@ -12,6 +12,7 @@ pipelines:
         services:
           - docker
         script:
+          - bash ./gradlew build
           - docker build -t $APP_NAME .
           - docker login --username=_ --password=$HEROKU_APP_KEY registry.heroku.com
           - docker tag $APP_NAME registry.heroku.com/$APP_NAME/web
