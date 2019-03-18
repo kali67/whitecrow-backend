@@ -10,7 +10,7 @@ import whitecrow.service.IProjectManagerService
 @RestController
 class ProjectManagerApiController @Autowired constructor(var projectManagerService: IProjectManagerService) {
 
-    @GetMapping("/create/project_manager")
+    @PostMapping("/create/project_manager")
     fun createPlayer(@RequestParam(value = "username") username : String): String {
         projectManagerService.createPlayer(username)
         return "done"
@@ -22,7 +22,7 @@ class ProjectManagerApiController @Autowired constructor(var projectManagerServi
     }
 
 
-    @GetMapping("/project_manager/{id}")
+    @PutMapping("/project_manager/{id}")
     fun updateUsername(@PathVariable id: Int) {
         projectManagerService.updateUsername(id, "test")
     }
