@@ -35,73 +35,76 @@ class BoardApiController {
 
 
     private fun buildMailTiles(tiles: MutableList<BoardTile>) {
-        val mailTilesMap: Map<Int, Map<String, String>> = mapOf(
-            1 to mapOf("dateColor" to "#E3613A", "dateTextColor" to ""),
-            3 to mapOf("dateColor" to "#D14873", "dateTextColor" to ""),
-            5 to mapOf("dateColor" to "#DC402E", "dateTextColor" to ""),
-            11 to mapOf("dateColor" to "#DC402E", "dateTextColor" to ""),
-            16 to mapOf("dateColor" to "#FFFFFF", "dateTextColor" to ""),
-            19 to mapOf("dateColor" to "#5D3172", "dateTextColor" to "#FFFFFF"),
-            24 to mapOf("dateColor" to "#977F6B", "dateTextColor" to ""),
-            26 to mapOf("dateColor" to "#DC402E", "dateTextColor" to "#FFFFFF"))
-
-        mailTilesMap.forEach {
-            tiles.add(BoardTile(it.key, translate("mail_title"), "", translate("mail_action"),
-                "#549A8B", it.value.getOrDefault("dateColor", ""),
-                it.value.getOrDefault("dateTextColor", ""), ""))
-        }
+        val mailGreen = "#549A8B"
+        tiles.add(BoardTile(1, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#E3613A", "",""))
+        tiles.add(BoardTile(3, translate("mail_title"),"",
+            translate("mail_action"), mailGreen, "#D14873", "",""))
+        tiles.add(BoardTile(5, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#DC402E", "",""))
+        tiles.add(BoardTile(11, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#DC402E", "",""))
+        tiles.add(BoardTile(16, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#FFFFFF", "",""))
+        tiles.add(BoardTile(19, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#5D3172", "#FFFFFF",""))
+        tiles.add(BoardTile(24, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#977F6B", "",""))
+        tiles.add(BoardTile(26, translate("mail_title"), "",
+            translate("mail_action"), mailGreen, "#DC402E", "#FFFFFF",""))
     }
 
     private fun buildOpportunityTiles(tiles: MutableList<BoardTile>) {
-        val opportunityTilesMap: Map<Int, Map<String, String>> = mapOf(
-            4 to mapOf("dateColor" to "#632C7F", "dateTextColor" to "#FFFFFF"),
-            9 to mapOf("dateColor" to "#D14873", "dateTextColor" to ""),
-            12 to mapOf("dateColor" to "#32356F", "dateTextColor" to "#FFFFFF"),
-            17 to mapOf("dateColor" to "#632C7F", "dateTextColor" to "#FFFFFF"),
-            23 to mapOf("dateColor" to "#D14873", "dateTextColor" to ""),
-            27 to mapOf("dateColor" to "#8E325B", "dateTextColor" to "#FFFFFF"),
-            30 to mapOf("dateColor" to "#E6933E", "dateTextColor" to ""))
-
-        opportunityTilesMap.forEach {
-           tiles.add(BoardTile(it.key, translate("opportunity_title"), translate("opportunity_description"),
-               "", "#96B94F", it.value.getOrDefault("dateColor", ""),
-               it.value.getOrDefault("dateTextColor", ""),""))
-        }
+        val opportunityGreen = "#96B94F"
+        tiles.add(BoardTile(4, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#632C7F", "#FFFFFF",""))
+        tiles.add(BoardTile(9, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#D14873", "",""))
+        tiles.add(BoardTile(12, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#32356F", "#FFFFFF",""))
+        tiles.add(BoardTile(17, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#632C7F", "#FFFFFF",""))
+        tiles.add(BoardTile(23, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#D14873", "",""))
+        tiles.add(BoardTile(27, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#8E325B", "#FFFFFF",""))
+        tiles.add(BoardTile(30, translate("opportunity_title"), translate("opportunity_description"),
+            "", opportunityGreen, "#E6933E", "",""))
     }
 
 
     private fun buildRestDayTiles(tiles: MutableList<BoardTile>) {
-        val restDayTileMap: Map<Int, Map<String, String>> = mapOf(
-            7 to mapOf("dateColor" to "#E3613A", "dateTextColor" to ""),
-            14 to mapOf("dateColor" to "#F2F1E7", "dateTextColor" to ""),
-            21 to mapOf("dateColor" to "#32356F", "dateTextColor" to "#FFFFFF"),
-            28 to mapOf("dateColor" to "#F2F1E7", "dateTextColor" to ""))
-
-        restDayTileMap.forEach {
-            tiles.add(BoardTile(it.key, translate("restday_title"), "",
-                "", "#69A0CB", it.value.getOrDefault("dateColor", ""),
-                it.value.getOrDefault("dateTextColor", ""),""))
-        }
+        val restDayBlue = "#69A0CB"
+        tiles.add(BoardTile(7, translate("restday_title"), "",
+            "", restDayBlue, "#E3613A", "",""))
+        tiles.add(BoardTile(14, translate("restday_title"), "",
+            "", restDayBlue, "#F2F1E7", "",""))
+        tiles.add(BoardTile(21, translate("restday_title"), "",
+            "", restDayBlue, "#32356F", "#FFFFFF",""))
+        tiles.add(BoardTile(28, translate("restday_title"),"",
+            "", restDayBlue, "#F2F1E7", "",""))
     }
 
     private fun buildExpenseTiles(tiles: MutableList<BoardTile>) {
+        val expenseOrange = "#E69043"
         tiles.add(BoardTile(6, translate("expense_title"), translate("expense_description_6"),
-            translate("expense_action_6"), "#E69043", "#32356F", "#FFFFFF",""))
+            translate("expense_action_6"), expenseOrange, "#32356F", "#FFFFFF",""))
         tiles.add(BoardTile(13, translate("expense_title"), translate("expense_description_13"),
-            translate("expense_action_13"), "#E69043", "#8E325B", "#FFFFFF",""))
+            translate("expense_action_13"), expenseOrange, "#8E325B", "#FFFFFF",""))
         tiles.add(BoardTile(18, translate("expense_title"), translate("expense_description_18"),
-            translate("expense_action_18"), "#E69043", "#DC402E", "",""))
+            translate("expense_action_18"), expenseOrange, "#DC402E", "",""))
         tiles.add(BoardTile(22, translate("expense_title"), translate("expense_description_22"),
-            translate("expense_action_22"), "#E69043", "#F2EB67", "",""))
+            translate("expense_action_22"), expenseOrange, "#F2EB67", "",""))
     }
 
     private fun buildBonusTiles(tiles: MutableList<BoardTile>) {
+        val bonusPurple = "#612E73"
         tiles.add(BoardTile(2, translate("bonus_title"), translate("bonus_description_2"),
-            translate("bonus_action_2"), "#612E73", "#F2EB67", "",""))
+            translate("bonus_action_2"), bonusPurple, "#F2EB67", "",""))
         tiles.add(BoardTile(8, translate("bonus_title"), translate("bonus_description_8"),
-            translate("bonus_action_8"), "#612E73", "#F2EB67", "",""))
+            translate("bonus_action_8"), bonusPurple, "#F2EB67", "",""))
         tiles.add(BoardTile(15, translate("bonus_title"), translate("bonus_description_15"),
-            translate("bonus_action_15"), "#612E73", "#99BB52", "",""))
+            translate("bonus_action_15"), bonusPurple, "#99BB52", "",""))
     }
 
     private fun buildTileObjects() : MutableList<BoardTile>{
