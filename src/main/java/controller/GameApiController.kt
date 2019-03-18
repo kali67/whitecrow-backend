@@ -15,5 +15,4 @@ class GameApiController @Autowired constructor(val gameServiceImpl: GameServiceI
     fun listGamesByState (@RequestParam state: GameState) : List<Game> {
         return gameServiceImpl.filterGamesByState(state)
     }
-
 }
