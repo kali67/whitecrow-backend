@@ -11,6 +11,8 @@ import javax.sql.DataSource
 @Configuration
 abstract class DataSourceConfig {
 
+    abstract fun dataSource (): DataSource
+
     @Bean
     fun sessionFactory() : LocalSessionFactoryBean {
         val sessionFactory = LocalSessionFactoryBean()
@@ -20,8 +22,6 @@ abstract class DataSourceConfig {
         return sessionFactory
     }
 
-    abstract fun dataSource (): DataSource
-
     @Bean
     fun hibernateTransactionManager(): PlatformTransactionManager {
         val transactionManager = HibernateTransactionManager()
@@ -29,10 +29,10 @@ abstract class DataSourceConfig {
         return transactionManager
     }
 
-    fun hibernateProperties(): Properties {
+    private fun hibernateProperties(): Properties {
         val hibernateProperties = Properties()
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create-drop")
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update") // influences schema on start up
         hibernateProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false")
         return hibernateProperties
     }

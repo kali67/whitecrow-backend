@@ -3,6 +3,7 @@
 # IMPORTANT CONFIG VARS
 # HEROKU_APP_KEY - APP key generated from your heroku account, this should be set as a repository variable
 # APP_NAME - Name of the heroku app to publish to
+#
 # #######################################################
 image: java:8
 pipelines:
