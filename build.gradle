@@ -51,6 +51,8 @@ dependencies {
     compile ("org.postgresql:postgresql:42.2.1") {
         exclude group: 'org.slf4j'
     }
+    compile group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.13'
+    implementation 'com.google.code.gson:gson:2.8.5'
     compile "org.jetbrains.kotlin:kotlin-reflect"
     compile "org.springframework:spring-orm:5.0.2.RELEASE"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration

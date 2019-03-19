@@ -1,0 +1,399 @@
+############### Mail Tiles ###############
+date: "1"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#E3613A"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "3"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#D14873"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "5"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#DC402E"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "11"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#DC402E"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "16"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#FFFFFF"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "19"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#5D3172"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+---
+
+date: "24"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#977F6B"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+---
+
+date: "26"
+titleResourceString: "mail_title"
+descriptionResourceString: ~
+actionResourceString: "mail_action"
+color: "#549A8B"
+dateColor: "#DC402E"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+############### END Mail Tiles ###############
+
+############### Opportunity Tiles ###############
+---
+
+date: "4"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#632C7F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "9"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#D14873"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "12"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#32356F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "17"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#632C7F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "23"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#D14873"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "27"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#8E325B"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "30"
+titleResourceString: "opportunity_title"
+descriptionResourceString: "opportunity_description"
+actionResourceString: ~
+color: "#96B94F"
+dateColor: "#E6933E"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+############### END Opportunity Tiles ###############
+---
+
+############### Bonus Tiles ###############
+
+date: "2"
+titleResourceString: "bonus_title"
+descriptionResourceString: "bonus_description_2"
+actionResourceString: "bonus_action_2"
+color: "#612E73"
+dateColor: "#F2EB67"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "8"
+titleResourceString: "bonus_title"
+descriptionResourceString: "bonus_description_8"
+actionResourceString: "bonus_action_8"
+color: "#612E73"
+dateColor: "#F2EB67"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "15"
+titleResourceString: "bonus_title"
+descriptionResourceString: "bonus_description_15"
+actionResourceString: "bonus_action_15"
+color: "#612E73"
+dateColor: "#99BB52"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+
+############### END Bonus Tiles ###############
+---
+
+############### Rest day Tiles ###############
+
+date: "7"
+titleResourceString: "restday_title"
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#69A0CB"
+dateColor: "#E3613A"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "14"
+titleResourceString: "restday_title"
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#69A0CB"
+dateColor: "#F2F1E7"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "21"
+titleResourceString: "restday_title"
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#69A0CB"
+dateColor: "#32356F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "28"
+titleResourceString: "restday_title"
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#69A0CB"
+dateColor: "#F2F1E7"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+############### END Rest day Tiles ###############
+---
+
+############### Expense Tiles ###############
+
+date: "6"
+titleResourceString: "expense_title"
+descriptionResourceString: "expense_description_6"
+actionResourceString: "expense_action_6"
+color: "#E69043"
+dateColor: "#32356F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "13"
+titleResourceString: "expense_title"
+descriptionResourceString: "expense_description_13"
+actionResourceString: "expense_action_13"
+color: "#E69043"
+dateColor: "#8E325B"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "18"
+titleResourceString: "expense_title"
+descriptionResourceString: "expense_description_18"
+actionResourceString: "expense_action_18"
+color: "#E69043"
+dateColor: "#DC402E"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "22"
+titleResourceString: "expense_title"
+descriptionResourceString: "expense_description_22"
+actionResourceString: "expense_action_22"
+color: "#E69043"
+dateColor: "#F2EB67"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+############### END Expense Tiles ###############
+
+############### START Tile ###############
+date: "0"
+titleResourceString: "start_title"
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#181517"
+dateColor: ~
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+############### END START Tile ###############
+---
+
+############### OTHER Tiles ###############
+
+date: "10"
+titleResourceString: "gamble_title"
+descriptionResourceString: "gamble_description"
+actionResourceString: "gamble_action"
+color: "#D63D82"
+dateColor: "#632C7F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "20"
+titleResourceString: "change_title"
+descriptionResourceString: "change_description"
+actionResourceString: ~
+color: "#D63D82"
+dateColor: "#F2EB67"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "25"
+titleResourceString: "ceo_title"
+descriptionResourceString: "ceo_description"
+actionResourceString: "ceo_action"
+color: "#D63D82"
+dateColor: "#F0A45A"
+dateTextColor: ~
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "29"
+titleResourceString: ~
+descriptionResourceString: "suitcase_description"
+actionResourceString: ~
+color: "#F8DA56"
+dateColor: "#5D3172"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#000000"
+
+---
+
+date: "31"
+titleResourceString: ~
+descriptionResourceString: "whitecrow_description"
+actionResourceString: "whitecrow_action"
+color: "#181517"
+dateColor: "#632C7F"
+dateTextColor: "#FFFFFF"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "32"
+titleResourceString: ~
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#c1bdbd"
+dateColor: ~
+dateTextColor: "#c1bdbd"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "33"
+titleResourceString: "moneypot_title"
+descriptionResourceString: "moneypot_description"
+actionResourceString: ~
+color: "#A53B37"
+dateColor: ~
+dateTextColor: "#A53B37"
+descriptionColor: "#FFFFFF"
+
+---
+
+date: "34"
+titleResourceString: ~
+descriptionResourceString: ~
+actionResourceString: ~
+color: "#A53B37"
+dateColor: ~
+dateTextColor: "#A53B37"
+descriptionColor: "#FFFFFF"
