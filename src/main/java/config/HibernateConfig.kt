@@ -22,8 +22,8 @@ class PostgresHibernateConfigLocal : DataSourceConfig() {
     private lateinit var environment: Environment
 
     @Bean
-    override fun dataSource (): DataSource {
-        val dataSource =  BasicDataSource()
+    override fun dataSource(): DataSource {
+        val dataSource = BasicDataSource()
         dataSource.driverClassName = "org.postgresql.Driver"
         dataSource.url = environment["url"]
         dataSource.username = environment["username"]
@@ -45,7 +45,8 @@ class PostgresHibernateConfigProd : DataSourceConfig() {
         val dbUri = URI(System.getenv("DATABASE_URL"))
         val username = dbUri.userInfo.split(":")[0]
         val password = dbUri.userInfo.split(":")[1]
-        val dbUrl = "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require" //for remote connections
+        val dbUrl =
+            "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require" //for remote connections
         val config = BasicDataSource()
         config.url = dbUrl
         config.username = username
