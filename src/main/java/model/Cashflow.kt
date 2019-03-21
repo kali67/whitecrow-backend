@@ -16,13 +16,13 @@ class Cashflow(
     @ManyToOne
     var projectManager: ProjectManager,
 
-    @Column(name="amount")
+    @Column(name = "amount")
     var amount: Int,
 
-    @Column(name="rate")
+    @Column(name = "rate")
     var rate: Double,
 
-    @Column(name="flow_type")
+    @Column(name = "flow_type")
     @Enumerated(EnumType.STRING)
     var flowType: FlowType
 )

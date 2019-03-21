@@ -3,6 +3,7 @@ package whitecrow.service
 import org.hibernate.SessionFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import whitecrow.interfaces.IProjectManagerService
 import whitecrow.model.BankingStrategy
 import whitecrow.model.ProjectManager
 
@@ -12,7 +13,7 @@ data class ProjectManagerServiceImpl @Autowired constructor(private val sessionF
     IProjectManagerService {
 
 
-    override fun updateUsername(id:Int, username: String) {
+    override fun updateUsername(id: Int, username: String) {
         val session = sessionFactory.openSession()
         session.beginTransaction()
         val player: ProjectManager = session.load(ProjectManager::class.java, id)

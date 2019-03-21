@@ -1,4 +1,4 @@
-package whitecrow.service
+package whitecrow.interfaces
 
 import whitecrow.model.BankingStrategy
 

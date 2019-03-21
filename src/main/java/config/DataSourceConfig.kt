@@ -32,7 +32,7 @@ abstract class DataSourceConfig {
     private fun hibernateProperties(): Properties {
         val hibernateProperties = Properties()
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect")
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update") // influences schema on start up
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "none") // influences schema on start up
         hibernateProperties.setProperty("hibernate.temp.use_jdbc_metadata_defaults", "false")
         return hibernateProperties
     }

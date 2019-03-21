@@ -1,4 +1,8 @@
 persistence-local.properties
+.gradle
+.idea
+/build
+/out
 
 # Compiled source #
 ###################

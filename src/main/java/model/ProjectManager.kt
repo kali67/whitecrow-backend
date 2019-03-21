@@ -15,15 +15,14 @@ class ProjectManager(
     @Id
     @GeneratedValue
     @Column(name = "id")
-    var id : Int,
+    var id: Int,
 
     @Column(name = "username")
     var userName: String,
 
     @Column(name = "budget")
     var budget: Double
-)
-{
+) {
     @Column(name = "banking_strategy")
     @Enumerated(EnumType.STRING)
     lateinit var bankingStrategy: BankingStrategy

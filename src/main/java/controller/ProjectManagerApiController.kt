@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import whitecrow.model.BankingStrategy
 
-import whitecrow.service.IProjectManagerService
+import whitecrow.interfaces.IProjectManagerService
 
 
 @RestController
 class ProjectManagerApiController @Autowired constructor(var projectManagerService: IProjectManagerService) {
 
     @PostMapping("/create/project_manager")
-    fun createPlayer(@RequestParam(value = "username") username : String): String {
+    fun createPlayer(@RequestParam(value = "username") username: String): String {
         projectManagerService.createPlayer(username)
         return "done"
     }

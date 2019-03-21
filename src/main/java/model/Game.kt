@@ -15,10 +15,10 @@ class Game(
     @GeneratedValue
     var id: Int,
 
-    @Column(name="number_rounds")
-    var numberRounds : Int,
+    @Column(name = "number_rounds")
+    var numberRounds: Int,
 
-    @Column(name="current_day")
+    @Column(name = "current_day")
     var currentDay: Int,
 
     @ManyToMany
