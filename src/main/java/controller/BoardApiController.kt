@@ -11,7 +11,7 @@ import whitecrow.static_objects.GameBoard
 class BoardApiController @Autowired constructor(val boardService: IBoardService){
 
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com"])
+    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/board")
     fun gameBoard(): GameBoard {
         return boardService.load()

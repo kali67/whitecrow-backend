@@ -2,11 +2,13 @@ package whitecrow.business_rules
 
 import com.esotericsoftware.yamlbeans.YamlReader
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Component
 import whitecrow.config.LocaleHelper
 import whitecrow.interfaces.IBRMailCard
 import whitecrow.static_objects.MailCard
-import java.io.FileReader
+import java.io.BufferedReader
+import java.io.InputStreamReader
 import kotlin.random.Random
 
 @Component
@@ -16,7 +18,8 @@ class BRMailCard : IBRMailCard {
     lateinit var localeHelper: LocaleHelper
 
     override fun parseStaticYamlObjects(): Map<*, *> {
-        val reader = YamlReader(FileReader(this::class.java.classLoader.getResource("mailcard-descriptor.yml").file))
+        val resource = ClassPathResource("mailcard-descriptor.yml").inputStream
+        val reader = YamlReader(BufferedReader(InputStreamReader(resource)))
         lateinit var mailCardMap: Map<*, *>
         while (true) {
             val mailCard = reader.read() ?: break
