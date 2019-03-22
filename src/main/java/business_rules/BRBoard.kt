@@ -5,13 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import whitecrow.config.LocaleHelper
 import whitecrow.interfaces.IBRBoard
-import whitecrow.interfaces.IBRYamlMapper
 import whitecrow.static_objects.BoardTile
 import whitecrow.static_objects.GameBoard
 import java.io.FileReader
 
 @Component
-class BRBoard @Autowired constructor(var localeHelper: LocaleHelper) : IBRBoard, IBRYamlMapper<GameBoard> {
+class BRBoard @Autowired constructor(var localeHelper: LocaleHelper) : IBRBoard {
 
 
     override fun parseStaticYamlObjects(): Map<*, *> {
@@ -62,4 +61,6 @@ class BRBoard @Autowired constructor(var localeHelper: LocaleHelper) : IBRBoard,
         tiles.sortBy { it.date }
         return GameBoard(localisedTitle, localisedDescription, days, tiles)
     }
+
+
 }
