@@ -3,8 +3,8 @@ package whitecrow.interfaces
 import whitecrow.model.Game
 import whitecrow.model.GameState
 
-interface IGameService {
+interface IGameService : IDataService<Game, Int> {
 
-    fun filterGamesByState(gameState: GameState): List<Game>
+    fun findAllByState(gameState: GameState): List<Game>
 
 }

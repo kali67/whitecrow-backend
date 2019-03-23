@@ -16,6 +16,6 @@ class GameApiController @Autowired constructor(val gameServiceImpl: IGameService
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com"])
     @GetMapping("/game")
     fun listGamesByState (@RequestParam state: GameState) : List<Game> {
-        return gameServiceImpl.filterGamesByState(state)
+        return gameServiceImpl.findAllByState(state)
     }
 }

@@ -10,8 +10,23 @@ import javax.persistence.criteria.CriteriaQuery
 
 @Service
 data class GameServiceImpl @Autowired constructor(private val sessionFactory: SessionFactory) : IGameService {
+    override fun delete(deleted: Game) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 
-    override fun filterGamesByState(gameState: GameState): List<Game> {
+    override fun findAll(): List<Game> {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun findOne(id: Int): Game {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun save(persisted: Game): Game {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun findAllByState(gameState: GameState): List<Game> {
         val session = sessionFactory.openSession()
         val builder = session.criteriaBuilder
         val criteria: CriteriaQuery<Game> = builder.createQuery(Game::class.java)

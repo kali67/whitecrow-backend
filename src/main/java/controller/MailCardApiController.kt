@@ -14,6 +14,6 @@ class MailCardApiController @Autowired constructor(val mailCardService: IMailCar
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com"])
     @GetMapping("/cards/mail")
     fun listMailCards(@RequestParam(name = "count", defaultValue = "3") count: Int) : List<MailCard> {
-        return mailCardService.loadHand()
+        return mailCardService.findCardHand()
     }
 }

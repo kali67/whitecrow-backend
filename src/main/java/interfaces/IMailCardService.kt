@@ -4,5 +4,5 @@ import whitecrow.static_objects.MailCard
 
 interface IMailCardService {
 
-    fun loadHand() : List<MailCard>
+    fun findCardHand() : List<MailCard>
 }

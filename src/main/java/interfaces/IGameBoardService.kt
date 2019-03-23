@@ -3,7 +3,7 @@ package whitecrow.interfaces
 import whitecrow.static_objects.GameBoard
 
 
-interface IBoardService {
+interface IGameBoardService  {
 
     fun load() : GameBoard
 }

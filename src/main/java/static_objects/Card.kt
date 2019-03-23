@@ -1,9 +1,9 @@
 package whitecrow.static_objects
 
 data class MailCard constructor(
-    val category: String,
-    val title: String,
-    val action: String,
-    val subTitle: String,
-    val description: String
+    var category: String,
+    var title: String,
+    var action: String,
+    var subTitle: String,
+    var description: String
 )
