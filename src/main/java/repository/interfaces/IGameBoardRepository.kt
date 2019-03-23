@@ -1,4 +1,4 @@
-package whitecrow.interfaces
+package whitecrow.repository.interfaces
 
 import org.springframework.data.repository.NoRepositoryBean
 import org.springframework.data.repository.Repository
@@ -7,5 +7,5 @@ import whitecrow.static_objects.GameBoard
 @NoRepositoryBean
 interface IGameBoardRepository : Repository<GameBoard, Int> {
 
-    fun find() : GameBoard
+    fun find(): GameBoard
 }

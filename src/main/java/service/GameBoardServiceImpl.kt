@@ -3,8 +3,8 @@ package whitecrow.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import whitecrow.config.LocaleHelper
-import whitecrow.interfaces.IGameBoardRepository
-import whitecrow.interfaces.IGameBoardService
+import whitecrow.repository.interfaces.IGameBoardRepository
+import whitecrow.service.interfaces.IGameBoardService
 import whitecrow.static_objects.GameBoard
 
 @Service

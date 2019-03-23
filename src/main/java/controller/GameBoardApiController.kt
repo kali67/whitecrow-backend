@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
-import whitecrow.interfaces.IGameBoardService
+import whitecrow.service.interfaces.IGameBoardService
 import whitecrow.static_objects.GameBoard
 
 @RestController

@@ -1,4 +1,4 @@
-package whitecrow.interfaces
+package whitecrow.service.interfaces
 
 import whitecrow.model.Game
 import whitecrow.model.GameState

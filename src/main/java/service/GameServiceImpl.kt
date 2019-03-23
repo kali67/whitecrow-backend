@@ -3,13 +3,13 @@ package whitecrow.service
 import org.hibernate.SessionFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import whitecrow.interfaces.IGameService
 import whitecrow.model.Game
 import whitecrow.model.GameState
+import whitecrow.service.interfaces.IGameService
 import javax.persistence.criteria.CriteriaQuery
 
 @Service
-data class GameServiceImpl @Autowired constructor(private val sessionFactory: SessionFactory) : IGameService {
+data class GameServiceImpl @Autowired constructor(private val sessionFactory: SessionFactory ) : IGameService { //TODO DAO
     override fun delete(deleted: Game) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }

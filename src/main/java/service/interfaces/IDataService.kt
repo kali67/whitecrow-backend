@@ -1,4 +1,4 @@
-package whitecrow.interfaces
+package whitecrow.service.interfaces
 
 import java.io.Serializable
 

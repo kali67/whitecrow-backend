@@ -3,7 +3,7 @@ package whitecrow.repository
 import com.esotericsoftware.yamlbeans.YamlReader
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Repository
-import whitecrow.interfaces.IMailCardRepository
+import whitecrow.repository.interfaces.IMailCardRepository
 import whitecrow.static_objects.MailCard
 import java.io.BufferedReader
 import java.io.InputStreamReader

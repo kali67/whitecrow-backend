@@ -3,9 +3,9 @@ package whitecrow.service
 import org.hibernate.SessionFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import whitecrow.interfaces.IProjectManagerService
 import whitecrow.model.BankingStrategy
 import whitecrow.model.ProjectManager
+import whitecrow.service.interfaces.IProjectManagerService
 
 
 @Service

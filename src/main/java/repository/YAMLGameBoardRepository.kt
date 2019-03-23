@@ -3,7 +3,7 @@ package whitecrow.repository
 import com.esotericsoftware.yamlbeans.YamlReader
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Repository
-import whitecrow.interfaces.IGameBoardRepository
+import whitecrow.repository.interfaces.IGameBoardRepository
 import whitecrow.static_objects.BoardTile
 import whitecrow.static_objects.GameBoard
 import java.io.BufferedReader
