@@ -8,23 +8,42 @@ enum class GameState {
     COMPLETED
 }
 
+enum class GameType {
+    SINGLEPLAYER,
+    MULTIPLAYER
+}
+
 @Entity
+@Table(name = "game")
 class Game(
 
-    @Id
-    @GeneratedValue
-    var id: Int,
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type")
+    var type: GameType,
 
     @Column(name = "number_rounds")
     var numberRounds: Int,
 
-    @Column(name = "current_day")
-    var currentDay: Int,
+    @Column(name = "max_players")
+    var maxPlayers: Int,
 
-    @ManyToMany
-    var managers: MutableSet<ProjectManager>,
+    @ManyToMany(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
+    var player: MutableSet<Player> = mutableSetOf(),
+
+    @Column(name = "current_day")
+    var currentDay: Int = 0,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "state")
-    var state: GameState
-)
+    var state: GameState = GameState.AWAITING_PLAYERS
+
+
+) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Int = 0
+
+    @OneToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "next", referencedColumnName = "player_id")
+    var next: Player? = null
+}

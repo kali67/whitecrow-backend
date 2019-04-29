@@ -1,19 +1,22 @@
 package whitecrow.controller
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.web.bind.annotation.CrossOrigin
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import whitecrow.model.Card
 import whitecrow.service.interfaces.IMailCardService
-import whitecrow.static_objects.MailCard
 
 @RestController
 class MailCardApiController @Autowired constructor(val mailCardService: IMailCardService) {
 
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
-    @GetMapping("/cards/mail")
-    fun listMailCards(@RequestParam(name = "count", defaultValue = "3") count: Int) : List<MailCard> {
+    @PostMapping("/game/{id}/mail/card/draw")
+    fun draw(@PathVariable id: Int): Card {
         return mailCardService.findCardHand()
+    }
+
+    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
+    @PostMapping("/player/{playerId}/add/mail/{mailId}")
+    fun addMailCard(@PathVariable playerId: Int, @PathVariable mailId: Int) {
+        mailCardService.addMailCard(playerId, mailId)
     }
 }

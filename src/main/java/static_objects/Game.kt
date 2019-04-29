@@ -1,5 +1,17 @@
 package whitecrow.static_objects
 
+enum class TileType(value: String) {
+
+    MAIL("MAIL"),
+    OPPORTUNITY("OPPORTUNITY"),
+    EXPENSE("EXPENSE"),
+    BONUS("BONUS"),
+    SET_BACK("SET_BACK"),
+    GAMBLE("GAMBLE"),
+    COST_REDUCTION("COST_REDUCTION"),
+    OTHER("OTHER")
+}
+
 data class GameBoard constructor(
     var title: String,
     var description: String,
@@ -8,7 +20,10 @@ data class GameBoard constructor(
 )
 
 data class BoardTile(
-    var date: Int, var title: String,
+    var date: Int,
+    var type: TileType,
+    var cost: Float,
+    var title: String,
     var description: String,
     var action: String,
     var color: String,

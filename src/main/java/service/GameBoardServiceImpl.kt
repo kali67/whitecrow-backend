@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service
 import whitecrow.config.LocaleHelper
 import whitecrow.repository.interfaces.IGameBoardRepository
 import whitecrow.service.interfaces.IGameBoardService
+import whitecrow.static_objects.BoardTile
 import whitecrow.static_objects.GameBoard
 
 @Service
@@ -13,7 +14,6 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
 
     @Autowired
     private lateinit var localeHelper: LocaleHelper
-
 
     override fun load(): GameBoard {
         val gameBoard = gameBoardRepository.find()
@@ -27,5 +27,10 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
             it
         }
         return gameBoard
+    }
+
+    override fun findTileByDate(date: Int): BoardTile {
+        val gameBoard = gameBoardRepository.find()
+        return gameBoard.tiles.first { date == it.date }
     }
 }

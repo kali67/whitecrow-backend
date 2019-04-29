@@ -1,8 +1,12 @@
 package whitecrow.service.interfaces
 
-import whitecrow.static_objects.MailCard
+import whitecrow.model.Card
 
 interface IMailCardService {
 
-    fun findCardHand() : List<MailCard>
+    fun findCardHand(): Card
+
+    fun findById(id: Int) : Card
+
+    fun addMailCard(playerId: Int, cardId: Int)
 }

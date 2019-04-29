@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 import whitecrow.repository.interfaces.IGameBoardRepository
 import whitecrow.static_objects.BoardTile
 import whitecrow.static_objects.GameBoard
+import whitecrow.static_objects.TileType
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -33,6 +34,8 @@ class YAMLGameBoardRepository : IGameBoardRepository {
             tile as Map<*, *>
             BoardTile(
                 Integer.parseInt(tile["date"] as String),
+                TileType.valueOf(tile["type"] as String),
+                (tile["cost"] as String).toFloat(),
                 tile["titleResourceString"] as String,
                 tile["descriptionResourceString"] as String,
                 tile["actionResourceString"] as String,

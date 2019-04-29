@@ -46,7 +46,7 @@ class PostgresHibernateConfigProd : DataSourceConfig() {
         val username = dbUri.userInfo.split(":")[0]
         val password = dbUri.userInfo.split(":")[1]
         val dbUrl =
-            "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require" //for remote connections
+            "jdbc:postgresql://" + dbUri.host + ':' + dbUri.port + dbUri.path + "?sslmode=require" // for remote connections
         val config = BasicDataSource()
         config.url = dbUrl
         config.username = username
@@ -54,6 +54,4 @@ class PostgresHibernateConfigProd : DataSourceConfig() {
         config.driverClassName = "org.postgresql.Driver"
         return config
     }
-
-
 }

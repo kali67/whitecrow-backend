@@ -2,10 +2,11 @@ package whitecrow.repository.interfaces
 
 import org.springframework.data.repository.NoRepositoryBean
 import org.springframework.data.repository.Repository
-import whitecrow.static_objects.MailCard
+import whitecrow.model.Card
 
 @NoRepositoryBean
-interface IMailCardRepository : Repository<MailCard, Int> {
+interface IMailCardRepository : Repository<Card, Int> {
+    fun findAll(): List<Card>
 
-    fun findAll(): List<MailCard>
+    fun findById(id: Int): Card
 }

@@ -2,44 +2,39 @@ package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import whitecrow.config.LocaleHelper
+import whitecrow.model.Card
+import whitecrow.repository.PlayerRepositoryImpl
 import whitecrow.repository.interfaces.IMailCardRepository
+import whitecrow.repository.interfaces.IPlayerRepository
+import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IMailCardService
-import whitecrow.static_objects.MailCard
+import whitecrow.service.interfaces.IPlayerService
+import javax.transaction.Transactional
 import kotlin.random.Random
 
 @Service
-class MailCardServiceImpl @Autowired constructor(private val mailCardRepository: IMailCardRepository) :
-    IMailCardService {
+@Transactional
+class MailCardServiceImpl @Autowired constructor(val mailCardRepositoryImpl: IMailCardRepository,
+                                                 val playerServiceImpl: IPlayerService,
+                                                 val playerRepositoryImpl: IPlayerRepository) : IMailCardService {
 
-
-    @Autowired
-    private lateinit var localeHelper: LocaleHelper
-
-    override fun findCardHand(): List<MailCard> {
-        val cards = mailCardRepository.findAll()
-        val handSelection = pickCards(cards)
-        return handSelection.map {
-            it.action = localeHelper.translate(it.action)
-            it.title = localeHelper.translate(it.title)
-            it.category = localeHelper.translate(it.category)
-            it.description = localeHelper.translate(it.description)
-            it.subTitle = localeHelper.translate(it.subTitle)
-            it
-        }
+    override fun findById(id: Int): Card {
+        return mailCardRepositoryImpl.findById(id)
     }
 
-    fun pickCards(selection: List<MailCard>): List<MailCard> {
-        var possibleDraws: List<MailCard> = selection
+    override fun findCardHand(): Card {
+        val cards = mailCardRepositoryImpl.findAll()
+        val index = Random.nextInt(cards.size)
+        val card = cards[index]
 
-        val drawnCards: MutableList<MailCard> = mutableListOf()
-        for (i in 0 until 3) {
-            val index = Random.nextInt(possibleDraws.size - 1)
-            drawnCards.add(possibleDraws[index])
-            possibleDraws = selection.filter { card ->
-                !drawnCards.contains(card)
-            }
-        }
-        return drawnCards
+        return cards[index]
+    }
+
+    override fun addMailCard(playerId: Int, cardId: Int) {
+        val player = playerRepositoryImpl.findOne(playerId)
+        val card = mailCardRepositoryImpl.findById(cardId)
+        player.cards.add(card)
+        playerRepositoryImpl.update(player)
+        playerServiceImpl.deductMoney(playerId, card.cost)
     }
 }
