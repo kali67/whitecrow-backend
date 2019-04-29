@@ -9,7 +9,9 @@ import whitecrow.dto.TurnResult
 import whitecrow.mappers.GameMapperDTO
 import whitecrow.mappers.PlayerMapperDTO
 import whitecrow.model.Game
+import whitecrow.repository.PlayerRepositoryImpl
 import whitecrow.repository.interfaces.IGameRepository
+import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IPlayerService
 import whitecrow.service.interfaces.IUserSharedService
@@ -20,7 +22,7 @@ import kotlin.random.Random
 @Transactional
 class GameSharedServiceImpl @Autowired constructor(
     var gameRepositoryImpl: IGameRepository,
-    var playerServiceImpl: IPlayerService,
+    var playerRepositoryImpl: IPlayerRepository,
     var userServiceImpl: IUserSharedService
 ) : IGameSharedService {
 
@@ -49,7 +51,7 @@ class GameSharedServiceImpl @Autowired constructor(
         val shuffledCollection = players.shuffled()
         shuffledCollection.forEachIndexed { index, player ->
             player.playOrder = index
-            playerServiceImpl.update(player)
+            playerRepositoryImpl.update(player)
         }
         val game = gameRepositoryImpl.findOne(gameId)
         game.next = shuffledCollection[0]
