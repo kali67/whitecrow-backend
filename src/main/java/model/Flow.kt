@@ -12,21 +12,21 @@ enum class FlowType {
 @Table(name = "flow")
 class Flow(
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int,
-
-    @ManyToOne(cascade = [CascadeType.ALL])
-    @JoinColumn(name = "player_id")
+    @ManyToOne
     var player: Player,
 
     @Column(name = "amount")
-    var amount: Int,
+    var amount: Float,
 
     @Column(name = "payback_rate")
-    var paybackRate: Int,
+    var paybackRate: Float,
 
     @Enumerated(EnumType.STRING)
     @Column(name = "flow_type")
     var flowType: FlowType
-)
+) {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Int = 0
+}

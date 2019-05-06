@@ -27,7 +27,7 @@ class Game(
     @Column(name = "max_players")
     var maxPlayers: Int,
 
-    @ManyToMany(cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
+    @OneToMany(mappedBy= "game", cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
     var player: MutableSet<Player> = mutableSetOf(),
 
     @Column(name = "current_day")

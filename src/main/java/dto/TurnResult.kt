@@ -13,10 +13,23 @@ class ChanceResult(
     dieRolls: Map<String, Int> //username, die number
 )
 
-class TurnResult( //TODO: lower level react component will receive this and update gamecontroller state, add animate state change method to gamecontroller
+enum class DECISION {
+    ACCEPTED,
+    UN_DECIDED,
+    DECLINED
+}
+
+
+class OpportunityCardResult(
+    val card: Card,
+    val decision: DECISION
+)
+
+
+class TurnResult(
     val playerId: Int,
     val mailCard: Card? = null,
-    val oppourtunityCard: Card? = null,
+    val opportunityCardResult: OpportunityCardResult? = null,
     val message: String,
     val chanceResult: ChanceResult? = null,
     val turnStage: TurnProgress

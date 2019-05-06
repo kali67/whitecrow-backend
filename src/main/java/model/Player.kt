@@ -18,7 +18,12 @@ data class Player(
     @ManyToOne(cascade = [CascadeType.MERGE])
     @JoinColumn(name = "user_id")
     var user: User? = null
+
+
 ) {
+
+    @ManyToOne
+    var game: Game? = null
 
     @Column(name = "money")
     var money: Float = 1000.0f

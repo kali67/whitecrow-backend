@@ -7,4 +7,6 @@ import whitecrow.model.Player
 interface IPlayerRepository : IBaseRepository<Player, Int> {
 
     fun update(player: Player)
+
+    fun findGame(id: Int)
 }

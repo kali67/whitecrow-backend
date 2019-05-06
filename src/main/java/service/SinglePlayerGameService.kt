@@ -31,8 +31,10 @@ class SinglePlayerGameService @Autowired constructor(
         userServiceImpl.update(gameCreator)
         val entity = gameMapperDTO.from(game)
         entity.player.add(player)
+        player.game = entity
         for (n in 1 until game.maxPlayers) {
             val botPlayer = Player()
+            botPlayer.game = entity
             playerServiceImpl.save(botPlayer)
             entity.player.add(botPlayer)
         }

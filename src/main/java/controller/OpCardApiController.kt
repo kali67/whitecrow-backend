@@ -16,7 +16,7 @@ class OpCardApiController @Autowired constructor(val opCardServiceImpl: IOpCardS
 
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/player/{playerId}/add/opportunity/{opId}")
-    fun addOpportunityCard(@PathVariable playerId: Int, opId: Int) {
+    fun addOpportunityCard(@PathVariable playerId: Int, @PathVariable opId: Int) {
         opCardServiceImpl.addOpportunityCard(playerId, opId)
     }
 }

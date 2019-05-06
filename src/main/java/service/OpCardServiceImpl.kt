@@ -5,19 +5,22 @@ import org.springframework.stereotype.Service
 import whitecrow.model.Card
 import whitecrow.repository.interfaces.IOpCardRespository
 import whitecrow.repository.interfaces.IPlayerRepository
-import whitecrow.service.interfaces.IMailCardService
-import whitecrow.service.interfaces.IOpCardService
-import whitecrow.service.interfaces.IPlayerService
+import whitecrow.service.interfaces.*
 import javax.transaction.Transactional
 import kotlin.random.Random
 
 @Service
 @Transactional
-class OpCardServiceImpl @Autowired constructor(val opCardRepositoryImpl: IOpCardRespository,
-                                               val playerServiceImpl: IPlayerService,
-                                               val playerRepositoryImpl: IPlayerRepository,
-                                               val mailCardServiceImpl: IMailCardService
+class OpCardServiceImpl @Autowired constructor(
+    val opCardRepositoryImpl: IOpCardRespository,
+    val playerServiceImpl: IPlayerService,
+    val playerRepositoryImpl: IPlayerRepository,
+    val mailCardServiceImpl: IMailCardService,
+    val gameSharedServiceImpl: IGameSharedService
 ) : IOpCardService {
+
+    @Autowired
+    private lateinit var flowService: IFlowService
 
     override fun findHand(): List<Card> {
         return pickCards(opCardRepositoryImpl.findAll())
@@ -40,7 +43,9 @@ class OpCardServiceImpl @Autowired constructor(val opCardRepositoryImpl: IOpCard
         val player = playerRepositoryImpl.findOne(playerId)
         val card = mailCardServiceImpl.findById(cardId)
         player.cards.add(card)
+        flowService.createOpportunityInvestment(player, card)
+        gameSharedServiceImpl.endTurn(player.game!!.id)
         playerRepositoryImpl.update(player)
-        playerServiceImpl. deductMoney(playerId, card.cost)
+        playerServiceImpl.deductMoney(playerId, card.cost)
     }
 }

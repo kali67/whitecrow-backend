@@ -10,8 +10,8 @@ data class PlayerDTO constructor(
     val order: Int
 
 ) {
-//    lateinit var username: String
-    lateinit var flows: MutableList<Flow>
+    lateinit var username: String
+//    lateinit var flows: List<FlowDTO>
     lateinit var mailCards: MutableList<Card>
     lateinit var opportunityCards: MutableList<Card>
 }

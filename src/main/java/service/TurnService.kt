@@ -2,9 +2,9 @@ package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import whitecrow.dto.TurnProgress
-import whitecrow.dto.TurnResult
+import whitecrow.dto.*
 import whitecrow.model.Card
+import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.interfaces.*
 import whitecrow.static_objects.BoardTile
@@ -67,9 +67,9 @@ class OpportunityTileService : PlayerTurnService() {
         val card = opCardServiceImpl.findHand().first()
         return TurnResult(
             playerId,
-            oppourtunityCard = card,
+            opportunityCardResult = OpportunityCardResult(card, DECISION.UN_DECIDED),
             message = "test",
-            turnStage = TurnProgress.COMPLETED //TODO: needs client request to confirm decision, this will end the turn
+            turnStage = TurnProgress.DECISION_PENDING
         )
     }
 }
@@ -77,29 +77,30 @@ class OpportunityTileService : PlayerTurnService() {
 @Service
 class AIOpportunityTileService : PlayerTurnService() {
 
+
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
 
     override fun applyTileAction(playerId: Int, gameId: Int, tile: BoardTile): TurnResult {
         val cards = opCardServiceImpl.findHand()
-        val card = makeOpportunityDecision(cards)
-        if (card != null) {
-            opCardServiceImpl.addOpportunityCard(playerId, card.id)
+        val cardDecision = makeOpportunityDecision(cards)
+        if (cardDecision.decision == DECISION.ACCEPTED) {
+            opCardServiceImpl.addOpportunityCard(playerId, cardDecision.card.id)
         }
         return TurnResult(
             playerId,
-            oppourtunityCard = cards.first(), //todo
+            opportunityCardResult = cardDecision,
             message = "test",
             turnStage = TurnProgress.COMPLETED
         )
     }
 
-    private fun makeOpportunityDecision(cards: List<Card>): Card? {
+    private fun makeOpportunityDecision(cards: List<Card>): OpportunityCardResult {
         val card = cards[Random.nextInt(cards.size)]
         if (Math.round(Math.random()) == 1L) {
-            return card
+            return OpportunityCardResult(card, DECISION.ACCEPTED)
         }
-        return null
+        return OpportunityCardResult(card, DECISION.DECLINED)
     }
 }
 
@@ -111,7 +112,7 @@ class BonusTileService : PlayerTurnService() {
 
     override fun applyTileAction(playerId: Int, gameId: Int, tile: BoardTile): TurnResult {
         playerServiceImpl.increaseMoney(playerId, tile.cost)
-        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(playerId, message = tile.description, turnStage = TurnProgress.COMPLETED)
     }
 }
 
@@ -147,16 +148,19 @@ class CostReductionTileService : PlayerTurnService() {
 class SetBackTileService : PlayerTurnService() {
 
     @Autowired
-    private lateinit var gameSharedServiceImpl: IGameSharedService
+    private lateinit var gameRepository: IGameRepository
+
+    @Autowired
+    private lateinit var playerRepositoryImpl: IPlayerRepository
 
     @Transactional
     override fun applyTileAction(playerId: Int, gameId: Int, tile: BoardTile): TurnResult {
-        val players = gameSharedServiceImpl.findAllPlayers(gameId)
-//        players.forEach {
-//            it.day -= 1 //todo: add method to player service to set players back by X
-//        }
-//        playerRepositoryImpl.update(player)
-        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED)
+        val players = gameRepository.findAllPlayers(gameId)
+        players.forEach {
+            it.currentDay -= 1
+            playerRepositoryImpl.update(it)
+        }
+        return TurnResult(playerId, message = "Everyone must go back one day!", turnStage = TurnProgress.COMPLETED)
     }
 }
 

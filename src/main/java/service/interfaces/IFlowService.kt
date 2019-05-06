@@ -1,7 +1,10 @@
 package whitecrow.service.interfaces
 
-import whitecrow.model.Flow
+import whitecrow.model.Card
+import whitecrow.model.Player
 
-interface IFlowService : IDataService<Flow, Flow, Int> {
+interface IFlowService {
+
+    fun createOpportunityInvestment(player: Player, card: Card)
 
 }
