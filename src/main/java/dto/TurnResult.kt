@@ -30,9 +30,10 @@ class TurnResult(
     val playerId: Int,
     val mailCard: Card? = null,
     val opportunityCardResult: OpportunityCardResult? = null,
-    val message: String,
+    val message: String? = null,
     val chanceResult: ChanceResult? = null,
-    val turnStage: TurnProgress
+    val turnStage: TurnProgress,
+    var isGameEnding: Boolean = false
 ) {
     var currentDay: Int = 0
 }

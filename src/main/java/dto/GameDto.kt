@@ -13,4 +13,5 @@ class GameDto(
 ) {
     var status: GameState = GameState.AWAITING_PLAYERS
     var players: MutableSet<PlayerDTO> = mutableSetOf()
+    var winner: PlayerDTO? = null
 }

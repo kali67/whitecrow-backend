@@ -58,7 +58,7 @@ class SinglePlayerGameService @Autowired constructor(
         if (nextPlayer != null) {
             var index = nextPlayer.playOrder
             while (index != requesterPlayer.order) {
-                val turnResult = playerServiceImpl.useTurn(players[index].id, id)
+                val turnResult = playerServiceImpl.useTurn(players[index].id, id, gameSharedServiceImpl.rollDice())
                 turnResults.add(turnResult)
                 index = (index + 1).rem(players.size)
             }

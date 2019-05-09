@@ -1,8 +1,8 @@
 package whitecrow.static_objects
 
 enum class TileType(value: String) {
-
     MAIL("MAIL"),
+    END_GAME("END_GAME"),
     OPPORTUNITY("OPPORTUNITY"),
     EXPENSE("EXPENSE"),
     BONUS("BONUS"),

@@ -24,18 +24,18 @@ class PlayerServiceImpl @Autowired constructor(
     private lateinit var turnServiceFactory: TurnServiceFactory
 
     @Autowired
-    lateinit var gameSharedServiceImpl: IGameSharedService
+    lateinit var flowService: IFlowService
 
     companion object {
-        const val NUMBER_DAYS = 31
+        const val NUMBER_DAYS = 32
         const val DAYS_IN_TWO_WEEKS = 14
         const val REDUCTION_AMOUNT = 0.5f //50%
     }
 
-    override fun useTurn(playerId: Int, gameId: Int): TurnResult {
+    override fun useTurn(playerId: Int, gameId: Int, daysToProgress: Int): TurnResult {
         val player = playerRepositoryImpl.findOne(playerId)
-        val dieResult = gameSharedServiceImpl.rollDice()
-        player.currentDay += dieResult
+        player.currentDay += daysToProgress
+        update(player)
         val tile = gameBoardServiceImpl.findTileByDate(player.currentDay.rem(NUMBER_DAYS))
         val service = turnServiceFactory.invoke(player, tile.type)
         val turnResult = service.executeAction(playerId, gameId, tile)
@@ -57,6 +57,15 @@ class PlayerServiceImpl @Autowired constructor(
         val player = playerRepositoryImpl.findOne(playerId)
         player.money += amount
         playerRepositoryImpl.update(player)
+    }
+
+    override fun calculateScore(player: Player): Float {
+        var totalScore = 0f
+        val investments = flowService.findInvestments(player.id)
+        val loans = flowService.findLoans(player.id)
+        investments.forEach { totalScore += flowService.calcFlowPayback(it) }
+        loans.forEach { totalScore -= flowService.calcFlowPayback(it) }
+        return totalScore
     }
 
     override fun save(persisted: Player) {

@@ -39,6 +39,9 @@ class TurnServiceFactory {
             tileType == TileType.COST_REDUCTION -> {
                 return appContext.getBean(CostReductionTileService::class.java)
             }
+            tileType == TileType.END_GAME -> {
+                return appContext.getBean(DayWhitecrowTileService::class.java)
+            }
         }
         return appContext.getBean(OtherTileService::class.java)
     }

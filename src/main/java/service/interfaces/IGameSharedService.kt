@@ -14,5 +14,9 @@ interface IGameSharedService : IDataService<Game, GameDto, Int> {
 
     fun rollDice() : Int
 
-    fun endTurn(gameId: Int)
+    fun progressToNextPlayer(gameId: Int)
+
+    fun endGame(id: Int) : GameDto
+
+    fun gameHasFinished(game: Game) : Boolean
 }

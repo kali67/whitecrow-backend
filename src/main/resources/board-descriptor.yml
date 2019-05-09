@@ -321,7 +321,7 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#000000"
   - date: "31"
-    type: "OTHER"
+    type: "END_GAME"
     cost: "100"
     titleResourceString: ~
     descriptionResourceString: "WHITECROW_DESCRIPTION"
