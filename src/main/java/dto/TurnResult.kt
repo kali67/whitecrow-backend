@@ -33,7 +33,8 @@ class TurnResult(
     val message: String? = null,
     val chanceResult: ChanceResult? = null,
     val turnStage: TurnProgress,
-    var isGameEnding: Boolean = false
+    var isGameEnding: Boolean = false,
+    var moneyDifference: Float
 ) {
     var currentDay: Int = 0
 }

@@ -47,7 +47,13 @@ class MailTileService : PlayerTurnService() {
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         val card = mailCardServiceImpl.findCardHand()
         mailCardServiceImpl.addMailCard(playerId, card.id)
-        return TurnResult(playerId, card, message = "test", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId,
+            card,
+            message = "test",
+            turnStage = TurnProgress.COMPLETED,
+            moneyDifference = -card.cost
+        )
     }
 
 }
@@ -61,7 +67,7 @@ class ExpenseTileService : PlayerTurnService() {
 
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.deductMoney(playerId, tile.cost)
-        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED, moneyDifference = -tile.cost)
     }
 
 }
@@ -78,7 +84,8 @@ class OpportunityTileService : PlayerTurnService() {
             playerId,
             opportunityCardResult = OpportunityCardResult(card, DECISION.UN_DECIDED),
             message = "test",
-            turnStage = TurnProgress.DECISION_PENDING
+            turnStage = TurnProgress.DECISION_PENDING,
+            moneyDifference = -card.cost
         )
     }
 }
@@ -100,7 +107,8 @@ class AIOpportunityTileService : PlayerTurnService() {
             playerId,
             opportunityCardResult = cardDecision,
             message = "test",
-            turnStage = TurnProgress.COMPLETED
+            turnStage = TurnProgress.COMPLETED,
+            moneyDifference = -cardDecision.card.cost
         )
     }
 
@@ -121,7 +129,10 @@ class BonusTileService : PlayerTurnService() {
 
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.increaseMoney(playerId, tile.cost)
-        return TurnResult(playerId, message = tile.description, turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, message = tile.description, turnStage = TurnProgress.COMPLETED,
+            moneyDifference = tile.cost
+        )
     }
 }
 
@@ -134,7 +145,10 @@ class GambleTileService : PlayerTurnService() {
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.deductMoney(playerId, tile.cost)
         //todo : roll for each player in game, add players * cost to winner
-        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, message = "test", turnStage = TurnProgress.COMPLETED,
+            moneyDifference = 0f
+        )
     }
 }
 
@@ -149,7 +163,10 @@ class CostReductionTileService : PlayerTurnService() {
         val player = playerRepositoryImpl.findOne(playerId)
         player.costReducedSince = player.currentDay
         playerRepositoryImpl.update(player)
-        return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, message = "test", turnStage = TurnProgress.COMPLETED,
+            moneyDifference = 0f
+        )
     }
 }
 
@@ -166,7 +183,10 @@ class SetBackTileService : PlayerTurnService() {
             it.currentDay -= 1
             playerRepositoryImpl.update(it)
         }
-        return TurnResult(playerId, message = "Everyone must go back one day!", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, message = "Everyone must go back one day!", turnStage = TurnProgress.COMPLETED,
+            moneyDifference = 0f
+        )
     }
 }
 
@@ -174,7 +194,10 @@ class SetBackTileService : PlayerTurnService() {
 class OtherTileService : PlayerTurnService() {
 
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
-        return TurnResult(playerId, message = "Enjoy your rest day!", turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, message = "Enjoy your rest day!", turnStage = TurnProgress.COMPLETED,
+            moneyDifference = 0f
+        )
     }
 }
 
@@ -187,6 +210,9 @@ class DayWhitecrowTileService : PlayerTurnService() {
     @Transactional
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.increaseMoney(playerId, tile.cost)
-        return TurnResult(playerId, turnStage = TurnProgress.COMPLETED)
+        return TurnResult(
+            playerId, turnStage = TurnProgress.COMPLETED,
+            moneyDifference = 0f
+        )
     }
 }
