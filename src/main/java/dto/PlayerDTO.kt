@@ -1,7 +1,6 @@
 package whitecrow.dto
 
 import whitecrow.model.Card
-import whitecrow.model.Flow
 
 data class PlayerDTO constructor(
     val id: Int,
@@ -11,7 +10,8 @@ data class PlayerDTO constructor(
 
 ) {
     lateinit var username: String
-//    lateinit var flows: List<FlowDTO>
+    //    lateinit var flows: List<FlowDTO>
+    var hasFinishedGame = false
     lateinit var mailCards: MutableList<Card>
     lateinit var opportunityCards: MutableList<Card>
 }

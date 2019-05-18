@@ -1,7 +1,6 @@
 package whitecrow.service.interfaces
 
 import whitecrow.dto.GameDto
-import whitecrow.dto.PlayerDTO
 import whitecrow.dto.TurnResult
 
 interface ISinglePlayerGameService {

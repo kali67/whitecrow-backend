@@ -21,15 +21,12 @@ abstract class PlayerTurnService {
     @Autowired
     protected lateinit var gameRepository: IGameRepository
 
-
     fun executeAction(playerId: Int, gameId: Int, tile: BoardTile): TurnResult {
+
         val game = gameRepository.findOne(gameId)
         val turnResult = applyTileAction(playerId, game, tile)
         if (turnResult.turnStage == TurnProgress.COMPLETED || turnResult.turnStage == TurnProgress.COMPLETED_WITH_ROLLS) {
             gameSharedServiceImpl.progressToNextPlayer(gameId)
-        }
-        if (gameSharedServiceImpl.gameHasFinished(game)) {
-            turnResult.isGameEnding = true
         }
         return turnResult
     }
@@ -43,9 +40,24 @@ class MailTileService : PlayerTurnService() {
     @Autowired
     private lateinit var mailCardServiceImpl: IMailCardService
 
+    @Autowired
+    private lateinit var playerServiceImpl: IPlayerService
+
     @Transactional
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         val card = mailCardServiceImpl.findCardHand()
+        val playerOpportunityCards = playerServiceImpl.findOne(playerId).opportunityCards
+        val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
+//        if (card.category in categoriesOwnedByPlayer) {
+//            val playerMessage = "You're recent investment has disregarded this mail card!"
+//            return TurnResult(
+//                playerId,
+//                card,
+//                message = playerMessage,
+//                moneyDifference = 0f,
+//                turnStage = TurnProgress.COMPLETED
+//            )
+//        }
         mailCardServiceImpl.addMailCard(playerId, card.id)
         return TurnResult(
             playerId,
@@ -55,9 +67,7 @@ class MailTileService : PlayerTurnService() {
             moneyDifference = -card.cost
         )
     }
-
 }
-
 
 @Service
 class ExpenseTileService : PlayerTurnService() {
@@ -69,7 +79,6 @@ class ExpenseTileService : PlayerTurnService() {
         playerServiceImpl.deductMoney(playerId, tile.cost)
         return TurnResult(playerId, message = "test", turnStage = TurnProgress.COMPLETED, moneyDifference = -tile.cost)
     }
-
 }
 
 @Service
@@ -85,14 +94,13 @@ class OpportunityTileService : PlayerTurnService() {
             opportunityCardResult = OpportunityCardResult(card, DECISION.UN_DECIDED),
             message = "test",
             turnStage = TurnProgress.DECISION_PENDING,
-            moneyDifference = -card.cost
+            moneyDifference = 0f
         )
     }
 }
 
 @Service
 class AIOpportunityTileService : PlayerTurnService() {
-
 
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
@@ -101,7 +109,7 @@ class AIOpportunityTileService : PlayerTurnService() {
         val cards = opCardServiceImpl.findHand()
         val cardDecision = makeOpportunityDecision(cards)
         if (cardDecision.decision == DECISION.ACCEPTED) {
-            opCardServiceImpl.addOpportunityCard(playerId, cardDecision.card.id)
+//            opCardServiceImpl.addOpportunityCard(playerId, cardDecision.card.id)
         }
         return TurnResult(
             playerId,
@@ -144,10 +152,10 @@ class GambleTileService : PlayerTurnService() {
 
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.deductMoney(playerId, tile.cost)
-        //todo : roll for each player in game, add players * cost to winner
+        // todo : roll for each player in game, add players * cost to winner
         return TurnResult(
             playerId, message = "test", turnStage = TurnProgress.COMPLETED,
-            moneyDifference = 0f
+            moneyDifference = -tile.cost
         )
     }
 }
@@ -212,7 +220,7 @@ class DayWhitecrowTileService : PlayerTurnService() {
         playerServiceImpl.increaseMoney(playerId, tile.cost)
         return TurnResult(
             playerId, turnStage = TurnProgress.COMPLETED,
-            moneyDifference = 0f
+            moneyDifference = tile.cost
         )
     }
 }

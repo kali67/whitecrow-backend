@@ -12,11 +12,11 @@ interface IGameSharedService : IDataService<Game, GameDto, Int> {
 
     fun assignPlayerOrder(gameId: Int)
 
-    fun rollDice() : Int
+    fun rollDice(): Int
 
     fun progressToNextPlayer(gameId: Int)
 
-    fun endGame(id: Int) : GameDto
+    fun endGame(id: Int): GameDto
 
-    fun gameHasFinished(game: Game) : Boolean
+    fun gameHasFinished(game: Game): Boolean
 }

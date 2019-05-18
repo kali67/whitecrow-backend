@@ -3,10 +3,8 @@ package whitecrow.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import whitecrow.model.Card
-import whitecrow.repository.PlayerRepositoryImpl
 import whitecrow.repository.interfaces.IMailCardRepository
 import whitecrow.repository.interfaces.IPlayerRepository
-import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IMailCardService
 import whitecrow.service.interfaces.IPlayerService
 import javax.transaction.Transactional
@@ -14,9 +12,11 @@ import kotlin.random.Random
 
 @Service
 @Transactional
-class MailCardServiceImpl @Autowired constructor(val mailCardRepositoryImpl: IMailCardRepository,
-                                                 val playerServiceImpl: IPlayerService,
-                                                 val playerRepositoryImpl: IPlayerRepository) : IMailCardService {
+class MailCardServiceImpl @Autowired constructor(
+    val mailCardRepositoryImpl: IMailCardRepository,
+    val playerServiceImpl: IPlayerService,
+    val playerRepositoryImpl: IPlayerRepository
+) : IMailCardService {
 
     override fun findById(id: Int): Card {
         return mailCardRepositoryImpl.findById(id)

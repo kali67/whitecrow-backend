@@ -44,8 +44,8 @@ class OpCardServiceImpl @Autowired constructor(
         val card = mailCardServiceImpl.findById(cardId)
         player.cards.add(card)
         flowService.createOpportunityInvestment(player, card)
-        gameSharedServiceImpl.progressToNextPlayer(player.game!!.id)
         playerRepositoryImpl.update(player)
         playerServiceImpl.deductMoney(playerId, card.cost)
+        gameSharedServiceImpl.progressToNextPlayer(player.game!!.id)
     }
 }

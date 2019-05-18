@@ -9,8 +9,8 @@ enum class TurnProgress {
 }
 
 class ChanceResult(
-    winner: String, //username
-    dieRolls: Map<String, Int> //username, die number
+    winner: String, // username
+    dieRolls: Map<String, Int> // username, die number
 )
 
 enum class DECISION {
@@ -19,12 +19,10 @@ enum class DECISION {
     DECLINED
 }
 
-
 class OpportunityCardResult(
     val card: Card,
     val decision: DECISION
 )
-
 
 class TurnResult(
     val playerId: Int,
@@ -33,7 +31,7 @@ class TurnResult(
     val message: String? = null,
     val chanceResult: ChanceResult? = null,
     val turnStage: TurnProgress,
-    var isGameEnding: Boolean = false,
+    var hasFinishedGame: Boolean = false,
     var moneyDifference: Float
 ) {
     var currentDay: Int = 0

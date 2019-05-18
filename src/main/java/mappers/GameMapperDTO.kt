@@ -1,6 +1,5 @@
 package whitecrow.mappers
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 import whitecrow.dto.GameDto
 import whitecrow.model.Game

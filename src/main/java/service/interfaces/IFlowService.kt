@@ -12,6 +12,5 @@ interface IFlowService {
 
     fun findInvestments(id: Int): List<Flow>
 
-    fun calcFlowPayback(flow: Flow) : Float
-
+    fun calcFlowPayback(flow: Flow): Float
 }

@@ -37,7 +37,6 @@ class Game(
     @Column(name = "state")
     var state: GameState = GameState.AWAITING_PLAYERS
 
-
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,7 +2,6 @@ package whitecrow.service.interfaces
 
 import whitecrow.dto.PlayerDTO
 import whitecrow.dto.TurnResult
-import whitecrow.model.Card
 import whitecrow.model.Player
 
 interface IPlayerService : IDataService<Player, PlayerDTO, Int> {
@@ -15,5 +14,5 @@ interface IPlayerService : IDataService<Player, PlayerDTO, Int> {
 
     fun useTurn(playerId: Int, gameId: Int, daysToProgress: Int): TurnResult
 
-    fun calculateScore(player: Player) : Float
+    fun calculateScore(player: Player): Float
 }

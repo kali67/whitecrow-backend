@@ -1,6 +1,7 @@
 package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 import whitecrow.dto.GameDto
 import whitecrow.dto.PlayerDTO
@@ -9,6 +10,8 @@ import whitecrow.mappers.PlayerMapperDTO
 import whitecrow.model.Game
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
+import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DAYS_MONTH
+import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DIE
 import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IPlayerService
 import whitecrow.service.interfaces.IUserSharedService
@@ -17,6 +20,7 @@ import kotlin.random.Random
 
 @Service
 @Transactional
+@Lazy
 class GameSharedServiceImpl @Autowired constructor(
     var gameRepositoryImpl: IGameRepository,
     var playerRepositoryImpl: IPlayerRepository,
@@ -34,14 +38,22 @@ class GameSharedServiceImpl @Autowired constructor(
     }
 
     override fun findAllPlayers(id: Int): List<PlayerDTO> {
+        val game = gameRepositoryImpl.findOne(id)
         val players = gameRepositoryImpl.findAllPlayers(id)
-        return players.map { playerMapperDTO.to(it) }
+        return players.map {
+            val playerDTO = playerMapperDTO.to(it)
+            playerDTO.hasFinishedGame = playerDTO.day >= NUMBER_DAYS_MONTH * game.numberRounds
+            playerDTO
+        }
     }
 
     override fun findCurrentPlayer(gameId: Int): PlayerDTO {
         val currentUser = userServiceImpl.currentUser()
         val players = gameRepositoryImpl.findAllPlayers(gameId)
-        return playerMapperDTO.to(players.first { it.user?.id == currentUser.id })
+        val game = gameRepositoryImpl.findOne(gameId)
+        val playerDTO = playerMapperDTO.to(players.first { it.user?.id == currentUser.id })
+        playerDTO.hasFinishedGame = playerDTO.day >= NUMBER_DAYS_MONTH * game.numberRounds
+        return playerDTO
     }
 
     override fun assignPlayerOrder(gameId: Int) {
@@ -58,7 +70,7 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun gameHasFinished(game: Game): Boolean {
         val playersInGame = gameRepositoryImpl.findAllPlayers(game.id)
-        return playersInGame.all { it.currentDay > NUMBER_DAYS_MONTH * game.numberRounds }
+        return playersInGame.all { it.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds }
     }
 
     override fun endGame(id: Int): GameDto {
@@ -75,12 +87,22 @@ class GameSharedServiceImpl @Autowired constructor(
     override fun progressToNextPlayer(gameId: Int) {
         val game = gameRepositoryImpl.findOne(gameId)
         val nextPlayer = game.next
-        if (nextPlayer != null) {
-            val gamePlayers = gameRepositoryImpl.findAllPlayers(gameId)
-            val nextOrder = nextPlayer.playOrder.plus(1).rem(gamePlayers.size)
-            val newNextPlayer = gamePlayers.first { it.playOrder == nextOrder }
-            game.next = newNextPlayer
-            gameRepositoryImpl.update(game)
+        if (!gameHasFinished(game)) {
+            if (nextPlayer != null) {
+                val gamePlayers = gameRepositoryImpl.findAllPlayers(gameId)
+                var findingNextPlayer = true
+                var incrementOrderBy = 1
+                while (findingNextPlayer) {
+                    val nextOrder = nextPlayer.playOrder.plus(incrementOrderBy).rem(gamePlayers.size)
+                    val newNextPlayer = gamePlayers.first { it.playOrder == nextOrder }
+                    findingNextPlayer = newNextPlayer.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds
+                    if (!findingNextPlayer) {
+                        game.next = newNextPlayer
+                        gameRepositoryImpl.update(game)
+                    }
+                    incrementOrderBy++
+                }
+            }
         }
     }
 
@@ -99,10 +121,5 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun save(persisted: Game) {
         gameRepositoryImpl.save(persisted)
-    }
-
-    companion object {
-        const val NUMBER_DIE = 6
-        const val NUMBER_DAYS_MONTH = 31
     }
 }

@@ -8,5 +8,4 @@ interface IUserSharedService : UserDetailsService {
     fun currentUser(): User
 
     fun update(user: User)
-
 }

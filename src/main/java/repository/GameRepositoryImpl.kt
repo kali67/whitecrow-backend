@@ -11,7 +11,6 @@ import whitecrow.repository.interfaces.IGameRepository
 @Repository
 class GameRepositoryImpl @Autowired constructor(private val sessionFactory: SessionFactory) : IGameRepository {
 
-
     override fun findAllPlayers(id: Int): List<Player> {
         val session = sessionFactory.currentSession
         val criteriaBuilder = session.criteriaBuilder

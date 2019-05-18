@@ -6,7 +6,7 @@ interface IMailCardService {
 
     fun findCardHand(): Card
 
-    fun findById(id: Int) : Card
+    fun findById(id: Int): Card
 
     fun addMailCard(playerId: Int, cardId: Int)
 }

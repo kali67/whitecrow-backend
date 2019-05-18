@@ -3,11 +3,9 @@ package whitecrow.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import whitecrow.dto.GameDto
-import whitecrow.dto.PlayerDTO
 import whitecrow.dto.TurnResult
 import whitecrow.mappers.GameMapperDTO
 import whitecrow.model.Player
-import whitecrow.repository.GameRepositoryImpl
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.service.interfaces.*
 import javax.transaction.Transactional

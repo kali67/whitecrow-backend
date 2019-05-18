@@ -58,7 +58,6 @@ class GameApiController @Autowired constructor(
         return gameSharedServiceImpl.endGame(id)
     }
 
-
     @RequestMapping(method = [RequestMethod.OPTIONS], value = ["/*"]) // todo: pre flight requests
     @ResponseBody
     fun handleOptions(): ResponseEntity<Any> {

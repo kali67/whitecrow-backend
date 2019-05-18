@@ -5,5 +5,5 @@ import whitecrow.static_objects.BoardTile
 
 interface IPlayerTurnService {
 
-    fun executeAction(playerId: Int, tile: BoardTile) : TurnResult
+    fun executeAction(playerId: Int, tile: BoardTile): TurnResult
 }

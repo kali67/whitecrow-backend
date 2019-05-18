@@ -19,7 +19,6 @@ data class Player(
     @JoinColumn(name = "user_id")
     var user: User? = null
 
-
 ) {
 
     @ManyToOne

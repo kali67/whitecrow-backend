@@ -6,12 +6,10 @@ import org.springframework.stereotype.Repository
 import whitecrow.model.Flow
 import whitecrow.model.FlowType
 import whitecrow.model.Flow_
-import whitecrow.model.Game_
 import whitecrow.repository.interfaces.IFlowRepository
 
 @Repository
 class FlowRepositoryImpl @Autowired constructor(val sessionFactory: SessionFactory) : IFlowRepository {
-
 
     override fun delete(deleted: Flow) {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.

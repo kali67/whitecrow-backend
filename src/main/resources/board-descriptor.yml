@@ -12,7 +12,7 @@ days:
 tiles:
   - date: "0"
     type: "OTHER"
-    cost: "100"
+    cost: "0"
     titleResourceString: "START_TITLE"
     descriptionResourceString: ~
     actionResourceString: ~
@@ -22,7 +22,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "1"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -42,7 +42,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "3"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -52,7 +52,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "5"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -62,7 +62,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "11"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -72,7 +72,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "16"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -82,7 +82,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "19"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -92,7 +92,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "24"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -102,7 +102,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "26"
     type: "MAIL"
-    cost: "100"
+    cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
     actionResourceString: "MAIL_ACTION"
@@ -112,7 +112,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "4"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -122,7 +122,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "9"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -132,7 +132,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "12"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -142,7 +142,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "17"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -152,7 +152,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "23"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -162,7 +162,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "27"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -172,7 +172,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "30"
     type: "OPPORTUNITY"
-    cost: "100"
+    cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
     actionResourceString: ~
@@ -182,7 +182,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "8"
     type: "BONUS"
-    cost: "500"
+    cost: "250"
     titleResourceString: "BONUS_TITLE"
     descriptionResourceString: "BONUS_DESCRIPTION_DAY_EIGHT"
     actionResourceString: "BONUS_ACTION_DAY_EIGHT"
@@ -192,7 +192,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "15"
     type: "BONUS"
-    cost: "500"
+    cost: "150"
     titleResourceString: "BONUS_TITLE"
     descriptionResourceString: "BONUS_DESCRIPTION_DAY_FIFTEEN"
     actionResourceString: "BONUS_ACTION_DAY_FIFTEEN"
@@ -202,7 +202,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "7"
     type: "OTHER"
-    cost: "100"
+    cost: "0"
     titleResourceString: "REST_DAY_TITLE"
     descriptionResourceString: ~
     actionResourceString: ~
@@ -212,7 +212,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "14"
     type: "OTHER"
-    cost: "100"
+    cost: "0"
     titleResourceString: "REST_DAY_TITLE"
     descriptionResourceString: ~
     actionResourceString: ~
@@ -222,7 +222,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "21"
     type: "OTHER"
-    cost: "100"
+    cost: "0"
     titleResourceString: "REST_DAY_TITLE"
     descriptionResourceString: ~
     actionResourceString: ~
@@ -232,7 +232,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "28"
     type: "OTHER"
-    cost: "100"
+    cost: "0"
     titleResourceString: "REST_DAY_TITLE"
     descriptionResourceString: ~
     actionResourceString: ~
@@ -252,7 +252,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "13"
     type: "EXPENSE"
-    cost: "100"
+    cost: "75"
     titleResourceString: "EXPENSE_TITLE"
     descriptionResourceString: "EXPENSE_DESCRIPTION_DAY_THIRTEEN"
     actionResourceString: "EXPENSE_ACTION_DAY_THIRTEEN"
@@ -262,7 +262,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "18"
     type: "EXPENSE"
-    cost: "100"
+    cost: "75"
     titleResourceString: "EXPENSE_TITLE"
     descriptionResourceString: "EXPENSE_DESCRIPTION_DAY_EIGHTEEN"
     actionResourceString: "EXPENSE_ACTION_DAY_EIGHTEEN"
@@ -272,7 +272,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "22"
     type: "EXPENSE"
-    cost: "100"
+    cost: "75"
     titleResourceString: "EXPENSE_TITLE"
     descriptionResourceString: "EXPENSE_DESCRIPTION_DAY_TWENTY_TWO"
     actionResourceString: "EXPENSE_ACTION_DAY_TWENTY_TWO"
@@ -292,7 +292,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "20"
     type: "SET_BACK"
-    cost: "100"
+    cost: "0"
     titleResourceString: "CHANGE_TITLE"
     descriptionResourceString: "CHANGE_DESCRIPTION"
     actionResourceString: ~
@@ -302,7 +302,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "25"
     type: "EXPENSE"
-    cost: "100"
+    cost: "50"
     titleResourceString: "CEO_TITLE"
     descriptionResourceString: "CEO_DESCRIPTION"
     actionResourceString: "CEO_ACTION"
@@ -312,7 +312,7 @@ tiles:
     descriptionColor: "#FFFFFF"
   - date: "29"
     type: "COST_REDUCTION"
-    cost: "100"
+    cost: "0"
     titleResourceString: ~
     descriptionResourceString: "SUITCASE_DESCRIPTION"
     actionResourceString: ~
@@ -322,7 +322,7 @@ tiles:
     descriptionColor: "#000000"
   - date: "31"
     type: "END_GAME"
-    cost: "100"
+    cost: "325"
     titleResourceString: ~
     descriptionResourceString: "WHITECROW_DESCRIPTION"
     actionResourceString: "WHITECROW_ACTION"

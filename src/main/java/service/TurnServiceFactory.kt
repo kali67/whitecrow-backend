@@ -6,7 +6,6 @@ import whitecrow.model.Player
 import whitecrow.static_objects.TileType
 import org.springframework.beans.factory.annotation.Autowired
 
-
 @Service
 class TurnServiceFactory {
 

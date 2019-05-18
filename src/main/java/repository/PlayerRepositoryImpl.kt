@@ -11,7 +11,6 @@ import whitecrow.repository.interfaces.IPlayerRepository
 @Repository
 class PlayerRepositoryImpl @Autowired constructor(val sessionFactory: SessionFactory) : IPlayerRepository {
 
-
     override fun findGame(id: Int) {
         val session = sessionFactory.currentSession
         val criteriaBuilder = session.criteriaBuilder
@@ -26,7 +25,6 @@ class PlayerRepositoryImpl @Autowired constructor(val sessionFactory: SessionFac
     override fun findAll(): List<Player> {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
-
 
     override fun findOne(id: Int): Player {
         val session = sessionFactory.currentSession
