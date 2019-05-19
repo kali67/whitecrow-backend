@@ -24,6 +24,14 @@ class GameApiController @Autowired constructor(
         return gameSharedServiceImpl.findAll()
     }
 
+
+    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
+    @PostMapping("/game/{id}/end_turn")
+    fun endTurn(@PathVariable id: Int) {
+        gameSharedServiceImpl.progressToNextPlayer(id)
+    }
+
+
     @GetMapping("/game/players")
     fun findAllPlayers(@RequestParam from: Int): List<PlayerDTO> {
         return gameSharedServiceImpl.findAllPlayers(from)

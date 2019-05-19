@@ -41,8 +41,8 @@ class PlayerServiceImpl @Autowired constructor(
         const val REDUCTION_AMOUNT = 0.5f // 50%
     }
 
-    private fun hasGonePassedLastRound(player: Player, game: Game): Boolean {
-        return player.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds
+    private fun hasGonePassedLastRound(currentDay: Int, numberRounds: Int): Boolean {
+        return currentDay >= ((NUMBER_DAYS_MONTH * numberRounds) + numberRounds - 1)
     }
 
     override fun useTurn(playerId: Int, gameId: Int, daysToProgress: Int): TurnResult {
@@ -50,7 +50,7 @@ class PlayerServiceImpl @Autowired constructor(
         val game = gameRepository.findOne(gameId)
         var hasFinishedGame = false
 
-        if (hasGonePassedLastRound(player, game)) {
+        if (hasGonePassedLastRound(player.currentDay, game.numberRounds)) {
             val turnResult = TurnResult(
                 player.id, turnStage = TurnProgress.COMPLETED,
                 hasFinishedGame = true, moneyDifference = 0f
@@ -61,8 +61,8 @@ class PlayerServiceImpl @Autowired constructor(
         }
 
         player.currentDay += daysToProgress
-        if (hasGonePassedLastRound(player, game)) {
-            player.currentDay = game.numberRounds * NUMBER_DAYS_MONTH
+        if (hasGonePassedLastRound(player.currentDay, game.numberRounds)) {
+            player.currentDay = ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
             hasFinishedGame = true
         }
         update(player)
