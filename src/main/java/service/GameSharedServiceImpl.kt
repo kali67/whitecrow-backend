@@ -7,7 +7,7 @@ import whitecrow.dto.GameDto
 import whitecrow.dto.PlayerDTO
 import whitecrow.mappers.GameMapperDTO
 import whitecrow.mappers.PlayerMapperDTO
-import whitecrow.model.Game
+import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DAYS_MONTH
@@ -84,25 +84,32 @@ class GameSharedServiceImpl @Autowired constructor(
         return gameMapperDTO.to(game)
     }
 
+    private fun isValidTurnProgress(game: Game): Boolean {
+        val player = findCurrentPlayer(game.id)
+        return game.next?.id == player.id
+    }
+
+
+    private fun findNextPlayer(game: Game): Player? {
+        var nextPlayer = game.next
+        if (nextPlayer != null) {
+            val gamePlayers = gameRepositoryImpl.findAllPlayers(game.id)
+            var findingNextPlayer = true
+            while (findingNextPlayer) {
+                val nextOrder = nextPlayer!!.playOrder.plus(1).rem(gamePlayers.size)
+                nextPlayer = gamePlayers.first { it.playOrder == nextOrder }
+                findingNextPlayer = nextPlayer.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds
+            }
+        }
+        return nextPlayer
+    }
+
     override fun progressToNextPlayer(gameId: Int) {
         val game = gameRepositoryImpl.findOne(gameId)
-        val nextPlayer = game.next
         if (!gameHasFinished(game)) {
-            if (nextPlayer != null) {
-                val gamePlayers = gameRepositoryImpl.findAllPlayers(gameId)
-                var findingNextPlayer = true
-                var incrementOrderBy = 1
-                while (findingNextPlayer) {
-                    val nextOrder = nextPlayer.playOrder.plus(incrementOrderBy).rem(gamePlayers.size)
-                    val newNextPlayer = gamePlayers.first { it.playOrder == nextOrder }
-                    findingNextPlayer = newNextPlayer.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds
-                    if (!findingNextPlayer) {
-                        game.next = newNextPlayer
-                        gameRepositoryImpl.update(game)
-                    }
-                    incrementOrderBy++
-                }
-            }
+            val nextPlayer = findNextPlayer(game)
+            game.next = nextPlayer
+            gameRepositoryImpl.update(game)
         }
     }
 
