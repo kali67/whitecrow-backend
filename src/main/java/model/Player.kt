@@ -36,6 +36,9 @@ data class Player(
     @Column(name = "cost_reduced_since")
     var costReducedSince: Int = -1
 
+    @Column(name = "final_score")
+    var finalScore: Float = 0f
+
     @ManyToMany
     var cards: MutableList<Card> = mutableListOf()
 

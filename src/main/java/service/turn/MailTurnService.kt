@@ -21,18 +21,18 @@ class MailTurnService : TurnServiceBase() {
     @Transactional
     override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
         val card = mailCardServiceImpl.findCardHand()
-//        val playerOpportunityCards = playerRepository.findOne(playerId).opportunityCards
-//        val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
-//        if (card.category in categoriesOwnedByPlayer) {
-//            val playerMessage = "You're recent investment has disregarded this mail card!"
-//            return TurnResult(
-//                playerId,
-//                card,
-//                message = playerMessage,
-//                moneyDifference = 0f,
-//                turnStage = TurnProgress.COMPLETED
-//            )
-//        }
+        val playerOpportunityCards = playerRepository.findOne(playerId).cards.filter { it.cardType == CardType.OPPORTUNITY }
+        val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
+        if (card.category in categoriesOwnedByPlayer) {
+            val playerMessage = "You're recent investment has disregarded this mail card!"
+            return TurnResult(
+                playerId,
+                card,
+                message = playerMessage,
+                moneyDifference = 0f,
+                turnStage = TurnProgress.COMPLETED
+            )
+        }
         mailCardServiceImpl.addMailCard(playerId, card.id)
         return TurnResult(
             playerId,

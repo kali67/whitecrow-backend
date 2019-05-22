@@ -91,10 +91,10 @@ class PlayerServiceImpl @Autowired constructor(
     }
 
     override fun calculateScore(player: Player): Float {
-        var totalScore = 0f
+        var totalScore = player.money
         val investments = flowService.findInvestments(player.id)
         val loans = flowService.findLoans(player.id)
-        investments.forEach { totalScore += flowService.calcFlowPayback(it) }
+        investments.forEach { totalScore += it.amount * 0.5f }
         loans.forEach { totalScore -= flowService.calcFlowPayback(it) }
         return totalScore
     }

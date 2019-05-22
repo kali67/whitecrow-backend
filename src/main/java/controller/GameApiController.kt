@@ -63,7 +63,7 @@ class GameApiController @Autowired constructor(
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/game/{id}/end")
     fun endGame(@PathVariable id: Int): GameDto {
-        return gameSharedServiceImpl.endGame(id)
+        return gameSharedServiceImpl.calculateEndGameScore(id)
     }
 
     @RequestMapping(method = [RequestMethod.OPTIONS], value = ["/*"]) // todo: pre flight requests

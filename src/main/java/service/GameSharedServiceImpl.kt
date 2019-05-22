@@ -73,11 +73,18 @@ class GameSharedServiceImpl @Autowired constructor(
         return playersInGame.all { it.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds }
     }
 
-    override fun endGame(id: Int): GameDto {
+    override fun calculateEndGameScore(id: Int): GameDto {
         val game = gameRepositoryImpl.findOne(id)
         if (gameHasFinished(game)) {
             val playersInGame = gameRepositoryImpl.findAllPlayers(id)
-            val winner = playersInGame.maxBy { playerServiceImpl.calculateScore(it) }
+            playersInGame.forEach {
+                it.finalScore = playerServiceImpl.calculateScore(it)
+                playerRepositoryImpl.update(it)
+            }
+
+            val winner = playersInGame.maxBy {
+                it.finalScore
+            }
             game.winner = winner
             gameRepositoryImpl.update(game)
         }

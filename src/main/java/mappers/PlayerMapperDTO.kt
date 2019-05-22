@@ -10,7 +10,8 @@ import whitecrow.service.GameBoardServiceImpl
 class PlayerMapperDTO : IMapper<Player, PlayerDTO> {
 
     override fun to(from: Player): PlayerDTO {
-        val dto = PlayerDTO(from.id, from.money, from.currentDay, from.playOrder)
+        val dto = PlayerDTO(from.id, from.money, from.currentDay, from.playOrder, from.finalScore)
+
         val mailCards = from.cards.filter { it.cardType == CardType.MAIL }.toMutableList()
         val opCards = from.cards.filter { it.cardType == CardType.OPPORTUNITY }.toMutableList()
         dto.mailCards = mailCards
