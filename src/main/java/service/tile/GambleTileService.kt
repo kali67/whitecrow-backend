@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -8,16 +8,16 @@ import whitecrow.service.interfaces.*
 import whitecrow.static_objects.*
 
 @Service
-class GambleTurnSerivce : TurnServiceBase() {
+class GambleTileService : TileServiceBase() {
 
     @Autowired
     private lateinit var playerServiceImpl: IPlayerService
 
-    override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
-        playerServiceImpl.deductMoney(playerId, tile.cost)
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+        playerServiceImpl.deductMoney(player.id, tile.cost)
         // todo : roll for each player in game, add players * cost to winner
         return TurnResult(
-            playerId, message = "test", turnStage = TurnProgress.COMPLETED,
+            player.id, message = "test", turnStage = TurnProgress.COMPLETED,
             moneyDifference = -tile.cost
         )
     }

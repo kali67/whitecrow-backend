@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -9,19 +9,19 @@ import whitecrow.static_objects.*
 import kotlin.random.*
 
 @Service
-class AIOpportunityTurnService : TurnServiceBase() {
+class AIOpportunityTileService : TileServiceBase() {
 
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
 
-    override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         val cards = opCardServiceImpl.findHand()
         val cardDecision = makeOpportunityDecision(cards)
         if (cardDecision.decision == DECISION.ACCEPTED) {
 //            opCardServiceImpl.addOpportunityCard(playerId, cardDecision.card.id)
         }
         return TurnResult(
-            playerId,
+            player.id,
             opportunityCardResult = cardDecision,
             message = "test",
             turnStage = TurnProgress.COMPLETED,

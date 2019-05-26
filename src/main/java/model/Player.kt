@@ -2,10 +2,12 @@ package whitecrow.model
 
 import javax.persistence.*
 
-enum class BankingStrategy {
-    DEPOSIT,
-    LOAN
+enum class TurnType {
+    NORMAL,
+    SETBACK
 }
+
+
 
 @Entity
 @Table(name = "player")
@@ -44,4 +46,8 @@ data class Player(
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "player")
     var flow: MutableList<Flow> = mutableListOf()
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "turn_type")
+    var turnType: TurnType = TurnType.NORMAL
 }

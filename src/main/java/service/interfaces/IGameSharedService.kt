@@ -19,4 +19,8 @@ interface IGameSharedService : IDataService<Game, GameDto, Int> {
     fun calculateEndGameScore(id: Int): GameDto
 
     fun gameHasFinished(game: Game): Boolean
+
+    fun finalGameDay(game: Game): Int
+
+    fun hasGonePassedFinalDay(day: Int, game: Game): Boolean
 }

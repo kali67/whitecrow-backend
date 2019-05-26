@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -10,7 +10,7 @@ import whitecrow.static_objects.*
 import javax.transaction.*
 
 @Service
-class MailTurnService : TurnServiceBase() {
+class MailTileService : TileServiceBase() {
 
     @Autowired
     private lateinit var mailCardServiceImpl: IMailCardService
@@ -19,23 +19,23 @@ class MailTurnService : TurnServiceBase() {
     private lateinit var playerRepository: IPlayerRepository
 
     @Transactional
-    override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         val card = mailCardServiceImpl.findCardHand()
-        val playerOpportunityCards = playerRepository.findOne(playerId).cards.filter { it.cardType == CardType.OPPORTUNITY }
+        val playerOpportunityCards = playerRepository.findOne(player.id).cards.filter { it.cardType == CardType.OPPORTUNITY }
         val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
         if (card.category in categoriesOwnedByPlayer) {
             val playerMessage = "You're recent investment has disregarded this mail card!"
             return TurnResult(
-                playerId,
+                player.id,
                 card,
                 message = playerMessage,
                 moneyDifference = 0f,
                 turnStage = TurnProgress.COMPLETED
             )
         }
-        mailCardServiceImpl.addMailCard(playerId, card.id)
+        mailCardServiceImpl.addMailCard(player.id, card.id)
         return TurnResult(
-            playerId,
+            player.id,
             card,
             message = "test",
             turnStage = TurnProgress.COMPLETED,

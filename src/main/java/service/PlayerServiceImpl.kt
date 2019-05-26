@@ -6,12 +6,11 @@ import org.springframework.stereotype.Service
 import whitecrow.dto.PlayerDTO
 import whitecrow.dto.TurnProgress
 import whitecrow.dto.TurnResult
-import whitecrow.model.Game
 import whitecrow.model.Player
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
-import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DAYS_MONTH
 import whitecrow.service.interfaces.*
+import whitecrow.service.turn.*
 import javax.transaction.Transactional
 
 @Service
@@ -20,11 +19,9 @@ class PlayerServiceImpl @Autowired constructor(
     private val playerRepositoryImpl: IPlayerRepository
 ) : IPlayerService {
 
-    @Autowired
-    lateinit var gameBoardServiceImpl: IGameBoardService
 
     @Autowired
-    private lateinit var turnServiceFactory: TurnServiceFactory
+    lateinit var turnStrategyFactory: TurnStrategyFactory
 
     @Autowired
     lateinit var flowService: IFlowService
@@ -32,46 +29,17 @@ class PlayerServiceImpl @Autowired constructor(
     @Autowired
     lateinit var gameRepository: IGameRepository
 
-    @Autowired
-    @Lazy
-    lateinit var gameSharedServiceImpl: IGameSharedService
-
     companion object {
         const val DAYS_IN_TWO_WEEKS = 14
         const val REDUCTION_AMOUNT = 0.5f // 50%
     }
 
-    private fun hasGonePassedLastRound(currentDay: Int, numberRounds: Int): Boolean {
-        return currentDay >= ((NUMBER_DAYS_MONTH * numberRounds) + numberRounds - 1)
-    }
 
-    override fun useTurn(playerId: Int, gameId: Int, daysToProgress: Int): TurnResult {
+    override fun useTurn(playerId: Int, gameId: Int): TurnResult {
         val player = playerRepositoryImpl.findOne(playerId)
         val game = gameRepository.findOne(gameId)
-        var hasFinishedGame = false
-
-        if (hasGonePassedLastRound(player.currentDay, game.numberRounds)) {
-            val turnResult = TurnResult(
-                player.id, turnStage = TurnProgress.COMPLETED,
-                hasFinishedGame = true, moneyDifference = 0f
-            )
-            turnResult.currentDay = player.currentDay
-            gameSharedServiceImpl.progressToNextPlayer(gameId)
-            return turnResult
-        }
-
-        player.currentDay += daysToProgress
-        if (hasGonePassedLastRound(player.currentDay, game.numberRounds)) {
-            player.currentDay = ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
-            hasFinishedGame = true
-        }
-        update(player)
-        val tile = gameBoardServiceImpl.findTileByDate(player.currentDay.rem(NUMBER_DAYS_MONTH + 1))
-        val service = turnServiceFactory.invoke(player, tile.type)
-        val turnResult = service.executeAction(playerId, gameId, tile)
-        turnResult.currentDay = player.currentDay
-        turnResult.hasFinishedGame = hasFinishedGame
-        return turnResult
+        val turnStrategy = turnStrategyFactory.buildTurnStrategy(player.turnType)
+        return turnStrategy.useTurn(player, game)
     }
 
     override fun deductMoney(playerId: Int, amount: Float) {

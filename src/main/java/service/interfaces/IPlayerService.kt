@@ -12,7 +12,7 @@ interface IPlayerService : IDataService<Player, PlayerDTO, Int> {
 
     fun increaseMoney(playerId: Int, amount: Float)
 
-    fun useTurn(playerId: Int, gameId: Int, daysToProgress: Int): TurnResult
+    fun useTurn(playerId: Int, gameId: Int): TurnResult
 
     fun calculateScore(player: Player): Float
 }

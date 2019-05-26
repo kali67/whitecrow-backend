@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -8,15 +8,15 @@ import whitecrow.service.interfaces.*
 import whitecrow.static_objects.*
 
 @Service
-class OpportunityTurnService : TurnServiceBase() {
+class OpportunityTileService : TileServiceBase() {
 
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
 
-    override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         val card = opCardServiceImpl.findHand().first()
         return TurnResult(
-            playerId,
+            player.id,
             opportunityCardResult = OpportunityCardResult(card, DECISION.UN_DECIDED),
             message = "test",
             turnStage = TurnProgress.DECISION_PENDING,

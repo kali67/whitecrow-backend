@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -6,19 +6,17 @@ import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
 import whitecrow.static_objects.*
-import javax.transaction.*
 
 @Service
-class WhitecrowTurnService : TurnServiceBase() {
+class BonusTileService : TileServiceBase() {
 
     @Autowired
     private lateinit var playerServiceImpl: IPlayerService
 
-    @Transactional
-    override fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult {
-        playerServiceImpl.increaseMoney(playerId, tile.cost)
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+        playerServiceImpl.increaseMoney(player.id, tile.cost)
         return TurnResult(
-            playerId, turnStage = TurnProgress.COMPLETED,
+            player.id, message = tile.description, turnStage = TurnProgress.COMPLETED,
             moneyDifference = tile.cost
         )
     }

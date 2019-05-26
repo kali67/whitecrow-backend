@@ -1,4 +1,4 @@
-package whitecrow.service.turn
+package whitecrow.service.tile
 
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
@@ -9,7 +9,7 @@ import whitecrow.service.interfaces.*
 import whitecrow.static_objects.*
 
 @Service
-abstract class TurnServiceBase {
+abstract class TileServiceBase {
 
     @Autowired
     protected lateinit var gameSharedServiceImpl: IGameSharedService
@@ -17,15 +17,13 @@ abstract class TurnServiceBase {
     @Autowired
     protected lateinit var gameRepository: IGameRepository
 
-    fun executeAction(playerId: Int, gameId: Int, tile: BoardTile): TurnResult {
-
-        val game = gameRepository.findOne(gameId)
-        val turnResult = applyTileAction(playerId, game, tile)
+    fun executeAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+        val turnResult = applyTileAction(player, game, tile)
         if (turnResult.turnStage == TurnProgress.COMPLETED || turnResult.turnStage == TurnProgress.COMPLETED_WITH_ROLLS) {
-            gameSharedServiceImpl.progressToNextPlayer(gameId)
+            gameSharedServiceImpl.progressToNextPlayer(game.id)
         }
         return turnResult
     }
 
-    abstract fun applyTileAction(playerId: Int, game: Game, tile: BoardTile): TurnResult
+    abstract fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult
 }

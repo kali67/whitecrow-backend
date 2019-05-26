@@ -10,12 +10,10 @@ import whitecrow.service.interfaces.IPlayerService
 @RestController
 class PlayerApiController @Autowired constructor(var playerService: IPlayerService) {
 
-    @Autowired
-    lateinit var gameSharedService: IGameSharedService
 
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/player/{playerId}/game/{gameId}/roll")
     fun useTurn(@PathVariable playerId: Int, @PathVariable gameId: Int): TurnResult {
-        return playerService.useTurn(playerId, gameId, gameSharedService.rollDice())
+        return playerService.useTurn(playerId, gameId)
     }
 }

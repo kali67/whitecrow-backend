@@ -96,6 +96,9 @@ class GameSharedServiceImpl @Autowired constructor(
         return game.next?.id == player.id
     }
 
+    override fun finalGameDay(game: Game): Int {
+        return ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
+    }
 
     private fun findNextPlayer(game: Game): Player? {
         var nextPlayer = game.next
@@ -118,6 +121,10 @@ class GameSharedServiceImpl @Autowired constructor(
             game.next = nextPlayer
             gameRepositoryImpl.update(game)
         }
+    }
+
+    override fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
+        return day >= ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
     override fun rollDice(): Int {
