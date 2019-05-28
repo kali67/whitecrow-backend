@@ -17,19 +17,17 @@ class SetBackTileService : TileServiceBase() {
     @Transactional
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         val players = gameRepository.findAllPlayers(game.id)
-        var hasTriggeredSetBack = false
-        if (player.turnType == TurnType.NORMAL) {
-            for (p in players) {
-                p.turnType = TurnType.SETBACK
-                playerRepositoryImpl.update(player)
-            }
-            hasTriggeredSetBack = true
+
+        for (p in players) {
+            p.turnType = TurnType.SETBACK
+            p.setBackSteps += 1
+            playerRepositoryImpl.update(player)
         }
         val turnResult = TurnResult(
             player.id, message = "Everyone must go back one day!", turnStage = TurnProgress.COMPLETED,
             moneyDifference = 0f
         )
-        turnResult.hasTriggeredSetBack = hasTriggeredSetBack
+        turnResult.hasTriggeredSetBack = true
         return turnResult
     }
 }

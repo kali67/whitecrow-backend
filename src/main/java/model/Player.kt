@@ -50,4 +50,7 @@ data class Player(
     @Enumerated(EnumType.STRING)
     @Column(name = "turn_type")
     var turnType: TurnType = TurnType.NORMAL
+
+    @Column(name = "set_back_steps")
+    var setBackSteps: Int = 0
 }

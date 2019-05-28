@@ -91,12 +91,7 @@ class GameSharedServiceImpl @Autowired constructor(
         return gameMapperDTO.to(game)
     }
 
-    private fun isValidTurnProgress(game: Game): Boolean {
-        val player = findCurrentPlayer(game.id)
-        return game.next?.id == player.id
-    }
-
-    override fun finalGameDay(game: Game): Int {
+    override fun findFinalDay(game: Game): Int {
         return ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 

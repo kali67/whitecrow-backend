@@ -29,17 +29,15 @@ class NormalTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGame
         player.currentDay += playerDieRoll
         playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
 
-        var playerJustFinishedGame = false
         if (playerHasFinishedGame) {
-            player.currentDay = gameSharedServiceImpl.finalGameDay(game)
-            playerJustFinishedGame = true
+            player.currentDay = gameSharedServiceImpl.findFinalDay(game)
         }
         playerService.update(player)
         val tile = gameBoardServiceImpl.findTileByDate(player.currentDay.rem(GameBoardServiceImpl.NUMBER_DAYS_MONTH + 1))
         val service = turnServiceFactory.invoke(player, tile.type)
         val turnResult = service.executeAction(player, game, tile)
         turnResult.currentDay = player.currentDay
-        turnResult.hasFinishedGame = playerJustFinishedGame
+        turnResult.hasFinishedGame = playerHasFinishedGame
         return turnResult
     }
 
