@@ -2,13 +2,13 @@ package whitecrow.service.interfaces
 
 import java.io.Serializable
 
-interface IDataService<T, R, ID : Serializable> {
+interface IDataService<T, ID : Serializable> {
 
     fun delete(deleted: T)
 
-    fun findAll(): List<R>
+    fun findAll(): List<T>
 
-    fun findOne(id: ID): R
+    fun findOne(id: ID): T
 
     fun save(persisted: T)
 }

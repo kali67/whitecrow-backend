@@ -5,7 +5,7 @@ import whitecrow.model.*
 
 abstract class TurnStrategy {
 
-    abstract fun useTurn(player: Player, game: Game): TurnResult
+    abstract fun useTurn(player: Player, gameId: Int): TurnResult
 
     protected fun skipPlayerTurn(player: Player): TurnResult {
         val turnResult = TurnResult(

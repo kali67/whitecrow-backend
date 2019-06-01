@@ -19,7 +19,8 @@ class NormalTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGame
     @Autowired
     lateinit var playerService: IPlayerService
 
-    override fun useTurn(player: Player, game: Game): TurnResult {
+    override fun useTurn(player: Player, gameId: Int): TurnResult {
+        val game = gameSharedServiceImpl.findOne(gameId)
         var playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
         if (playerHasFinishedGame) {
             return skipPlayerTurn(player)
@@ -40,5 +41,4 @@ class NormalTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGame
         turnResult.hasFinishedGame = playerHasFinishedGame
         return turnResult
     }
-
 }

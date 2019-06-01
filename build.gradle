@@ -65,21 +65,29 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
     args "-F", "src/**/*.kt"
 }
 
+test {
+    useJUnit()
+
+    maxHeapSize = '1G'
+}
 
 // dependencies used to build project
 dependencies {
 
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
+    compile 'org.springframework.boot:spring-boot-starter-test:2.1.5.RELEASE'
+    compile 'com.h2database:h2:1.4.199'
     ktlint "com.github.shyiko:ktlint:0.29.0"
-    //group id: artifact: version
     kapt "org.hibernate:hibernate-jpamodelgen:5.2.16.Final"
     compile "org.springframework.boot:spring-boot-starter-data-jpa"
     compile "org.springframework.boot:spring-boot-starter-web"
     compile "org.springframework.boot:spring-boot-starter-actuator"
+    testImplementation 'junit:junit:4.12'
     compile "org.apache.tomcat:tomcat-dbcp:9.0.1"
     compile("org.postgresql:postgresql:42.2.1") {
         exclude group: 'org.slf4j'
     }
-    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.1.4.RELEASE'
     compile group: 'com.esotericsoftware.yamlbeans', name: 'yamlbeans', version: '1.13'
     implementation 'com.google.code.gson:gson:2.8.5'

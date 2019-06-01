@@ -16,18 +16,11 @@ import javax.transaction.Transactional
 @Service
 @Transactional
 class PlayerServiceImpl @Autowired constructor(
-    private val playerRepositoryImpl: IPlayerRepository
+    private val playerRepositoryImpl: IPlayerRepository,
+    private val turnStrategyFactory: TurnStrategyFactory,
+    private val flowService: IFlowService
 ) : IPlayerService {
 
-
-    @Autowired
-    lateinit var turnStrategyFactory: TurnStrategyFactory
-
-    @Autowired
-    lateinit var flowService: IFlowService
-
-    @Autowired
-    lateinit var gameRepository: IGameRepository
 
     companion object {
         const val DAYS_IN_TWO_WEEKS = 14
@@ -37,9 +30,8 @@ class PlayerServiceImpl @Autowired constructor(
 
     override fun useTurn(playerId: Int, gameId: Int): TurnResult {
         val player = playerRepositoryImpl.findOne(playerId)
-        val game = gameRepository.findOne(gameId)
         val turnStrategy = turnStrategyFactory.buildTurnStrategy(player.turnType)
-        return turnStrategy.useTurn(player, game)
+        return turnStrategy.useTurn(player, gameId)
     }
 
     override fun deductMoney(playerId: Int, amount: Float) {
@@ -79,11 +71,11 @@ class PlayerServiceImpl @Autowired constructor(
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun findAll(): List<PlayerDTO> {
+    override fun findAll(): List<Player> {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun findOne(id: Int): PlayerDTO {
+    override fun findOne(id: Int): Player {
         TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
     }
 }

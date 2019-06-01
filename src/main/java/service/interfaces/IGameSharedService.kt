@@ -4,7 +4,7 @@ import whitecrow.dto.GameDto
 import whitecrow.dto.PlayerDTO
 import whitecrow.model.Game
 
-interface IGameSharedService : IDataService<Game, GameDto, Int> {
+interface IGameSharedService : IDataService<Game, Int> {
 
     fun findAllPlayers(id: Int): List<PlayerDTO>
 

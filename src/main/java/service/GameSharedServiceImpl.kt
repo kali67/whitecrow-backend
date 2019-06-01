@@ -31,10 +31,8 @@ class GameSharedServiceImpl @Autowired constructor(
     private val gameMapperDTO = GameMapperDTO()
     private val playerMapperDTO = PlayerMapperDTO()
 
-    override fun findAll(): List<GameDto> {
-        return gameRepositoryImpl.findAll().map {
-            gameMapperDTO.to(it)
-        }
+    override fun findAll(): List<Game> {
+        return gameRepositoryImpl.findAll()
     }
 
     override fun findAllPlayers(id: Int): List<PlayerDTO> {
@@ -126,9 +124,8 @@ class GameSharedServiceImpl @Autowired constructor(
         return Random.nextInt(NUMBER_DIE) + 1
     }
 
-    override fun findOne(id: Int): GameDto {
-        val game = gameRepositoryImpl.findOne(id)
-        return gameMapperDTO.to(game)
+    override fun findOne(id: Int): Game {
+        return gameRepositoryImpl.findOne(id)
     }
 
     override fun delete(deleted: Game) {

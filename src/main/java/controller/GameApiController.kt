@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
 import whitecrow.dto.PlayerDTO
+import whitecrow.mappers.*
 import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.ISinglePlayerGameService
 
@@ -18,10 +19,12 @@ class GameApiController @Autowired constructor(
     val gameSharedServiceImpl: IGameSharedService
 ) {
 
+    private val gameMapperDTO = GameMapperDTO()
+
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game")
     fun listGamesByState(): List<GameDto> {
-        return gameSharedServiceImpl.findAll()
+        return gameSharedServiceImpl.findAll().map { gameMapperDTO.to(it) }
     }
 
 
@@ -46,7 +49,7 @@ class GameApiController @Autowired constructor(
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game/details/{id}")
     fun load(@PathVariable id: Int): GameDto {
-        return gameSharedServiceImpl.findOne(id)
+        return gameMapperDTO.to(gameSharedServiceImpl.findOne(id))
     }
 
     @PostMapping("/game/start/{id}")
