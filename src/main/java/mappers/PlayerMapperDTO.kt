@@ -5,8 +5,10 @@ import whitecrow.dto.PlayerDTO
 import whitecrow.model.CardType
 import whitecrow.model.Player
 import whitecrow.service.GameBoardServiceImpl
+import javax.transaction.Transactional
 
 @Component
+@Transactional
 class PlayerMapperDTO : IMapper<Player, PlayerDTO> {
 
     override fun to(from: Player): PlayerDTO {

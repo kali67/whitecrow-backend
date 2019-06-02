@@ -3,8 +3,11 @@ package whitecrow.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import whitecrow.config.LocaleHelper
+import whitecrow.dto.*
+import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameBoardRepository
 import whitecrow.service.interfaces.IGameBoardService
+import whitecrow.service.tile.*
 import whitecrow.static_objects.BoardTile
 import whitecrow.static_objects.GameBoard
 
@@ -14,6 +17,9 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
 
     @Autowired
     private lateinit var localeHelper: LocaleHelper
+
+    @Autowired
+    lateinit var tileServiceFactory: TileServiceFactory
 
     override fun load(): GameBoard {
         val gameBoard = gameBoardRepository.find()
@@ -32,6 +38,12 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     override fun findTileByDate(date: Int): BoardTile {
         val gameBoard = gameBoardRepository.find()
         return gameBoard.tiles.first { date == it.date }
+    }
+
+    override fun applyTileActionToPlayer(player: Player, game: Game): TurnResult {
+        val tile = findTileByDate(player.currentDay.rem(NUMBER_DAYS_MONTH + 1))
+        val service = tileServiceFactory.invoke(player, tile.type)
+        return service.executeAction(player, game, tile)
     }
 
     companion object {

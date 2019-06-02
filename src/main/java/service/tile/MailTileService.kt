@@ -25,21 +25,19 @@ class MailTileService : TileServiceBase() {
         val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
         if (card.category in categoriesOwnedByPlayer) {
             val playerMessage = "You're recent investment has disregarded this mail card!"
-            return TurnResult(
-                player.id,
-                card,
-                message = playerMessage,
-                moneyDifference = 0f,
-                turnStage = TurnProgress.COMPLETED
-            )
+            val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+            return turnResultBuilder.apply {
+                setMessage(playerMessage)
+                setTurnStage(TurnProgress.COMPLETED)
+                setMailCard(card)
+            }.build()
         }
         mailCardServiceImpl.addMailCard(player.id, card.id)
-        return TurnResult(
-            player.id,
-            card,
-            message = "test",
-            turnStage = TurnProgress.COMPLETED,
-            moneyDifference = -card.cost
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setTurnStage(TurnProgress.COMPLETED)
+            setMailCard(card)
+            setMoneyDifference(-card.cost)
+        }.build()
     }
 }

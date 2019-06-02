@@ -1,7 +1,6 @@
 package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
 import whitecrow.dto.GameDto
 import whitecrow.dto.PlayerDTO
@@ -20,12 +19,11 @@ import kotlin.random.Random
 
 @Service
 @Transactional
-@Lazy
 class GameSharedServiceImpl @Autowired constructor(
-    var gameRepositoryImpl: IGameRepository,
-    var playerRepositoryImpl: IPlayerRepository,
-    var userServiceImpl: IUserSharedService,
-    var playerServiceImpl: IPlayerService
+    private var gameRepositoryImpl: IGameRepository,
+    private var playerRepositoryImpl: IPlayerRepository,
+    private var userServiceImpl: IUserSharedService,
+    private var playerServiceImpl: IPlayerService
 ) : IGameSharedService {
 
     private val gameMapperDTO = GameMapperDTO()

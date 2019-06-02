@@ -4,16 +4,11 @@ import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
-import whitecrow.service.*
 import whitecrow.service.interfaces.*
-import whitecrow.service.tile.*
 
 @Component
 class SetBackTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGameSharedService, val gameBoardServiceImpl: IGameBoardService) :
     TurnStrategy() {
-
-    @Autowired
-    lateinit var turnServiceFactory: TurnServiceFactory
 
     @Autowired
     lateinit var playerService: IPlayerService
@@ -27,10 +22,8 @@ class SetBackTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGam
         player.currentDay -= player.setBackSteps
         player.setBackSteps = 0
         playerService.update(player)
-        val tile = gameBoardServiceImpl.findTileByDate(player.currentDay.rem(GameBoardServiceImpl.NUMBER_DAYS_MONTH + 1))
-        val service = turnServiceFactory.invoke(player, tile.type)
-        val turnResult = service.executeAction(player, game, tile)
-        turnResult.currentDay = player.currentDay
+
+        val turnResult = gameBoardServiceImpl.applyTileActionToPlayer(player, game)
         if (player.setBackSteps == 0) {
             player.turnType = TurnType.NORMAL
         }

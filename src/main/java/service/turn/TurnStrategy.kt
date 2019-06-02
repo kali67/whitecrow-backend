@@ -8,11 +8,10 @@ abstract class TurnStrategy {
     abstract fun useTurn(player: Player, gameId: Int): TurnResult
 
     protected fun skipPlayerTurn(player: Player): TurnResult {
-        val turnResult = TurnResult(
-            player.id, turnStage = TurnProgress.COMPLETED,
-            hasFinishedGame = true, moneyDifference = 0f
-        )
-        turnResult.currentDay = player.currentDay
-        return turnResult
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setTurnStage(TurnProgress.COMPLETED)
+            setHasFinishedGame(true)
+        }.build()
     }
 }

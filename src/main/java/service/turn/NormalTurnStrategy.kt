@@ -4,20 +4,16 @@ import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
-import whitecrow.service.*
+import whitecrow.repository.interfaces.*
 import whitecrow.service.interfaces.*
-import whitecrow.service.tile.*
 
 @Component
-class NormalTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGameSharedService, val gameBoardServiceImpl: IGameBoardService) :
+class NormalTurnStrategy @Autowired constructor(
+    private val gameSharedServiceImpl: IGameSharedService, private val gameBoardServiceImpl:
+    IGameBoardService,
+    private val playerRepository: IPlayerRepository
+) :
     TurnStrategy() {
-
-
-    @Autowired
-    lateinit var turnServiceFactory: TurnServiceFactory
-
-    @Autowired
-    lateinit var playerService: IPlayerService
 
     override fun useTurn(player: Player, gameId: Int): TurnResult {
         val game = gameSharedServiceImpl.findOne(gameId)
@@ -33,11 +29,8 @@ class NormalTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGame
         if (playerHasFinishedGame) {
             player.currentDay = gameSharedServiceImpl.findFinalDay(game)
         }
-        playerService.update(player)
-        val tile = gameBoardServiceImpl.findTileByDate(player.currentDay.rem(GameBoardServiceImpl.NUMBER_DAYS_MONTH + 1))
-        val service = turnServiceFactory.invoke(player, tile.type)
-        val turnResult = service.executeAction(player, game, tile)
-        turnResult.currentDay = player.currentDay
+        playerRepository.update(player)
+        val turnResult = gameBoardServiceImpl.applyTileActionToPlayer(player, game)
         turnResult.hasFinishedGame = playerHasFinishedGame
         return turnResult
     }

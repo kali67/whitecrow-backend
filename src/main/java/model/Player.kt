@@ -1,6 +1,12 @@
 package whitecrow.model
 
+import org.hibernate.*
+import org.hibernate.annotations.*
+import org.hibernate.annotations.FetchMode
 import javax.persistence.*
+import javax.persistence.CascadeType
+import javax.persistence.Entity
+import javax.persistence.Table
 
 enum class TurnType {
     NORMAL,
@@ -41,7 +47,8 @@ data class Player(
     @Column(name = "final_score")
     var finalScore: Float = 0f
 
-    @ManyToMany
+    @Fetch(value = FetchMode.SUBSELECT)
+    @ManyToMany(fetch = FetchType.EAGER)
     var cards: MutableList<Card> = mutableListOf()
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "player")

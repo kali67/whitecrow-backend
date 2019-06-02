@@ -7,7 +7,7 @@ import whitecrow.static_objects.TileType
 import org.springframework.beans.factory.annotation.Autowired
 
 @Service
-class TurnServiceFactory {
+class TileServiceFactory {
 
     @Autowired
     private lateinit var appContext: ApplicationContext

@@ -17,9 +17,10 @@ class WhitecrowTileService : TileServiceBase() {
     @Transactional
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.increaseMoney(player.id, tile.cost)
-        return TurnResult(
-            player.id, turnStage = TurnProgress.COMPLETED,
-            moneyDifference = tile.cost
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setMoneyDifference(tile.cost)
+            setTurnStage(TurnProgress.COMPLETED)
+        }.build()
     }
 }

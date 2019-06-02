@@ -33,6 +33,7 @@ class PlayerServiceTest {
     @Test
     fun deductMoney_noBenefits_exactDeduction() {
         val playerUnderTest = Player()
+        playerUnderTest.id = PLAYER_ID
         playerUnderTest.money = PLAYER_STARTING_MONEY
         whenever(playerRepositoryImpl.findOne(PLAYER_ID)).thenReturn(playerUnderTest)
         playerService.deductMoney(PLAYER_ID, 200f)
@@ -43,6 +44,7 @@ class PlayerServiceTest {
     @Test
     fun deductMoney_benefitSinceCurrentDay_reducedDeduction() {
         val playerUnderTest = Player()
+        playerUnderTest.id = PLAYER_ID
         playerUnderTest.money = PLAYER_STARTING_MONEY
         playerUnderTest.costReducedSince = playerUnderTest.currentDay
         whenever(playerRepositoryImpl.findOne(PLAYER_ID)).thenReturn(playerUnderTest)
@@ -54,6 +56,7 @@ class PlayerServiceTest {
     @Test
     fun deductMoney_benefitExpired_exactDeduction() {
         val playerUnderTest = Player()
+        playerUnderTest.id = PLAYER_ID
         playerUnderTest.money = PLAYER_STARTING_MONEY
         playerUnderTest.currentDay = 31
         playerUnderTest.costReducedSince = playerUnderTest.currentDay - 15

@@ -23,11 +23,11 @@ class SetBackTileService : TileServiceBase() {
             p.setBackSteps += 1
             playerRepositoryImpl.update(player)
         }
-        val turnResult = TurnResult(
-            player.id, message = "Everyone must go back one day!", turnStage = TurnProgress.COMPLETED,
-            moneyDifference = 0f
-        )
-        turnResult.hasTriggeredSetBack = true
-        return turnResult
+
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setTurnStage(TurnProgress.COMPLETED)
+            setHasTriggeredSetBack(true)
+        }.build()
     }
 }

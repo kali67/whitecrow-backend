@@ -49,7 +49,8 @@ class GameApiController @Autowired constructor(
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game/details/{id}")
     fun load(@PathVariable id: Int): GameDto {
-        return gameMapperDTO.to(gameSharedServiceImpl.findOne(id))
+        val game = gameSharedServiceImpl.findOne(id)
+        return gameMapperDTO.to(game)
     }
 
     @PostMapping("/game/start/{id}")

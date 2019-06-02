@@ -15,12 +15,10 @@ class OpportunityTileService : TileServiceBase() {
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         val card = opCardServiceImpl.findHand().first()
-        return TurnResult(
-            player.id,
-            opportunityCardResult = OpportunityCardResult(card, DECISION.UN_DECIDED),
-            message = "test",
-            turnStage = TurnProgress.DECISION_PENDING,
-            moneyDifference = 0f
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setOpportunityCardResult(OpportunityCardResult(card, DECISION.UN_DECIDED))
+            setTurnStage(TurnProgress.DECISION_PENDING)
+        }.build()
     }
 }

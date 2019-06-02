@@ -18,9 +18,10 @@ class CostReductionTileService : TileServiceBase() {
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         player.costReducedSince = player.currentDay
         playerRepositoryImpl.update(player)
-        return TurnResult(
-            player.id, message = "test", turnStage = TurnProgress.COMPLETED,
-            moneyDifference = 0f
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setTurnStage(TurnProgress.COMPLETED)
+            setMoneyDifference(0f)
+        }.build()
     }
 }

@@ -20,13 +20,12 @@ class AIOpportunityTileService : TileServiceBase() {
         if (cardDecision.decision == DECISION.ACCEPTED) {
 //            opCardServiceImpl.addOpportunityCard(playerId, cardDecision.card.id)
         }
-        return TurnResult(
-            player.id,
-            opportunityCardResult = cardDecision,
-            message = "test",
-            turnStage = TurnProgress.COMPLETED,
-            moneyDifference = -cardDecision.card.cost
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setOpportunityCardResult(cardDecision)
+            setTurnStage(TurnProgress.COMPLETED)
+            setMoneyDifference(-cardDecision.card.cost)
+        }.build()
     }
 
     private fun makeOpportunityDecision(cards: List<Card>): OpportunityCardResult {

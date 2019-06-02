@@ -28,14 +28,7 @@ class Game(
     var maxPlayers: Int,
 
     @OneToMany(mappedBy = "game", cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
-    var player: MutableSet<Player> = mutableSetOf(),
-
-    @Column(name = "current_day")
-    var currentDay: Int = 0,
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "state")
-    var state: GameState = GameState.AWAITING_PLAYERS
+    var player: MutableSet<Player> = mutableSetOf()
 
 ) {
     @Id

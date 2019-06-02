@@ -15,9 +15,11 @@ class BonusTileService : TileServiceBase() {
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
         playerServiceImpl.increaseMoney(player.id, tile.cost)
-        return TurnResult(
-            player.id, message = tile.description, turnStage = TurnProgress.COMPLETED,
-            moneyDifference = tile.cost
-        )
+        val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
+        return turnResultBuilder.apply {
+            setMessage(tile.description)
+            setTurnStage(TurnProgress.COMPLETED)
+            setMoneyDifference(tile.cost)
+        }.build()
     }
 }
