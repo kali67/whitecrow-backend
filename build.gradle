@@ -75,7 +75,8 @@ test {
 dependencies {
 
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-
+    compile group: 'org.springframework.security', name: 'spring-security-jwt', version: '1.0.2.RELEASE'
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
     compile 'org.springframework.boot:spring-boot-starter-test:2.1.5.RELEASE'
     compile 'com.h2database:h2:1.4.199'
     ktlint "com.github.shyiko:ktlint:0.29.0"

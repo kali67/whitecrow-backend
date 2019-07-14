@@ -9,30 +9,50 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.context.annotation.Bean
 import org.springframework.http.HttpMethod
+import org.springframework.security.authentication.*
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.WebSecurity
+import whitecrow.authentication.*
 import whitecrow.service.interfaces.IUserSharedService
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
+import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.boot.web.servlet.FilterRegistrationBean
+import org.springframework.boot.web.servlet.RegistrationBean
+import org.springframework.security.config.annotation.method.configuration.*
+
 
 @Configuration
 @EnableConfigurationProperties
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 class SecurityConfig @Autowired constructor(var userServiceImpl: IUserSharedService) : WebSecurityConfigurerAdapter() {
 
-    @Throws(Exception::class)
-    override fun configure(http: HttpSecurity) {
-        http.csrf().disable()
-            .authorizeRequests().anyRequest().authenticated()
-            .and().httpBasic()
-            .and().sessionManagement().disable()
-    }
+    @Autowired
+    private lateinit var jwtAuthenticationEntryPoint: JwtAuthenticationEntryPoint
+
+    @Autowired
+    private lateinit var jwtRequestFilter: JwtRequestFilter
 
     @Throws(Exception::class)
-    override fun configure(web: WebSecurity) {
-        web.ignoring().antMatchers("/user/save")
-        web.ignoring().antMatchers("/board")
-        web.ignoring().antMatchers("/card")
-        web.ignoring().antMatchers("/game/players")
-        web.ignoring().antMatchers("/game/details/{id}")
-        web.ignoring().antMatchers(HttpMethod.OPTIONS, "/**") // allow preflight request
+    override fun configure(httpSecurity: HttpSecurity) {
+        httpSecurity.csrf().disable()
+            .httpBasic().and()
+            .authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest()
+            .authenticated()
+            .and().exceptionHandling()
+            .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter::class.java)
+    }
+
+    override fun configure(webSecurity: WebSecurity) {
+        webSecurity.ignoring().antMatchers(HttpMethod.POST, "/authenticate")
+    }
+
+    @Bean
+    fun jwtAuthFilterRegister(filter: JwtRequestFilter): RegistrationBean {
+        val registrationBean = FilterRegistrationBean(filter)
+        registrationBean.isEnabled = false
+        return registrationBean
     }
 
     @Bean
@@ -40,7 +60,13 @@ class SecurityConfig @Autowired constructor(var userServiceImpl: IUserSharedServ
         return BCryptPasswordEncoder()
     }
 
-    public override fun configure(builder: AuthenticationManagerBuilder?) {
-        builder!!.userDetailsService<IUserSharedService>(userServiceImpl)
+    override fun configure(auth: AuthenticationManagerBuilder) {
+        auth.userDetailsService<IUserSharedService>(userServiceImpl).passwordEncoder(passwordEncoder())
+    }
+
+
+    @Bean
+    override fun authenticationManagerBean(): AuthenticationManager {
+        return super.authenticationManagerBean()
     }
 }

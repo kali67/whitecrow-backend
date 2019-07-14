@@ -61,7 +61,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "11"
-    type: "MAIL"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
@@ -71,7 +71,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "16"
-    type: "MAIL"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
@@ -81,7 +81,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "19"
-    type: "MAIL"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
@@ -91,7 +91,7 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#FFFFFF"
   - date: "24"
-    type: "MAIL"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
@@ -101,7 +101,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "26"
-    type: "MAIL"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "MAIL_TITLE"
     descriptionResourceString: ~
@@ -121,7 +121,7 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#FFFFFF"
   - date: "9"
-    type: "OPPORTUNITY"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
@@ -131,7 +131,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "12"
-    type: "OPPORTUNITY"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
@@ -141,7 +141,7 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#FFFFFF"
   - date: "17"
-    type: "OPPORTUNITY"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
@@ -151,7 +151,7 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#FFFFFF"
   - date: "23"
-    type: "OPPORTUNITY"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"
@@ -161,7 +161,7 @@ tiles:
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
   - date: "27"
-    type: "OPPORTUNITY"
+    type: "SET_BACK"
     cost: "0"
     titleResourceString: "OPPORTUNITY_TITLE"
     descriptionResourceString: "OPPORTUNITY_DESCRIPTION"

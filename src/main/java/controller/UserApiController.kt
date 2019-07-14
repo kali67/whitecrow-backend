@@ -9,6 +9,7 @@ import whitecrow.service.interfaces.IUserService
 @ControllerAdvice
 class UserApiController @Autowired constructor(val userServiceImpl: IUserService) {
 
+    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/user/create")
     fun createUser(@RequestBody user: User): String {
         userServiceImpl.save(user)
