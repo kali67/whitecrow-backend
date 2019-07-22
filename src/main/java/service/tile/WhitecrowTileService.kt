@@ -15,8 +15,8 @@ class WhitecrowTileService : TileServiceBase() {
     private lateinit var playerServiceImpl: IPlayerService
 
     @Transactional
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
-        playerServiceImpl.increaseMoney(player.id, tile.cost)
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
+        playerServiceImpl.increaseMoney(player.id, tile!!.cost)
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
             setMoneyDifference(tile.cost)

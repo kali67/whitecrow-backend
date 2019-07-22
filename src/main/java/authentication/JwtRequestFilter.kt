@@ -33,8 +33,6 @@ class JwtRequestFilter : OncePerRequestFilter() {
             println("Unable to get JWT Token")
         } catch (e: ExpiredJwtException) {
             println("JWT Token has expired")
-        } catch (e: KotlinNullPointerException) {
-            println("No JWT token")
         }
 
         if (username != null && SecurityContextHolder.getContext().authentication == null) {

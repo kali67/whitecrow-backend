@@ -29,7 +29,7 @@ class JwtTokenUtil : Serializable {
     }
 
     fun <T> findClaim(token: String, claimsResolver: java.util.function.Function<Claims, T>): T {
-        val claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody()
+        val claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).body
         return claimsResolver.apply(claims)
     }
 

@@ -15,7 +15,7 @@ class SetBackTileService : TileServiceBase() {
     private lateinit var playerRepositoryImpl: IPlayerRepository
 
     @Transactional
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val players = gameRepository.findAllPlayers(game.id)
 
         for (p in players) {
@@ -26,7 +26,6 @@ class SetBackTileService : TileServiceBase() {
 
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
-            setTurnStage(TurnProgress.COMPLETED)
             setHasTriggeredSetBack(true)
         }.build()
     }

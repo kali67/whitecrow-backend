@@ -19,11 +19,12 @@ class MailTileService : TileServiceBase() {
     private lateinit var playerRepository: IPlayerRepository
 
     @Transactional
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val card = mailCardServiceImpl.findCardHand()
-        val playerOpportunityCards = playerRepository.findOne(player.id).cards.filter { it.cardType == CardType.OPPORTUNITY }
-        val categoriesOwnedByPlayer = playerOpportunityCards.map { it.category }
-        if (card.category in categoriesOwnedByPlayer) {
+        var playerOpportunityCards = playerRepository.findOne(player.id).cards.filter { it.cardType == CardType.OPPORTUNITY }
+        playerOpportunityCards = mailCardServiceImpl.loadTransients(playerOpportunityCards)
+        val categoriesOwnedByPlayer: List<CardCategory> = playerOpportunityCards.flatMap { it.cardCategory!! }
+        if (card.cardCategory!!.first() in categoriesOwnedByPlayer) {
             val playerMessage = "You're recent investment has disregarded this mail card!"
             val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
             return turnResultBuilder.apply {
@@ -32,7 +33,7 @@ class MailTileService : TileServiceBase() {
                 setMailCard(card)
             }.build()
         }
-        mailCardServiceImpl.addMailCard(player.id, card.id)
+        mailCardServiceImpl.addMailCard(player.id, card.id.cardId)
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
             setTurnStage(TurnProgress.COMPLETED)

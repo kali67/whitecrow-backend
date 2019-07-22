@@ -15,7 +15,10 @@ data class User(
     var userName: String,
 
     @Column(name = "password")
-    var password: String
+    var password: String,
+
+    @ManyToOne
+    var language: Language
 ) {
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = [CascadeType.ALL])

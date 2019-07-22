@@ -13,8 +13,8 @@ class GambleTileService : TileServiceBase() {
     @Autowired
     private lateinit var playerServiceImpl: IPlayerService
 
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
-        playerServiceImpl.deductMoney(player.id, tile.cost)
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
+        playerServiceImpl.deductMoney(player.id, tile!!.cost)
         // todo : roll for each player in game, add players * cost to winner
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {

@@ -3,6 +3,7 @@ package whitecrow.service.tile
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
+import whitecrow.mappers.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
 import whitecrow.static_objects.*
@@ -14,7 +15,7 @@ class AIOpportunityTileService : TileServiceBase() {
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
 
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val cards = opCardServiceImpl.findHand()
         val cardDecision = makeOpportunityDecision(cards)
         if (cardDecision.decision == DECISION.ACCEPTED) {

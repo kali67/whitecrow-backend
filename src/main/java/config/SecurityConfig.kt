@@ -38,6 +38,8 @@ class SecurityConfig @Autowired constructor(var userServiceImpl: IUserSharedServ
             .httpBasic().and()
             .authorizeRequests().antMatchers("/authenticate").permitAll().anyRequest()
             .authenticated()
+            .and().authorizeRequests().antMatchers("/user/create").permitAll().anyRequest()
+            .authenticated()
             .and().exceptionHandling()
             .authenticationEntryPoint(jwtAuthenticationEntryPoint).and().sessionManagement()
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -46,6 +48,8 @@ class SecurityConfig @Autowired constructor(var userServiceImpl: IUserSharedServ
 
     override fun configure(webSecurity: WebSecurity) {
         webSecurity.ignoring().antMatchers(HttpMethod.POST, "/authenticate")
+        webSecurity.ignoring().antMatchers(HttpMethod.POST, "/user/create")
+        webSecurity.ignoring().antMatchers(HttpMethod.OPTIONS, "/**") // allow preflight request
     }
 
     @Bean

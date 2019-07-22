@@ -17,7 +17,7 @@ abstract class TileServiceBase {
     @Autowired
     protected lateinit var gameRepository: IGameRepository
 
-    fun executeAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+    fun executeAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val turnResult = applyTileAction(player, game, tile)
         if (turnResult.turnStage == TurnProgress.COMPLETED || turnResult.turnStage == TurnProgress.COMPLETED_WITH_ROLLS) {
             gameSharedServiceImpl.progressToNextPlayer(game.id)
@@ -25,5 +25,5 @@ abstract class TileServiceBase {
         return turnResult
     }
 
-    abstract fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult
+    abstract fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult
 }

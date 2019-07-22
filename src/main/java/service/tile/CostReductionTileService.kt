@@ -15,7 +15,7 @@ class CostReductionTileService : TileServiceBase() {
     private lateinit var playerRepositoryImpl: IPlayerRepository
 
     @Transactional
-    override fun applyTileAction(player: Player, game: Game, tile: BoardTile): TurnResult {
+    override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         player.costReducedSince = player.currentDay
         playerRepositoryImpl.update(player)
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)

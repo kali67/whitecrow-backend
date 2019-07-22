@@ -55,7 +55,7 @@ class SinglePlayerGameService @Autowired constructor(
         val turnResults = mutableListOf<TurnResult>()
         if (nextPlayer != null) {
             var index = nextPlayer.playOrder
-            while (index != requesterPlayer.order) {
+            while (index != requesterPlayer.order) { // make turns until it gets back to user
                 val turnResult = playerServiceImpl.useTurn(players[index].id, id)
                 turnResults.add(turnResult)
                 index = (index + 1).rem(players.size)

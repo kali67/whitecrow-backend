@@ -1,6 +1,6 @@
 package whitecrow.service.interfaces
 
-import whitecrow.model.Card
+import whitecrow.model.*
 
 interface IMailCardService {
 
@@ -9,4 +9,7 @@ interface IMailCardService {
     fun findById(id: Int): Card
 
     fun addMailCard(playerId: Int, cardId: Int)
+
+    fun loadTransients(card: List<Card>): List<Card>
+
 }

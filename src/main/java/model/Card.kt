@@ -1,5 +1,6 @@
 package whitecrow.model
 
+import java.io.Serializable
 import javax.persistence.*
 
 enum class CardType {
@@ -7,17 +8,19 @@ enum class CardType {
     OPPORTUNITY
 }
 
+enum class FlowDirection {
+    OUT,
+    IN,
+    ALL
+}
+
+
 @Entity
 @Table(name = "card")
 class Card(
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Int,
-
-    @OneToOne
-    @JoinColumn(name = "lang_id")
-    var language: Language,
+    @EmbeddedId
+    var id: CardId,
 
     @Column(name = "card_type")
     @Enumerated(EnumType.STRING)
@@ -26,8 +29,11 @@ class Card(
     @Column(name = "title")
     var title: String,
 
-    @Column(name = "category")
-    var category: String,
+    @Column(name = "color")
+    var color: String,
+
+    @Column(name = "category_description")
+    var categoryDescription: String,
 
     @Column(name = "action")
     var action: String,
@@ -39,5 +45,16 @@ class Card(
     var description: String,
 
     @Column(name = "cost")
-    var cost: Float
-)
+    var cost: Float,
+
+    @Column(name = "flow_direction")
+    @Enumerated(EnumType.STRING)
+    var flowDirection: FlowDirection
+) {
+
+    @Transient
+    var cardCategory: List<CardCategory>? = null
+}
+
+@Embeddable
+class CardId(val cardId: Int, val langId: Int) : Serializable

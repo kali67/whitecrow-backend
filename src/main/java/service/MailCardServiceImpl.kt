@@ -2,11 +2,10 @@ package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import whitecrow.model.Card
+import whitecrow.model.*
 import whitecrow.repository.interfaces.IMailCardRepository
 import whitecrow.repository.interfaces.IPlayerRepository
-import whitecrow.service.interfaces.IMailCardService
-import whitecrow.service.interfaces.IPlayerService
+import whitecrow.service.interfaces.*
 import javax.transaction.Transactional
 import kotlin.random.Random
 
@@ -15,24 +14,30 @@ import kotlin.random.Random
 class MailCardServiceImpl @Autowired constructor(
     val mailCardRepositoryImpl: IMailCardRepository,
     val playerServiceImpl: IPlayerService,
-    val playerRepositoryImpl: IPlayerRepository
+    val playerRepositoryImpl: IPlayerRepository,
+    val userSharedService: IUserSharedService
 ) : IMailCardService {
 
+    override fun loadTransients(card: List<Card>): List<Card> {
+        return mailCardRepositoryImpl.loadTransients(card)
+    }
+
     override fun findById(id: Int): Card {
-        return mailCardRepositoryImpl.findById(id)
+        val systemLanguage = userSharedService.currentUser().language
+        return mailCardRepositoryImpl.findById(CardId(id, systemLanguage.id))
     }
 
     override fun findCardHand(): Card {
-        val cards = mailCardRepositoryImpl.findAll()
+        val systemLanguage = userSharedService.currentUser().language
+        val cards = mailCardRepositoryImpl.findAll(systemLanguage)
         val index = Random.nextInt(cards.size)
-        val card = cards[index]
-
         return cards[index]
     }
 
     override fun addMailCard(playerId: Int, cardId: Int) {
+        val systemLanguage = userSharedService.currentUser().language
         val player = playerRepositoryImpl.findOne(playerId)
-        val card = mailCardRepositoryImpl.findById(cardId)
+        val card = mailCardRepositoryImpl.findById(CardId(cardId, systemLanguage.id))
         player.cards.add(card)
         playerRepositoryImpl.update(player)
         playerServiceImpl.deductMoney(playerId, card.cost)

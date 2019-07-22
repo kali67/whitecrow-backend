@@ -36,8 +36,10 @@ class NormalTurnStrategyTest {
     fun useTurn_playerFinishedGame_returnTurnResultPlayerFinished() {
         val game = Game(GameType.SINGLEPLAYER, 1, 6, mutableSetOf())
         game.id = GAME_ID
+
         whenever(gameSharedService.findOne(GAME_ID)).thenReturn(game)
         whenever(gameSharedService.hasGonePassedFinalDay(any(), any())).thenReturn(true)
+
         val player = Player()
         val playerTurnResult = normalTurnStrategy.useTurn(player, GAME_ID)
         assert(playerTurnResult.hasFinishedGame)
@@ -48,11 +50,14 @@ class NormalTurnStrategyTest {
         val player = Player()
         val game = Game(GameType.SINGLEPLAYER, 1, 6, mutableSetOf(player))
         game.id = GAME_ID
+
         whenever(gameSharedService.findOne(GAME_ID)).thenReturn(game)
         whenever(gameSharedService.hasGonePassedFinalDay(player.currentDay, game)).thenReturn(false)
         whenever(gameSharedService.rollDice()).thenReturn(DIE_ROLL_RESULT)
+
         val playersNewDay = player.currentDay + DIE_ROLL_RESULT
         whenever(gameSharedService.hasGonePassedFinalDay(playersNewDay, game)).thenReturn(true)
+
         val gameBoardTurnResult = TurnResultBuilder(player.id, DAYS_IN_MONTH).build()
         whenever(gameBoardService.applyTileActionToPlayer(player, game)).thenReturn(gameBoardTurnResult)
         whenever(gameSharedService.findFinalDay(game)).thenReturn(DAYS_IN_MONTH)

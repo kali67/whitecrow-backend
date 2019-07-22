@@ -16,27 +16,18 @@ class OpCardServiceImpl @Autowired constructor(
     val playerServiceImpl: IPlayerService,
     val playerRepositoryImpl: IPlayerRepository,
     val mailCardServiceImpl: IMailCardService,
-    val gameSharedServiceImpl: IGameSharedService
+    val gameSharedServiceImpl: IGameSharedService,
+    val userSharedService: IUserSharedService
 ) : IOpCardService {
 
     @Autowired
     private lateinit var flowService: IFlowService
 
     override fun findHand(): List<Card> {
-        return pickCards(opCardRepositoryImpl.findAll())
-    }
-
-    fun pickCards(selection: List<Card>): List<Card> {
-        var possibleDraws: List<Card> = selection
-        val drawnCards: MutableList<Card> = mutableListOf()
-        for (i in 0 until 3) {
-            val index = Random.nextInt(possibleDraws.size)
-            drawnCards.add(possibleDraws[index])
-            possibleDraws = selection.filter { card ->
-                !drawnCards.contains(card)
-            }
-        }
-        return drawnCards
+        val cards = opCardRepositoryImpl.findAll(userSharedService.currentUser().language)
+        val list = mutableListOf<Card>()
+        list.add(cards[Random.nextInt(cards.size)])
+        return list.toList()
     }
 
     override fun addOpportunityCard(playerId: Int, cardId: Int) {
