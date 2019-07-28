@@ -1,15 +1,24 @@
 package whitecrow.model
 
+import org.hibernate.annotations.*
+import java.util.*
 import javax.persistence.*
+import javax.persistence.CascadeType
+import javax.persistence.Entity
+import javax.persistence.Table
 
 @Entity
 @Table(name = "users")
 data class User(
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    var id: Int,
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(
+        name = "UUID",
+        strategy = "org.hibernate.id.UUIDGenerator"
+    )
+    @Column(name = "user_id", updatable = false, nullable = false)
+    var id: UUID,
 
     @Column(name = "username")
     var userName: String,

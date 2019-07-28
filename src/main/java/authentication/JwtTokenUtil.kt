@@ -20,8 +20,8 @@ class JwtTokenUtil : Serializable {
     @Value("\${jwt.secret}")
     private lateinit var secret: String
 
-    fun findUsername(token: String): String {
-        return findClaim(token, Function { it.subject })
+    fun findUuid(token: String): UUID {
+        return findClaim(token, Function { UUID.fromString(it.subject) })
     }
 
     fun findExpirationDate(token: String): Date {
@@ -38,19 +38,19 @@ class JwtTokenUtil : Serializable {
         return expiration.before(Date())
     }
 
-    fun generateToken(userDetails: UserDetails): String {
+    fun generateToken(uuid: UUID): String {
         val claims = HashMap<String, Any>()
         return Jwts.builder().apply {
             setClaims(claims)
-            setSubject(userDetails.username)
+            setSubject(uuid.toString())
             setIssuedAt(Date(System.currentTimeMillis()))
             setExpiration(Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
             signWith(SignatureAlgorithm.HS512, secret)
         }.compact()
     }
 
-    fun validateToken(token: String, userDetails: UserDetails): Boolean {
-        val username = findUsername(token)
-        return username == userDetails.username && !isTokenExpired(token)
+    fun validateToken(token: String, userUuid: UUID): Boolean {
+        val uuid = findUuid(token)
+        return uuid == userUuid && !isTokenExpired(token)
     }
 }

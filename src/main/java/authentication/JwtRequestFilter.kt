@@ -10,6 +10,7 @@ import io.jsonwebtoken.ExpiredJwtException
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+import java.util.*
 
 @Component
 class JwtRequestFilter : OncePerRequestFilter() {
@@ -23,21 +24,21 @@ class JwtRequestFilter : OncePerRequestFilter() {
     override fun doFilterInternal(request: HttpServletRequest, response: HttpServletResponse, filterChain: FilterChain) {
         val requestHeaderToken = request.getHeader("Authorization")
         var jwtToken: String? = null
-        var username: String? = null
+        var uuid: UUID? = null
         if (requestHeaderToken != null && requestHeaderToken.startsWith("Bearer ")) {
             jwtToken = requestHeaderToken.substring(7)
         }
         try {
-            username = jwtTokenUtil.findUsername(jwtToken!!)
+            uuid = jwtTokenUtil.findUuid(jwtToken!!)
         } catch (e: IllegalArgumentException) {
             println("Unable to get JWT Token")
         } catch (e: ExpiredJwtException) {
             println("JWT Token has expired")
         }
 
-        if (username != null && SecurityContextHolder.getContext().authentication == null) {
-            val userDetails = userSharedService.loadUserByUsername(username)
-            if (jwtTokenUtil.validateToken(jwtToken!!, userDetails)) {
+        if (uuid != null && SecurityContextHolder.getContext().authentication == null) {
+            val userDetails = userSharedService.loadUserByUUID(uuid)
+            if (jwtTokenUtil.validateToken(jwtToken!!, uuid)) {
 
                 val usernamePasswordAuthenticationToken = UsernamePasswordAuthenticationToken(
                     userDetails, null, userDetails.authorities

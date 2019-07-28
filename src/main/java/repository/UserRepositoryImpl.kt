@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository
 import whitecrow.model.User
 import whitecrow.model.User_
 import whitecrow.repository.interfaces.IUserRepository
+import java.util.*
 
 @Repository
 class UserRepositoryImpl @Autowired constructor(private val sessionFactory: SessionFactory) : IUserRepository {
@@ -45,8 +46,19 @@ class UserRepositoryImpl @Autowired constructor(private val sessionFactory: Sess
         session.update(user)
     }
 
-    override fun findOne(id: Int): User {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    override fun findOne(id: UUID): User {
+        val session = sessionFactory.currentSession
+        val builder = session.criteriaBuilder
+        val criteria = builder.createQuery(User::class.java)
+        val from = criteria.from(User::class.java)
+        criteria.select(from)
+        criteria.where(
+            builder.equal(
+                from.get(User_.id),
+                id
+            )
+        )
+        return session.createQuery(criteria).singleResult
     }
 
     override fun delete(deleted: User) {

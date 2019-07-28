@@ -1,3 +1,4 @@
 package whitecrow.dto
 
-data class UserDto(val id: Int, val username: String)
+
+data class UserDto(val username: String, val languageCode: String)

@@ -26,8 +26,8 @@ class AuthenticationApiController {
     @PostMapping("/authenticate")
     fun createAuthenticationToken(@RequestBody user: User): ResponseEntity<*> {
         authenticate(user.userName, user.password)
-        val userDetails = userDetailsService.loadUserByUsername(user.userName)
-        val token = jwtTokenUtil.generateToken(userDetails)
+        val userDetails = userDetailsService.loadUserDetByUsername(user.userName)
+        val token = jwtTokenUtil.generateToken(userDetails.id)
         return ResponseEntity.ok<Any>(JwtResponse(token))
     }
 
