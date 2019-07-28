@@ -9,7 +9,7 @@ import whitecrow.repository.interfaces.*
 @Repository
 class LanguageRepositoryImpl @Autowired constructor(val sessionFactory: SessionFactory) : ILanguageRepository {
 
-    override fun findByCode(code: String): Language {
+    override fun findByCode(code: LanguageCode): Language {
         val session = sessionFactory.currentSession
         val criteriaBuilder = session.criteriaBuilder
         val query = criteriaBuilder.createQuery(Language::class.java)

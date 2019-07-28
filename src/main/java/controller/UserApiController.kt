@@ -12,7 +12,7 @@ import java.util.*
 class UserApiController @Autowired constructor(val userServiceImpl: IUserService) {
 
     @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
-    @PostMapping("/user")
+    @PostMapping("/user/create")
     fun create(@RequestBody user: User): UUID {
         return userServiceImpl.save(user)
     }

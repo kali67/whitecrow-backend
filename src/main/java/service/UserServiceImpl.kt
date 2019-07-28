@@ -27,6 +27,7 @@ class UserServiceImpl @Autowired constructor(
         val user = userRepositoryImpl.findByUserName(persisted.userName)
         if (user == null) {
             persisted.password = hashPassword(persisted.password)
+            persisted.language = languageRepositoryImpl.findByCode(LanguageCode.ES)
             val persistedUser = userRepositoryImpl.save(persisted)
             return persistedUser.id
         }

@@ -4,5 +4,5 @@ import whitecrow.model.*
 
 interface ILanguageRepository {
 
-    fun findByCode(code: String) : Language
+    fun findByCode(code: LanguageCode) : Language
 }
