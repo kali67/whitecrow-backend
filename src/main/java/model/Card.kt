@@ -2,6 +2,7 @@ package whitecrow.model
 
 import java.io.Serializable
 import javax.persistence.*
+import javax.validation.constraints.*
 
 enum class CardType {
     MAIL,
@@ -41,7 +42,7 @@ class Card(
     @Column(name = "sub_title")
     var subTitle: String,
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1024)
     var description: String,
 
     @Column(name = "cost")
