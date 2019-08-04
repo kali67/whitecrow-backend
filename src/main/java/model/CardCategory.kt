@@ -28,6 +28,7 @@ enum class CardCategoryEnum {
 
 
 @Entity
+@Table(name="card_category")
 class CardCategory(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
