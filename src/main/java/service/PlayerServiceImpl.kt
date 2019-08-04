@@ -36,7 +36,7 @@ class PlayerServiceImpl @Autowired constructor(
 
     override fun deductMoney(playerId: Int, amount: Float) {
         val player = playerRepositoryImpl.findOne(playerId)
-        if (player.costReducedSince != -1 && player.costReducedSince + DAYS_IN_TWO_WEEKS > player.currentDay) {
+        if (player.costReducedSince != 0 && player.costReducedSince + DAYS_IN_TWO_WEEKS > player.currentDay) {
             player.money -= (amount * REDUCTION_AMOUNT)
         } else {
             player.money -= amount

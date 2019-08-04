@@ -41,7 +41,7 @@ data class Player(
     var playOrder: Int = -1
 
     @Column(name = "cost_reduced_since")
-    var costReducedSince: Int = -1
+    var costReducedSince: Int = 0
 
     @Column(name = "final_score")
     var finalScore: Float = 0f

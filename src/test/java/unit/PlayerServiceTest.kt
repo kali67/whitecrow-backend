@@ -1,4 +1,4 @@
-package service
+package unit
 
 import com.nhaarman.mockitokotlin2.*
 import org.junit.*
@@ -28,6 +28,7 @@ class PlayerServiceTest {
     companion object {
         const val PLAYER_ID = 1
         const val PLAYER_STARTING_MONEY = 1000f
+        const val COST_REDUCTION_DAY = 29
     }
 
     @Test
@@ -46,7 +47,8 @@ class PlayerServiceTest {
         val playerUnderTest = Player()
         playerUnderTest.id = PLAYER_ID
         playerUnderTest.money = PLAYER_STARTING_MONEY
-        playerUnderTest.costReducedSince = playerUnderTest.currentDay
+        playerUnderTest.currentDay = COST_REDUCTION_DAY + 2
+        playerUnderTest.costReducedSince = COST_REDUCTION_DAY
         whenever(playerRepositoryImpl.findOne(PLAYER_ID)).thenReturn(playerUnderTest)
         playerService.deductMoney(PLAYER_ID, 200f)
 
