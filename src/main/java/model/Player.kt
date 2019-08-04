@@ -14,7 +14,6 @@ enum class TurnType {
 }
 
 
-
 @Entity
 @Table(name = "player")
 data class Player(

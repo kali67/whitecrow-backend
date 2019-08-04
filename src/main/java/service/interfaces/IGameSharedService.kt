@@ -23,4 +23,6 @@ interface IGameSharedService : IDataService<Game, Int> {
     fun findFinalDay(game: Game): Int
 
     fun hasGonePassedFinalDay(day: Int, game: Game): Boolean
+
+    fun update(game: Game)
 }

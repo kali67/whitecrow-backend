@@ -2,6 +2,7 @@ package whitecrow.model
 
 import javax.persistence.*
 
+
 enum class GameState {
     IN_PROGRESS,
     AWAITING_PLAYERS,
@@ -27,7 +28,7 @@ class Game(
     @Column(name = "max_players")
     var maxPlayers: Int,
 
-    @OneToMany(mappedBy = "game", cascade = [CascadeType.MERGE], fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "game", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER, orphanRemoval = true)
     var player: MutableSet<Player> = mutableSetOf()
 
 ) {

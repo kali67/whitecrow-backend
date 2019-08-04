@@ -61,7 +61,7 @@ class GameSharedServiceImpl @Autowired constructor(
         }
         val game = gameRepositoryImpl.findOne(gameId)
         game.next = shuffledCollection[0]
-        gameRepositoryImpl.update(game)
+        update(game)
     }
 
     override fun gameHasFinished(game: Game): Boolean {
@@ -82,7 +82,7 @@ class GameSharedServiceImpl @Autowired constructor(
                 it.finalScore
             }
             game.winner = winner
-            gameRepositoryImpl.update(game)
+            update(game)
         }
         return gameMapperDTO.to(game)
     }
@@ -110,7 +110,7 @@ class GameSharedServiceImpl @Autowired constructor(
         if (!gameHasFinished(game)) {
             val nextPlayer = findNextPlayer(game)
             game.next = nextPlayer
-            gameRepositoryImpl.update(game)
+            update(game)
         }
     }
 
@@ -120,6 +120,10 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun rollDice(): Int {
         return Random.nextInt(NUMBER_DIE) + 1
+    }
+
+    override fun update(game: Game) {
+        gameRepositoryImpl.update(game)
     }
 
     override fun findOne(id: Int): Game {
