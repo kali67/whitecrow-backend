@@ -133,8 +133,7 @@ class GameSharedServiceTest {
 
     @Test
     fun progressToNextPlayer_PlayerTwoAlreadyFinishedGame_PlayerThreeTurn() {
-        createNewPlayer(GAME_ONE_ID, PLAYER_THREE_ID)
-
+        createNewPlayerAndAddToGame(GAME_ONE_ID, PLAYER_THREE_ID)
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.player.add(Player(PLAYER_THREE_ID, null))
         game.next = playerService.findOne(PLAYER_ONE_ID)
@@ -176,7 +175,45 @@ class GameSharedServiceTest {
         assertEquals(95, finalDay)
     }
 
-    private fun createNewPlayer(gameId: Int, playerId: Int): Player {
+    @Test
+    fun assignPlayerOrder_OrdersNotAssigned_OrdersAssignedToAllPlayers() {
+        val game =  gameSharedServiceImpl.findOne(GAME_ONE_ID)
+        game.player.forEach {
+            it.playOrder = -1
+        }
+        gameSharedServiceImpl.assignPlayerOrder(game)
+        game.player.sortedBy { it.playOrder }.forEachIndexed { index, player ->
+            Assert.assertEquals(index, player.playOrder)
+        }
+    }
+
+    @Test
+    fun calculateEndGameScore_GameNotFinished_NoWinner() {
+        val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
+        game.player.forEach {
+            it.currentDay = 0
+            playerService.update(it)
+        }
+        val gameDto = gameSharedServiceImpl.calculateEndGameScore(game.id)
+        Assert.assertEquals(null, gameDto.winner)
+        Assert.assertTrue(gameDto.players.all { it.score == 0f })
+    }
+
+    @Test
+    fun calculateEndGameScore_GameHasFinishedNoFlows_PlayerWithMostMoneyWinner(){
+        val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
+        game.player.forEach {
+            if (it.id == PLAYER_ONE_ID) { // give player 1 the most money
+                it.money += 100f
+            }
+            it.currentDay = MAX_DAYS_ONE_ROUND
+            playerService.update(it)
+        }
+        val gameDto = gameSharedServiceImpl.calculateEndGameScore(game.id)
+        Assert.assertEquals(PLAYER_ONE_ID, gameDto.winner!!.id)
+    }
+
+    private fun createNewPlayerAndAddToGame(gameId: Int, playerId: Int): Player {
         val newPlayer = Player(playerId)
         newPlayer.game = gameSharedServiceImpl.findOne(gameId)
         newPlayer.playOrder = (gameSharedServiceImpl.findAllPlayers(GAME_ONE_ID).maxBy { it.order } as PlayerDTO).order + 1

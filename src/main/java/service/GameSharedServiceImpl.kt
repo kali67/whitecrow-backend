@@ -52,14 +52,13 @@ class GameSharedServiceImpl @Autowired constructor(
         return playerDTO
     }
 
-    override fun assignPlayerOrder(gameId: Int) {
-        val players = gameRepositoryImpl.findAllPlayers(gameId)
+    override fun assignPlayerOrder(game: Game) {
+        val players = game.player
         val shuffledCollection = players.shuffled()
         shuffledCollection.forEachIndexed { index, player ->
             player.playOrder = index
             playerRepositoryImpl.update(player)
         }
-        val game = gameRepositoryImpl.findOne(gameId)
         game.next = shuffledCollection[0]
         update(game)
     }

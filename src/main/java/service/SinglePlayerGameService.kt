@@ -37,7 +37,7 @@ class SinglePlayerGameService @Autowired constructor(
             entity.player.add(botPlayer)
         }
         gameSharedServiceImpl.save(entity)
-        gameSharedServiceImpl.assignPlayerOrder(entity.id)
+        gameSharedServiceImpl.assignPlayerOrder(entity)
         return gameMapperDTO.to(entity)
     }
 

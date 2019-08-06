@@ -10,7 +10,7 @@ interface IGameSharedService : IDataService<Game, Int> {
 
     fun findCurrentPlayer(gameId: Int): PlayerDTO
 
-    fun assignPlayerOrder(gameId: Int)
+    fun assignPlayerOrder(game: Game)
 
     fun rollDice(): Int
 
