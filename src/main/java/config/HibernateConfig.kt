@@ -87,7 +87,7 @@ class H2TestProfileJPAConfig : DataSourceConfig() {
     override fun dataSource(): DataSource {
         val dataSource = BasicDataSource()
         dataSource.driverClassName = "org.h2.Driver"
-        dataSource.url = "jdbc:h2:mem:;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false"
+        dataSource.url = "jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=false"
         dataSource.username = "sa"
         dataSource.password = ""
         return dataSource

@@ -28,7 +28,7 @@ class Game(
     @Column(name = "max_players")
     var maxPlayers: Int,
 
-    @OneToMany(mappedBy = "game", cascade = [CascadeType.REMOVE], fetch = FetchType.EAGER, orphanRemoval = true)
+    @OneToMany(mappedBy = "game", cascade = [CascadeType.ALL], fetch = FetchType.EAGER, orphanRemoval = true)
     var player: MutableSet<Player> = mutableSetOf()
 
 ) {

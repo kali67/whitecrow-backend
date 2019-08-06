@@ -10,12 +10,10 @@ import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DAYS_MONTH
-import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DIE
 import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IPlayerService
 import whitecrow.service.interfaces.IUserSharedService
 import javax.transaction.Transactional
-import kotlin.random.Random
 
 @Service
 @Transactional
@@ -115,10 +113,6 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
         return day >= ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
-    }
-
-    override fun rollDice(): Int {
-        return Random.nextInt(NUMBER_DIE) + 1
     }
 
     override fun update(game: Game) {

@@ -16,7 +16,6 @@ class OpCardServiceImpl @Autowired constructor(
     val playerServiceImpl: IPlayerService,
     val playerRepositoryImpl: IPlayerRepository,
     val mailCardServiceImpl: IMailCardService,
-    val gameSharedServiceImpl: IGameSharedService,
     val userSharedService: IUserSharedService
 ) : IOpCardService {
 
@@ -37,6 +36,5 @@ class OpCardServiceImpl @Autowired constructor(
         flowService.createOpportunityInvestment(player, card)
         playerRepositoryImpl.update(player)
         playerServiceImpl.deductMoney(playerId, card.cost)
-        gameSharedServiceImpl.progressToNextPlayer(player.game!!.id)
     }
 }

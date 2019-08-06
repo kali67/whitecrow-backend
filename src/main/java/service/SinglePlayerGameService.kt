@@ -33,8 +33,8 @@ class SinglePlayerGameService @Autowired constructor(
         for (n in 1 until game.maxPlayers) {
             val botPlayer = Player()
             botPlayer.game = entity
-            playerServiceImpl.save(botPlayer)
             entity.player.add(botPlayer)
+            playerServiceImpl.save(botPlayer)
         }
         gameSharedServiceImpl.save(entity)
         gameSharedServiceImpl.assignPlayerOrder(entity)

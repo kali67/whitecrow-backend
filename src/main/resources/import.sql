@@ -14,7 +14,7 @@ VALUES (0, 0, 'MAIL', 'Getting certified is not everything.', '#008000', 'People
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (0, 1, 'MAIL', 'Obtener la certificación no lo es todo.', '#008000', 'Personas (Organización)', 'Paga $100',
         'Situación',
-        'La gerencia está más preocupada por obtener certificaciones que por mejorar ' ||
+        'La gerencia está más preocupada pvror obtener certificaciones que por mejorar ' ||
         'El proceso de desarrollo, mientras el equipo se frustra.', 100.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)

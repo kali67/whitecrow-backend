@@ -9,9 +9,10 @@ import whitecrow.service.interfaces.*
 
 @Component
 class NormalTurnStrategy @Autowired constructor(
-    private val gameSharedServiceImpl: IGameSharedService, private val gameBoardServiceImpl:
-    IGameBoardService,
-    private val playerRepository: IPlayerRepository
+    private val gameSharedServiceImpl: IGameSharedService,
+    private val gameBoardServiceImpl: IGameBoardService,
+    private val playerRepository: IPlayerRepository,
+    private val die: IDie
 ) :
     TurnStrategy() {
 
@@ -22,7 +23,7 @@ class NormalTurnStrategy @Autowired constructor(
             return skipPlayerTurn(player)
         }
 
-        val playerDieRoll = gameSharedServiceImpl.rollDice()
+        val playerDieRoll = die.rollDie()
         player.currentDay += playerDieRoll
         playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
 

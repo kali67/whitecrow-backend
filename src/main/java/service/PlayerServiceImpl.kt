@@ -25,6 +25,7 @@ class PlayerServiceImpl @Autowired constructor(
     companion object {
         const val DAYS_IN_TWO_WEEKS = 14
         const val REDUCTION_AMOUNT = 0.5f // 50%
+        const val RETURN_ON_INVESTMENT_RATE = 0.5f
     }
 
 
@@ -54,7 +55,7 @@ class PlayerServiceImpl @Autowired constructor(
         var totalScore = player.money
         val investments = flowService.findInvestments(player.id)
         val loans = flowService.findLoans(player.id)
-        investments.forEach { totalScore += it.amount * 0.5f }
+        investments.forEach { totalScore += it.amount * RETURN_ON_INVESTMENT_RATE }
         loans.forEach { totalScore -= flowService.calcFlowPayback(it) }
         return totalScore
     }

@@ -19,17 +19,9 @@ import whitecrow.service.interfaces.*
 @SpringBootTest(classes = [Application::class])
 @ActiveProfiles("test")
 @Transactional
-@SqlGroup(
-    value = [
-        Sql(
-            scripts = ["classpath:test_scripts/game_shared_service/light_games.sql"],
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
-        )
-//        Sql(
-//            scripts = ["classpath:test_scripts/helpers/clean_db.sql"],
-//            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD
-//        )
-    ]
+@Sql(
+    scripts = ["classpath:test_scripts/game_shared_service/light_games.sql"],
+    executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
 )
 class GameSharedServiceTest {
 
@@ -40,21 +32,12 @@ class GameSharedServiceTest {
     private lateinit var playerService: IPlayerService
 
     companion object {
-
         const val GAME_ONE_ID = 1
         const val MAX_DAYS_ONE_ROUND = 31
         const val PLAYER_TWO_ID = 2
         const val PLAYER_ONE_ID = 1
         const val PLAYER_THREE_ID = 3
-
-        @JvmStatic
-        @BeforeClass
-        fun setUp() {
-
-        }
     }
-
-    //UnitOfWork_StateUnderTest_ExpectedBehavior
 
     @Test
     fun findAll_DbPopulated_ReturnsTwoGames() {
@@ -161,23 +144,25 @@ class GameSharedServiceTest {
 
     @Test
     fun findFinalDay_GameHasTwoRounds_Return63() {
+        val expectedFinalDay = 63
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.numberRounds = 2
         val finalDay = gameSharedServiceImpl.findFinalDay(game)
-        assertEquals(63, finalDay)
+        assertEquals(expectedFinalDay, finalDay)
     }
 
     @Test
     fun findFinalDay_GameHasThreeRounds_Return95() {
+        val expectedFinalDay = 95
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.numberRounds = 3
         val finalDay = gameSharedServiceImpl.findFinalDay(game)
-        assertEquals(95, finalDay)
+        assertEquals(expectedFinalDay, finalDay)
     }
 
     @Test
     fun assignPlayerOrder_OrdersNotAssigned_OrdersAssignedToAllPlayers() {
-        val game =  gameSharedServiceImpl.findOne(GAME_ONE_ID)
+        val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.player.forEach {
             it.playOrder = -1
         }
@@ -200,7 +185,7 @@ class GameSharedServiceTest {
     }
 
     @Test
-    fun calculateEndGameScore_GameHasFinishedNoFlows_PlayerWithMostMoneyWinner(){
+    fun calculateEndGameScore_GameHasFinishedNoFlows_PlayerWithMostMoneyWins() {
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.player.forEach {
             if (it.id == PLAYER_ONE_ID) { // give player 1 the most money
@@ -220,6 +205,4 @@ class GameSharedServiceTest {
         playerService.save(newPlayer)
         return newPlayer
     }
-
-
 }

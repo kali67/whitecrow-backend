@@ -47,7 +47,6 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     }
 
     companion object {
-        const val NUMBER_DIE = 6
         const val NUMBER_DAYS_MONTH = 31
     }
 }

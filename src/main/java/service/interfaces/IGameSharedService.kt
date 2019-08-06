@@ -12,8 +12,6 @@ interface IGameSharedService : IDataService<Game, Int> {
 
     fun assignPlayerOrder(game: Game)
 
-    fun rollDice(): Int
-
     fun progressToNextPlayer(gameId: Int)
 
     fun calculateEndGameScore(id: Int): GameDto

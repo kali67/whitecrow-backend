@@ -23,6 +23,9 @@ class NormalTurnStrategyTest {
     @Mock
     private lateinit var playerRepository: IPlayerRepository
 
+    @Mock
+    private lateinit var die: IDie
+
     @InjectMocks
     private lateinit var normalTurnStrategy: NormalTurnStrategy
 
@@ -53,7 +56,7 @@ class NormalTurnStrategyTest {
 
         whenever(gameSharedService.findOne(GAME_ID)).thenReturn(game)
         whenever(gameSharedService.hasGonePassedFinalDay(player.currentDay, game)).thenReturn(false)
-        whenever(gameSharedService.rollDice()).thenReturn(DIE_ROLL_RESULT)
+        whenever(die.rollDie()).thenReturn(DIE_ROLL_RESULT)
 
         val playersNewDay = player.currentDay + DIE_ROLL_RESULT
         whenever(gameSharedService.hasGonePassedFinalDay(playersNewDay, game)).thenReturn(true)

@@ -1,4 +1,8 @@
 INSERT INTO users (user_id, username, password, language_id)
+VALUES ('bef7233c164597cd4ff04aa76538b232', 'bob', '$2a$10$AjHGc4x3Nez/p4ZpvFDWeO6FGxee/cVqj5KHHnHfuLnIOzC5ag4fm', 0);
+
+
+INSERT INTO users (user_id, username, password, language_id)
 VALUES ('bef7233c164597cd4ff04aa76038b231', 'hta55_test', '$2a$10$AjHGc4x3Nez/p4ZpvFDWeO6FGxee/cVqj5KHHnHfuLnIOzC5ag4fm', 0);
 
 
@@ -31,7 +35,7 @@ insert into player (player_id,
                     turn_type,
                     game_id,
                     user_id)
-values (2, -1, 0, 0, 1000.00, 1, 0, 'NORMAL', 1, 'bef7233c164597cd4ff04aa76038b231');
+values (2, -1, 0, 0, 1000.00, 1, 0, 'NORMAL', 1, null);
 
 update game -- set next player on game objects
 set next = 1;
