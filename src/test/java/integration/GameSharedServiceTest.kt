@@ -118,7 +118,6 @@ class GameSharedServiceTest {
     fun progressToNextPlayer_PlayerTwoAlreadyFinishedGame_PlayerThreeTurn() {
         createNewPlayerAndAddToGame(GAME_ONE_ID, PLAYER_THREE_ID)
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
-        game.player.add(Player(PLAYER_THREE_ID, null))
         game.next = playerService.findOne(PLAYER_ONE_ID)
         gameSharedServiceImpl.update(game)
 
@@ -129,7 +128,7 @@ class GameSharedServiceTest {
         gameSharedServiceImpl.progressToNextPlayer(GAME_ONE_ID) //finish player 2 turn
         val nextPlayer = gameSharedServiceImpl.findOne(GAME_ONE_ID).next
         if (nextPlayer != null) {
-            assert(nextPlayer.id == PLAYER_THREE_ID)
+            Assert.assertEquals(PLAYER_THREE_ID, nextPlayer.id)
         } else {
             fail("Next player is null")
         }
@@ -203,6 +202,9 @@ class GameSharedServiceTest {
         newPlayer.game = gameSharedServiceImpl.findOne(gameId)
         newPlayer.playOrder = (gameSharedServiceImpl.findAllPlayers(GAME_ONE_ID).maxBy { it.order } as PlayerDTO).order + 1
         playerService.save(newPlayer)
+        val game = gameSharedServiceImpl.findOne(gameId)
+        game.player.add(newPlayer)
+        gameSharedServiceImpl.update(game)
         return newPlayer
     }
 }
