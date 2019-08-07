@@ -24,7 +24,7 @@ class NormalTurnStrategyTest {
     private lateinit var playerRepository: IPlayerRepository
 
     @Mock
-    private lateinit var die: IDie
+    private lateinit var die: IRandomDieRoller
 
     @InjectMocks
     private lateinit var normalTurnStrategy: NormalTurnStrategy

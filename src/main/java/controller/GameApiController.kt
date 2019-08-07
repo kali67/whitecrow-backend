@@ -14,6 +14,7 @@ import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.ISinglePlayerGameService
 
 @RestController
+@CrossOrigin
 class GameApiController @Autowired constructor(
     val singlePlayerGameService: ISinglePlayerGameService,
     val gameSharedServiceImpl: IGameSharedService
@@ -21,14 +22,11 @@ class GameApiController @Autowired constructor(
 
     private val gameMapperDTO = GameMapperDTO()
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game")
     fun listGamesByState(): List<GameDto> {
         return gameSharedServiceImpl.findAll().map { gameMapperDTO.to(it) }
     }
 
-
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/game/{id}/end_turn")
     fun endTurn(@PathVariable id: Int) {
         gameSharedServiceImpl.progressToNextPlayer(id)
@@ -40,13 +38,11 @@ class GameApiController @Autowired constructor(
         return gameSharedServiceImpl.findAllPlayers(from)
     }
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/game/create/single_player")
     fun create(@RequestBody game: GameDto): GameDto {
         return singlePlayerGameService.create(game)
     }
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game/details/{id}")
     fun load(@PathVariable id: Int): GameDto {
         val game = gameSharedServiceImpl.findOne(id)
@@ -58,13 +54,11 @@ class GameApiController @Autowired constructor(
         singlePlayerGameService.start(id)
     }
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/game/{id}/player")
     fun findCurrentPlayer(@PathVariable id: Int): PlayerDTO {
         return gameSharedServiceImpl.findCurrentPlayer(id)
     }
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @PostMapping("/game/{id}/end")
     fun endGame(@PathVariable id: Int): GameDto {
         return gameSharedServiceImpl.calculateEndGameScore(id)

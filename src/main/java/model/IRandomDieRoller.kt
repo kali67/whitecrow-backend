@@ -1,6 +1,6 @@
 package whitecrow.model
 
-interface IDie {
+interface IRandomDieRoller {
 
     val size: Int
 

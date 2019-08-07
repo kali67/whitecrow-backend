@@ -8,9 +8,9 @@ import whitecrow.service.interfaces.IGameBoardService
 import whitecrow.static_objects.GameBoard
 
 @RestController
+@CrossOrigin
 class GameBoardApiController @Autowired constructor(val gameBoardService: IGameBoardService) {
 
-    @CrossOrigin(origins = ["https://whitecrow-frontend.herokuapp.com", "http://localhost:3000"])
     @GetMapping("/board")
     fun gameBoard(): GameBoard {
         return gameBoardService.load()

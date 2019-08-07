@@ -12,7 +12,7 @@ class NormalTurnStrategy @Autowired constructor(
     private val gameSharedServiceImpl: IGameSharedService,
     private val gameBoardServiceImpl: IGameBoardService,
     private val playerRepository: IPlayerRepository,
-    private val die: IDie
+    private val die: IRandomDieRoller
 ) :
     TurnStrategy() {
 

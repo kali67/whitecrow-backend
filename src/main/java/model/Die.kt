@@ -4,7 +4,7 @@ import org.springframework.stereotype.*
 import kotlin.random.*
 
 @Component
-class SixSidedDie() : IDie {
+class SixSidedDieRoller() : IRandomDieRoller {
 
     override val size = 6
 

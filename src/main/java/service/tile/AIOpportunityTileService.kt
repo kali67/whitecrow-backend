@@ -13,7 +13,7 @@ import kotlin.random.*
 class AIOpportunityTileService : TileServiceBase() {
 
     @Autowired
-    private lateinit var die: IDie
+    private lateinit var die: IRandomDieRoller
 
     @Autowired
     private lateinit var opCardServiceImpl: IOpCardService
@@ -34,7 +34,8 @@ class AIOpportunityTileService : TileServiceBase() {
 
     private fun makeOpportunityDecision(cards: List<Card>): OpportunityCardResult {
         val card = cards[Random.nextInt(cards.size)]
-        if (die.rollDie() >= die.size.div(2)) { //greater or equal to half the die size
+        val shouldAcceptCard = die.rollDie() >= die.size.div(2) //greater or equal to half the die size
+        if (shouldAcceptCard) {
             return OpportunityCardResult(card, DECISION.ACCEPTED)
         }
         return OpportunityCardResult(card, DECISION.DECLINED)
