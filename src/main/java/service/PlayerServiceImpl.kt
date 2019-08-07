@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service
 import whitecrow.dto.PlayerDTO
 import whitecrow.dto.TurnProgress
 import whitecrow.dto.TurnResult
-import whitecrow.model.Player
+import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.interfaces.*
@@ -17,17 +17,14 @@ import javax.transaction.Transactional
 @Transactional
 class PlayerServiceImpl @Autowired constructor(
     private val playerRepositoryImpl: IPlayerRepository,
-    private val turnStrategyFactory: TurnStrategyFactory,
-    private val flowService: IFlowService
+    private val turnStrategyFactory: TurnStrategyFactory
 ) : IPlayerService {
-
 
     companion object {
         const val DAYS_IN_TWO_WEEKS = 14
         const val REDUCTION_AMOUNT = 0.5f // 50%
         const val RETURN_ON_INVESTMENT_RATE = 0.5f
     }
-
 
     override fun useTurn(playerId: Int, gameId: Int): TurnResult {
         val player = playerRepositoryImpl.findOne(playerId)
@@ -53,10 +50,8 @@ class PlayerServiceImpl @Autowired constructor(
 
     override fun calculateScore(player: Player): Float {
         var totalScore = player.money
-        val investments = flowService.findInvestments(player.id)
-        val loans = flowService.findLoans(player.id)
+        val investments = player.flow.filter { it.flowType == FlowType.INVESTMENT }
         investments.forEach { totalScore += it.amount * RETURN_ON_INVESTMENT_RATE }
-        loans.forEach { totalScore -= flowService.calcFlowPayback(it) }
         return totalScore
     }
 

@@ -8,9 +8,4 @@ interface IFlowService {
 
     fun createOpportunityInvestment(player: Player, card: Card)
 
-    fun findLoans(id: Int): List<Flow>
-
-    fun findInvestments(id: Int): List<Flow>
-
-    fun calcFlowPayback(flow: Flow): Float
 }

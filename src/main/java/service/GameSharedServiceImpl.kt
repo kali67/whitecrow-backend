@@ -19,7 +19,6 @@ import javax.transaction.Transactional
 @Transactional
 class GameSharedServiceImpl @Autowired constructor(
     private var gameRepositoryImpl: IGameRepository,
-    private var playerRepositoryImpl: IPlayerRepository,
     private var userServiceImpl: IUserSharedService,
     private var playerServiceImpl: IPlayerService
 ) : IGameSharedService {
@@ -55,7 +54,7 @@ class GameSharedServiceImpl @Autowired constructor(
         val shuffledCollection = players.shuffled()
         shuffledCollection.forEachIndexed { index, player ->
             player.playOrder = index
-            playerRepositoryImpl.update(player)
+            playerServiceImpl.update(player)
         }
         game.next = shuffledCollection[0]
         update(game)
@@ -72,9 +71,8 @@ class GameSharedServiceImpl @Autowired constructor(
             val playersInGame = gameRepositoryImpl.findAllPlayers(id)
             playersInGame.forEach {
                 it.finalScore = playerServiceImpl.calculateScore(it)
-                playerRepositoryImpl.update(it)
+                playerServiceImpl.update(it)
             }
-
             val winner = playersInGame.maxBy {
                 it.finalScore
             }
@@ -85,7 +83,7 @@ class GameSharedServiceImpl @Autowired constructor(
     }
 
     override fun findFinalDay(game: Game): Int {
-        return ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
+        return ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
     private fun findNextPlayer(game: Game): Player? {
@@ -112,7 +110,7 @@ class GameSharedServiceImpl @Autowired constructor(
     }
 
     override fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
-        return day >= ((GameBoardServiceImpl.NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
+        return day >= ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
     override fun update(game: Game) {

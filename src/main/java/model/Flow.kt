@@ -29,4 +29,8 @@ class Flow(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int = 0
+
+    fun calculatePaybackAmount(): Float {
+        return this.paybackRate * this.amount
+    }
 }

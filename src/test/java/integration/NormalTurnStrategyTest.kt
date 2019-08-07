@@ -68,14 +68,22 @@ class NormalTurnStrategyTest {
 
         val expectedNumberOfCards = 1
         whenever(die.rollDie()).thenReturn(OPPORTUNITY_CARD_DIE_ROLL).thenReturn(OPPORTUNITY_DECISION_ROLL_ACCEPT)
-
         authenticationService.authenticate("bob", "welcome1")
         normalTurnStrategy.useTurn(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
+
+        val playerTwo = playerServiceImpl.findOne(PLAYER_TWO_ID)
         Assert.assertEquals(expectedNumberOfCards, playerServiceImpl.findOne(PLAYER_TWO_ID).cards.size)
+
+        val expectedNumberOfFlows = 1
+        val playerTwoInvestmentFlows = playerTwo.flow.filter { it.flowType == FlowType.INVESTMENT }
+        Assert.assertEquals(expectedNumberOfFlows, playerTwoInvestmentFlows.size)
+
+        val opportunityCardAdded = playerTwo.cards.first { it.cardType == CardType.OPPORTUNITY }
+        Assert.assertEquals(opportunityCardAdded.cost, playerTwoInvestmentFlows.first().amount)
     }
 
     @Test
-    fun useTurn_AiPlayerLandsOnOpportunityTileAndDeclines_CardNotAddedToPlayer() {
+    fun useTurn_AiPlayerLandsOnOpportunityTileAndDeclines_CardNotAddedToPlayerNoInvestmentFlowCreated() {
         ReflectionTestUtils.setField(normalTurnStrategy, "die", die)
         ReflectionTestUtils.setField(appContext.getBean(AIOpportunityTileService::class.java), "die", die)
 
@@ -84,6 +92,12 @@ class NormalTurnStrategyTest {
         authenticationService.authenticate("bob", "welcome1")
         normalTurnStrategy.useTurn(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
         Assert.assertEquals(expectedNumberOfCards, playerServiceImpl.findOne(PLAYER_TWO_ID).cards.size)
-    }
 
+        val playerTwo = playerServiceImpl.findOne(PLAYER_TWO_ID)
+        Assert.assertEquals(expectedNumberOfCards, playerServiceImpl.findOne(PLAYER_TWO_ID).cards.size)
+
+        val expectedNumberOfFlows = 0
+        val playerTwoInvestmentFlows = playerTwo.flow.filter { it.flowType == FlowType.INVESTMENT }
+        Assert.assertEquals(expectedNumberOfFlows, playerTwoInvestmentFlows.size)
+    }
 }
