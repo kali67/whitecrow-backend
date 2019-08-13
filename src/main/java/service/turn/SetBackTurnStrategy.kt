@@ -11,21 +11,27 @@ class SetBackTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGam
     TurnStrategy() {
 
     @Autowired
-    lateinit var playerService: IPlayerService
+    private lateinit var playerService: IPlayerService
 
-    override fun useTurn(player: Player, gameId: Int): TurnResult {
+    @Autowired
+    private lateinit var normalTurnStrategy: NormalTurnStrategy
+
+
+    companion object {
+        const val SET_BACK_AMOUNT = 1
+    }
+
+    override fun applyTurnToPlayer(player: Player, gameId: Int): TurnResult {
         val game = gameSharedServiceImpl.findOne(gameId)
-        val playerHasAlreadyFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
-        if (playerHasAlreadyFinishedGame) {
-            return skipPlayerTurn(player)
-        }
-        player.currentDay -= player.setBackSteps
-        player.setBackSteps = 0
+        player.currentDay -= SET_BACK_AMOUNT
+        player.turnType = TurnType.NORMAL
         playerService.update(player)
 
         val turnResult = gameBoardServiceImpl.applyTileActionToPlayer(player, game)
-        if (player.setBackSteps == 0) {
-            player.turnType = TurnType.NORMAL
+
+        if (!player.triggeredLastSetBack) {
+            val normalTurnAfterSetBack = normalTurnStrategy.applyTurnToPlayer(player, gameId) //no longer be in set back
+            turnResult.turnResult = normalTurnAfterSetBack
         }
         return turnResult
     }

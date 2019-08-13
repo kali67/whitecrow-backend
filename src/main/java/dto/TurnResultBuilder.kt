@@ -50,4 +50,9 @@ class TurnResultBuilder(playerId: Int, currentDay: Int) {
         this.turnResult.hasTriggeredSetBack = hasTriggeredSetBack
         return this
     }
+
+    fun setTurnResult(turnResult: TurnResult): TurnResultBuilder {
+        this.turnResult.turnResult = turnResult
+        return this
+    }
 }

@@ -43,7 +43,7 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     override fun applyTileActionToPlayer(player: Player, game: Game): TurnResult {
         val tile = findTileByDate(player.currentDay.rem(NUMBER_DAYS_MONTH + 1))
         val service = tileServiceFactory.invoke(player, tile.type)
-        return service.executeAction(player, game, tile)
+        return service.applyTileAction(player, game, tile)
     }
 
     companion object {

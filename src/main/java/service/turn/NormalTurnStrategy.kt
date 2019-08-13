@@ -16,11 +16,16 @@ class NormalTurnStrategy @Autowired constructor(
 ) :
     TurnStrategy() {
 
-    override fun useTurn(player: Player, gameId: Int): TurnResult {
+    override fun applyTurnToPlayer(player: Player, gameId: Int): TurnResult {
         val game = gameSharedServiceImpl.findOne(gameId)
         var playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
         if (playerHasFinishedGame) {
             return skipPlayerTurn(player)
+        }
+
+        if (player.triggeredLastSetBack) {
+            player.triggeredLastSetBack = false
+            playerRepository.update(player)
         }
 
         val playerDieRoll = die.rollDie()

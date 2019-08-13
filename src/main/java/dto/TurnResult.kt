@@ -1,6 +1,7 @@
 package whitecrow.dto
 
 import whitecrow.model.Card
+import java.util.*
 
 enum class TurnProgress {
     COMPLETED,
@@ -20,7 +21,9 @@ class OpportunityCardResult(
 )
 
 class TurnResult {
+    var turnResultIdentifier: UUID = UUID.randomUUID()
     var playerId: Int = 0
+    var turnResult: TurnResult? = null
     var mailCard: Card? = null
     var opportunityCardResult: OpportunityCardResult? = null
     var message: String? = null
@@ -29,4 +32,11 @@ class TurnResult {
     var moneyDifference: Float = 0f
     var hasTriggeredSetBack: Boolean = false
     var currentDay: Int = 0
+
+    fun findLastTurnResult(): TurnResult {
+        turnResult?.let {
+            return it.findLastTurnResult()
+        }
+        return this
+    }
 }
