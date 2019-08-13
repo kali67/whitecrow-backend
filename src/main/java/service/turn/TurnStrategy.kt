@@ -12,7 +12,7 @@ abstract class TurnStrategy {
     @Autowired
     private lateinit var gameSharedServiceImpl: IGameSharedService
 
-    fun useTurn(player: Player, gameId: Int): TurnResult {
+    fun useAndCompleteTurn(player: Player, gameId: Int): TurnResult {
         val turnResultParent = applyTurnToPlayer(player, gameId)
 
         val lastTurnResult = turnResultParent.findLastTurnResult()

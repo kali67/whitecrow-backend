@@ -19,11 +19,11 @@ insert into player (player_id,
                     final_score,
                     money,
                     play_order,
-                    set_back_steps,
                     turn_type,
                     game_id,
-                    user_id)
-values (1, -1, 0, 0, 1000.00, 0, 0, 'NORMAL', 1, 'bef7233c16454ff097cd4aa76038b231');
+                    user_id,
+                    triggered_last_setback)
+values (1, -1, 0, 0, 1000.00, 0, 'NORMAL', 1, 'bef7233c16454ff097cd4aa76038b231', false);
 
 insert into player (player_id,
                     cost_reduced_since,
@@ -31,11 +31,11 @@ insert into player (player_id,
                     final_score,
                     money,
                     play_order,
-                    set_back_steps,
                     turn_type,
                     game_id,
-                    user_id)
-values (2, -1, 0, 0, 1000.00, 1, 0, 'NORMAL', 1, null);
+                    user_id,
+                    triggered_last_setback)
+values (2, -1, 0, 0, 1000.00, 1, 'NORMAL', 1, null, false);
 
 update game -- set next player on game objects
 set next = 1;

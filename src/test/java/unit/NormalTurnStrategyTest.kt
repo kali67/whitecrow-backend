@@ -44,7 +44,7 @@ class NormalTurnStrategyTest {
         whenever(gameSharedService.hasGonePassedFinalDay(any(), any())).thenReturn(true)
 
         val player = Player()
-        val playerTurnResult = normalTurnStrategy.useTurn(player, GAME_ID)
+        val playerTurnResult = normalTurnStrategy.applyTurnToPlayer(player, GAME_ID)
         assert(playerTurnResult.hasFinishedGame)
     }
 
@@ -65,7 +65,7 @@ class NormalTurnStrategyTest {
         whenever(gameBoardService.applyTileActionToPlayer(player, game)).thenReturn(gameBoardTurnResult)
         whenever(gameSharedService.findFinalDay(game)).thenReturn(DAYS_IN_MONTH)
 
-        val playerTurnResult = normalTurnStrategy.useTurn(player, GAME_ID)
+        val playerTurnResult = normalTurnStrategy.useAndCompleteTurn(player, GAME_ID)
 
         assert(playerTurnResult.hasFinishedGame)
         assert(playerTurnResult.currentDay == DAYS_IN_MONTH)

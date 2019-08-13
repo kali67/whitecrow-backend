@@ -1,13 +1,9 @@
 package whitecrow.service
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Lazy
 import org.springframework.stereotype.Service
-import whitecrow.dto.PlayerDTO
-import whitecrow.dto.TurnProgress
 import whitecrow.dto.TurnResult
 import whitecrow.model.*
-import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.interfaces.*
 import whitecrow.service.turn.*
@@ -29,7 +25,7 @@ class PlayerServiceImpl @Autowired constructor(
     override fun useTurn(playerId: Int, gameId: Int): TurnResult {
         val player = playerRepositoryImpl.findOne(playerId)
         val turnStrategy = turnStrategyFactory.buildTurnStrategy(player.turnType)
-        return turnStrategy.useTurn(player, gameId)
+        return turnStrategy.useAndCompleteTurn(player, gameId)
     }
 
     override fun deductMoney(playerId: Int, amount: Float) {
