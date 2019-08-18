@@ -12,7 +12,8 @@ class GameMapperDTO : IMapper<Game, GameDto> {
     private val playerMapperDTO = PlayerMapperDTO()
 
     override fun to(from: Game): GameDto {
-        val dto = GameDto(from.id, from.type, from.numberRounds, from.maxPlayers, playerMapperDTO.to(from.next!!))
+        val dto = GameDto(from.type, from.numberRounds, from.maxPlayers, playerMapperDTO.to(from.next!!))
+        dto.id = from.id
         dto.winner = from.winner?.let {
             playerMapperDTO.to(it)
         }

@@ -5,12 +5,13 @@ import org.springframework.stereotype.Service
 import whitecrow.dto.GameDto
 import whitecrow.dto.TurnResult
 import whitecrow.mappers.GameMapperDTO
-import whitecrow.model.Player
+import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.service.interfaces.*
 import javax.transaction.Transactional
 
 @Service
+@Transactional
 class SinglePlayerGameService @Autowired constructor(
     private val userServiceImpl: IUserSharedService,
     private val playerServiceImpl: IPlayerService,
@@ -20,8 +21,13 @@ class SinglePlayerGameService @Autowired constructor(
 
     private val gameMapperDTO = GameMapperDTO()
 
-    @Transactional
-    override fun create(game: GameDto): GameDto {
+    override fun setUpGame(game: GameDto): GameDto {
+        val newGame = create(game)
+        gameSharedServiceImpl.assignPlayerOrder(newGame)
+        return gameMapperDTO.to(newGame)
+    }
+
+    override fun create(game: GameDto): Game {
         val gameCreator = userServiceImpl.currentUser()
         val player = Player()
         player.user = gameCreator
@@ -37,8 +43,7 @@ class SinglePlayerGameService @Autowired constructor(
             playerServiceImpl.save(botPlayer)
         }
         gameSharedServiceImpl.save(entity)
-        gameSharedServiceImpl.assignPlayerOrder(entity)
-        return gameMapperDTO.to(entity)
+        return entity
     }
 
     @Transactional

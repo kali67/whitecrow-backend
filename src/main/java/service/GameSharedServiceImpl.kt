@@ -23,6 +23,9 @@ class GameSharedServiceImpl @Autowired constructor(
     private var playerServiceImpl: IPlayerService
 ) : IGameSharedService {
 
+    @Autowired
+    private lateinit var playerShufflerFacade: IPlayerShuffler
+
     private val gameMapperDTO = GameMapperDTO()
     private val playerMapperDTO = PlayerMapperDTO()
 
@@ -45,13 +48,13 @@ class GameSharedServiceImpl @Autowired constructor(
         val players = gameRepositoryImpl.findAllPlayers(gameId)
         val game = gameRepositoryImpl.findOne(gameId)
         val playerDTO = playerMapperDTO.to(players.first { it.user?.id == currentUser.id })
-        playerDTO.hasFinishedGame = playerDTO.day >= NUMBER_DAYS_MONTH * game.numberRounds
+        playerDTO.hasFinishedGame = playerDTO.day >= findFinalDay(game)
         return playerDTO
     }
 
     override fun assignPlayerOrder(game: Game) {
         val players = game.player
-        val shuffledCollection = players.shuffled()
+        val shuffledCollection = playerShufflerFacade.shufflePlayers(players)
         shuffledCollection.forEachIndexed { index, player ->
             player.playOrder = index
             playerServiceImpl.update(player)
@@ -90,12 +93,8 @@ class GameSharedServiceImpl @Autowired constructor(
         var nextPlayer = game.next
         if (nextPlayer != null) {
             val gamePlayers = gameRepositoryImpl.findAllPlayers(game.id)
-            var findingNextPlayer = true
-            while (findingNextPlayer) {
-                val nextOrder = nextPlayer!!.playOrder.plus(1).rem(gamePlayers.size)
-                nextPlayer = gamePlayers.first { it.playOrder == nextOrder }
-                findingNextPlayer = nextPlayer.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds
-            }
+            val nextOrder = nextPlayer.playOrder.plus(1).rem(gamePlayers.size)
+            nextPlayer = gamePlayers.first { it.playOrder == nextOrder }
         }
         return nextPlayer
     }

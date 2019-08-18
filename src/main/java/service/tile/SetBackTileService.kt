@@ -37,10 +37,10 @@ class SetBackTileService : TileServiceBase() {
         }
 
         player.triggeredLastSetBack = true
-        playerRepositoryImpl.update(player)
-
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         val setBackTurnResult = setBackTurnStrategy.applyTurnToPlayer(player, game.id)
+
+        playerRepositoryImpl.update(player)
         return turnResultBuilder.apply {
             setHasTriggeredSetBack(true)
             setTurnResult(setBackTurnResult)

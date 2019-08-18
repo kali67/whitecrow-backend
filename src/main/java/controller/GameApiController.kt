@@ -40,7 +40,7 @@ class GameApiController @Autowired constructor(
 
     @PostMapping("/game/create/single_player")
     fun create(@RequestBody game: GameDto): GameDto {
-        return singlePlayerGameService.create(game)
+        return singlePlayerGameService.setUpGame(game)
     }
 
     @GetMapping("/game/details/{id}")

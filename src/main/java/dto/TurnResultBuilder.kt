@@ -55,4 +55,5 @@ class TurnResultBuilder(playerId: Int, currentDay: Int) {
         this.turnResult.turnResult = turnResult
         return this
     }
+
 }

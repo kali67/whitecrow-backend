@@ -33,6 +33,7 @@ class TurnResult {
     var hasTriggeredSetBack: Boolean = false
     var currentDay: Int = 0
 
+
     fun findLastTurnResult(): TurnResult {
         turnResult?.let {
             return it.findLastTurnResult()

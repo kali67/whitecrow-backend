@@ -23,11 +23,6 @@ class NormalTurnStrategy @Autowired constructor(
             return skipPlayerTurn(player)
         }
 
-        if (player.triggeredLastSetBack) {
-            player.triggeredLastSetBack = false
-            playerRepository.update(player)
-        }
-
         val playerDieRoll = die.rollDie()
         player.currentDay += playerDieRoll
         playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
@@ -35,9 +30,15 @@ class NormalTurnStrategy @Autowired constructor(
         if (playerHasFinishedGame) {
             player.currentDay = gameSharedServiceImpl.findFinalDay(game)
         }
-        playerRepository.update(player)
+
+        if (player.triggeredLastSetBack) {
+            player.triggeredLastSetBack = false
+        }
+
         val turnResult = gameBoardServiceImpl.applyTileActionToPlayer(player, game)
         turnResult.hasFinishedGame = playerHasFinishedGame
+
+        playerRepository.update(player)
         return turnResult
     }
 }
