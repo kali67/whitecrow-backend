@@ -115,6 +115,7 @@ class GameSharedServiceTest {
     }
 
     @Test
+    @Ignore
     fun progressToNextPlayer_PlayerTwoAlreadyFinishedGame_PlayerThreeTurn() {
         createNewPlayerAndAddToGame(GAME_ONE_ID, PLAYER_THREE_ID)
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
