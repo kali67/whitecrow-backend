@@ -24,6 +24,10 @@ class SetBackTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGam
 
     override fun applyTurnToPlayer(player: Player, gameId: Int): TurnResult {
         val game = gameSharedServiceImpl.findOne(gameId)
+        val playerHasAlreadyFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
+        if (playerHasAlreadyFinishedGame) {
+            return skipPlayerTurn(player)
+        }
         player.currentDay -= SET_BACK_AMOUNT
         player.turnType = TurnType.NORMAL
 

@@ -95,6 +95,7 @@ class GameSharedServiceImpl @Autowired constructor(
             val gamePlayers = gameRepositoryImpl.findAllPlayers(game.id)
             val nextOrder = nextPlayer.playOrder.plus(1).rem(gamePlayers.size)
             nextPlayer = gamePlayers.first { it.playOrder == nextOrder }
+
         }
         return nextPlayer
     }
