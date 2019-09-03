@@ -70,7 +70,8 @@ class MailTileServiceTest {
     fun applyAction_MailCardWithSameCategoryOpportunityOwned_TurnResultNoCost() {
         val mockedPlayer = Player(1, null)
         mockedPlayer.cards.add(peopleEnvironmentOpportunityCard)
-        whenever(mailCardServiceImpl.findCardHand()).thenReturn(mailCard)
+        val mail = mockedPlayer.cards.filter { it.cardType == CardType.MAIL }.map { it.id.cardId }.toIntArray()
+        whenever(mailCardServiceImpl.findCardHand(mail)).thenReturn(mailCard)
         whenever(playerRepository.findOne(mockedPlayer.id)).thenReturn(mockedPlayer)
         peopleEnvironmentOpportunityCard.cardCategory = listOf(cardCategory)
         whenever(mailCardServiceImpl.loadTransients(mockedPlayer.cards)).thenReturn(listOf(peopleEnvironmentOpportunityCard))
@@ -89,7 +90,8 @@ class MailTileServiceTest {
     fun applyAction_MailCardWithOutSameCategoryOpCard_TurnResultHasCost() {
         val mockedPlayer = Player(1, null)
         mockedPlayer.cards.add(peopleOrganisationOpportunityCard)
-        whenever(mailCardServiceImpl.findCardHand()).thenReturn(mailCard)
+        val mail = mockedPlayer.cards.filter { it.cardType == CardType.MAIL }.map { it.id.cardId }.toIntArray()
+        whenever(mailCardServiceImpl.findCardHand(mail)).thenReturn(mailCard)
         whenever(playerRepository.findOne(mockedPlayer.id)).thenReturn(mockedPlayer)
         peopleEnvironmentOpportunityCard.cardCategory = listOf(cardCategory)
         whenever(mailCardServiceImpl.loadTransients(mockedPlayer.cards)).thenReturn(listOf(peopleOrganisationOpportunityCard))
