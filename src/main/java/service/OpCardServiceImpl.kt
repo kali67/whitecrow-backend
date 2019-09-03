@@ -22,8 +22,9 @@ class OpCardServiceImpl @Autowired constructor(
     @Autowired
     private lateinit var flowService: IFlowService
 
-    override fun findHand(): List<Card> {
-        val cards = opCardRepositoryImpl.findAll(userSharedService.currentUser().language)
+    override fun findHand(excluding: IntArray): List<Card> {
+        var cards = opCardRepositoryImpl.findAll(userSharedService.currentUser().language)
+        cards = cards.filter { !excluding.contains(it.id.cardId) }
         val list = mutableListOf<Card>()
         list.add(cards[Random.nextInt(cards.size)])
         return list.toList()

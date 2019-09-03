@@ -4,7 +4,7 @@ import whitecrow.model.Card
 
 interface IOpCardService {
 
-    fun findHand(): List<Card>
+    fun findHand(excluding: IntArray): List<Card>
 
     fun addOpportunityCard(playerId: Int, cardId: Int)
 }

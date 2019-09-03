@@ -15,7 +15,8 @@ class OpportunityTileService : TileServiceBase() {
     private lateinit var opCardServiceImpl: IOpCardService
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
-        val card = opCardServiceImpl.findHand().first()
+        val excludingIds = player.cards.filter { it.cardType == CardType.OPPORTUNITY }.map { it.id.cardId }.toIntArray()
+        val card = opCardServiceImpl.findHand(excludingIds).first()
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
             setOpportunityCardResult(OpportunityCardResult(card, DECISION.UN_DECIDED))

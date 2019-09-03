@@ -27,9 +27,10 @@ class MailCardServiceImpl @Autowired constructor(
         return mailCardRepositoryImpl.findById(CardId(id, systemLanguage.id))
     }
 
-    override fun findCardHand(): Card {
+    override fun findCardHand(excluding: IntArray): Card {
         val systemLanguage = userSharedService.currentUser().language
-        val cards = mailCardRepositoryImpl.findAll(systemLanguage)
+        var cards = mailCardRepositoryImpl.findAll(systemLanguage)
+        cards = cards.filter { !excluding.contains(it.id.cardId) }
         val index = Random.nextInt(cards.size)
         return cards[index]
     }

@@ -9,10 +9,6 @@ import whitecrow.service.interfaces.IOpCardService
 @CrossOrigin
 class OpCardApiController @Autowired constructor(val opCardServiceImpl: IOpCardService) {
 
-    @GetMapping("/opportunity/card/draw")
-    fun draw(@RequestParam(name = "count", defaultValue = "3") count: Int): List<Card> {
-        return opCardServiceImpl.findHand()
-    }
 
     @PostMapping("/player/{playerId}/add/opportunity/{opId}")
     fun addOpportunityCard(@PathVariable playerId: Int, @PathVariable opId: Int) {

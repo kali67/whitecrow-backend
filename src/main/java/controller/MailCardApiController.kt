@@ -9,11 +9,6 @@ import whitecrow.service.interfaces.IMailCardService
 @CrossOrigin
 class MailCardApiController @Autowired constructor(val mailCardService: IMailCardService) {
 
-    @PostMapping("/game/{id}/mail/card/draw")
-    fun draw(@PathVariable id: Int): Card {
-        return mailCardService.findCardHand()
-    }
-
     @PostMapping("/player/{playerId}/add/mail/{mailId}")
     fun addMailCard(@PathVariable playerId: Int, @PathVariable mailId: Int) {
         mailCardService.addMailCard(playerId, mailId)

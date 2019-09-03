@@ -4,7 +4,7 @@ import whitecrow.model.*
 
 interface IMailCardService {
 
-    fun findCardHand(): Card
+    fun findCardHand(excluding: IntArray): Card
 
     fun findById(id: Int): Card
 

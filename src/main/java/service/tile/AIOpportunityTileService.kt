@@ -19,7 +19,8 @@ class AIOpportunityTileService : TileServiceBase() {
     private lateinit var opCardServiceImpl: IOpCardService
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
-        val cards = opCardServiceImpl.findHand()
+        val excludingIds = player.cards.filter { it.cardType == CardType.OPPORTUNITY }.map { it.id.cardId }.toIntArray()
+        val cards = opCardServiceImpl.findHand(excludingIds)
         val cardDecision = makeOpportunityDecision(cards)
         if (cardDecision.decision == DECISION.ACCEPTED) {
             opCardServiceImpl.addOpportunityCard(player.id, cardDecision.card.id.cardId)

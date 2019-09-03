@@ -20,8 +20,10 @@ class MailTileService : TileServiceBase() {
 
     @Transactional
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
-        val card = mailCardServiceImpl.findCardHand()
-        var playerOpportunityCards = playerRepository.findOne(player.id).cards.filter { it.cardType == CardType.OPPORTUNITY }
+        val playerCards = playerRepository.findOne(player.id).cards
+        var playerOpportunityCards = playerCards.filter { it.cardType == CardType.OPPORTUNITY }
+        val playerMailCardIds = playerCards.filter { it.cardType == CardType.MAIL }.map { it.id.cardId }.toIntArray()
+        val card = mailCardServiceImpl.findCardHand(playerMailCardIds)
         playerOpportunityCards = mailCardServiceImpl.loadTransients(playerOpportunityCards)
         val categoriesOwnedByPlayer: List<CardCategory> = playerOpportunityCards.flatMap { it.cardCategory!! }
         if (card.cardCategory!!.first() in categoriesOwnedByPlayer) {
