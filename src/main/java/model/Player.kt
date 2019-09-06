@@ -1,6 +1,5 @@
 package whitecrow.model
 
-import org.hibernate.*
 import org.hibernate.annotations.*
 import org.hibernate.annotations.FetchMode
 import javax.persistence.*
