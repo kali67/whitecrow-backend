@@ -25,8 +25,8 @@ class MailTileService : TileServiceBase() {
         val playerMailCardIds = playerCards.filter { it.cardType == CardType.MAIL }.map { it.id.cardId }.toIntArray()
         val card = mailCardServiceImpl.findCardHand(playerMailCardIds)
         playerOpportunityCards = mailCardServiceImpl.loadTransients(playerOpportunityCards)
-        val categoriesOwnedByPlayer: List<CardCategory> = playerOpportunityCards.flatMap { it.cardCategory!! }
-        if (card.cardCategory!!.first() in categoriesOwnedByPlayer) {
+        val categoriesOwnedByPlayer: List<CardCategoryEnum> = playerOpportunityCards.flatMap { it.cardCategory!!.map { card -> card.category } }
+        if (card.cardCategory!!.first().category in categoriesOwnedByPlayer) {
             val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
             return turnResultBuilder.apply {
                 setCardCancelled(true)
