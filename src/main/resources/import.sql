@@ -324,13 +324,13 @@ INSERT INTO card (cardId, langId, card_type, title, color, category_description,
 VALUES (22, 0, 'MAIL', 'Extra Pay', '#32CD32', 'People (Environment)',
         'Each player gets $150',
         'Situation', 'The boss has noticed all the effort the team is putting into making the deadline of the project. Extra hours pay for each ' ||
-                     'member.', 150.00, 'ALL');
+                     'member.', 150.00, 'ALL_OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (22, 1, 'MAIL', 'Pago extra', '#32CD32', 'Personas (Medio Ambiente)',
         'Cada jugador recibe $ 150',
         'Situación',
         'El jefe ha notado todo el esfuerzo que el equipo está poniendo en hacer la fecha límite del proyecto. Horas extras de pago para cada miembro.',
-        150.00, 'ALL');
+        150.00, 'ALL_OUT');
 INSERT INTO card_category(category, card_id)
 VALUES ('PEOPLE_ENVIRONMENT', 22);
 
@@ -607,13 +607,14 @@ INSERT INTO card_category(category, card_id)
 VALUES ('PRODUCT_RELIABILITY', 35);
 
 
----------------------------------------------
+--------------------------------------
 
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
-VALUES (36, 0, 'MAIL', 'I didnt want that', '#32CD32', 'Product (Functionality)',
+VALUES (36, 0, 'MAIL', 'I didnt want that', '#8B008B', 'Product (Functionality)',
         'Pay $100',
-        'Situation', 'Because of not getting your doubts clear with the clients, you implemented an unnecessary functionality, which means wasted ' ||
-                     'time and effort.', 100.00, 'OUT');
+        'Situation',
+        'Because of not getting your doubts clear with the clients, you implemented an unnecessary functionality, which means wasted ' ||
+        'time and effort.', 100.00, 'OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (36, 1, 'MAIL', 'Pero no quise decir eso', '#8B008B', 'Producto (Funcionalidad)',
         'Paga $100',
@@ -622,3 +623,711 @@ VALUES (36, 1, 'MAIL', 'Pero no quise decir eso', '#8B008B', 'Producto (Funciona
         100.00, 'OUT');
 INSERT INTO card_category(category, card_id)
 VALUES ('PRODUCT_FUNCTIONALITY', 36);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (37, 0, 'MAIL', 'Extra Features', '#8B008B', 'Product (Functionality)',
+        'Pay $150',
+        'Situation',
+        'You thought it was a good idea to add some nice extra features to the module. As the client didn’t ask for it, they are not going to pay for it either.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (37, 1, 'MAIL', 'Adornando el módulo', '#8B008B', 'Producto (Funcionalidad)',
+        'Paga $150',
+        'Situación',
+        'Te pareció buena idea adornar el módulo con una funcionalidad nueva. Como el cliente no la pidió, tampoco la pagó.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_FUNCTIONALITY', 37);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (38, 0, 'MAIL', 'Please only use this web browser', '#8B008B', 'Product (Functionality)',
+        'Pay $200',
+        'Situation',
+        'Your form validations are elegant and easy to implement, but they are not supported by the new web browser yet and are not shown to the user.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (38, 1, 'MAIL', 'Por favor, use sólo este navegador', '#8B008B', 'Producto (Funcionalidad)',
+        'Paga $200',
+        'Situación',
+        'Las validaciones de tu formulario además de elegantes son sencillas de implementar, sin embargo el nuevo navegador web aún no la soporta y no se muestran al usuario.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_FUNCTIONALITY', 38);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (39, 0, 'MAIL', 'Lack of Fault Tolerance', '#F9429E', 'Product (Reliability)',
+        'Pay $100',
+        'Situation',
+        'After having filled in more than 30 fields on several screens, the internet connection is lost and the system asks the user to start from the very beginning. So frustrating!',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (39, 1, 'MAIL', 'Sistema intolerante a fallos', '#F9429E', 'Producto (Confiabilidad)',
+        'Paga $100',
+        'Situación',
+        'Después de haber rellenado un formulario de más de 30 campos a través de varias pantallas, se perdió la conexión a internet y el sistema obliga al usuario a comenzar de nuevo. Qué frustrante!',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_RELIABILITY', 39);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (40, 0, 'MAIL', 'There is only one way to do it', '#F9429E', 'Product (Reliability)',
+        'Pay $300',
+        'Situation',
+        'The code scanner to enter products’ codes is not working. Because your system does not have another option to enter product codes manually, you will have to suspend the service for today.',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (40, 1, 'MAIL', 'Sólo hay una forma de hacerlo', '#F9429E', 'Producto (Confiabilidad)',
+        'Paga $300',
+        'Situación',
+        'El escaner para leer los códigos de los productos se descompuso. Como tu sistema no tiene una opción para capturar el código manualmente tendrás que suspender los servicios de hoy.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_RELIABILITY', 40);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (41, 0, 'MAIL', 'A Backup Server', '#F9429E', 'Product (Reliability)',
+        'Receive $150',
+        'Situation',
+        'The servers’ room got flooded. Luckily, you invested in a server mirroring and are able to keep on operating in a normal way.',
+        150.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (41, 1, 'MAIL', 'Servidor de respaldo', '#F9429E', 'Producto (Confiabilidad)',
+        'Recibe $150',
+        'Situación',
+        'Una inundación arruinó el cuarto de servidores. Por suerte invertiste en un servidor espejo que permitió seguir la operación con normalidad.',
+        150.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_RELIABILITY', 41);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (42, 0, 'MAIL', 'Poor usability of the system', '#FBA0E3', 'Product (Usability)',
+        'Pay $100',
+        'Situation',
+        'Making the interface user friendly and matching colours is not your thing. You should hire a web designer to improve the user experience of your system.',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (42, 1, 'MAIL', 'La usabilidad de tu sistema es muy pobre', '#FBA0E3', 'Producto (Usabilidad)',
+        'Paga $100',
+        'Situación',
+        'Organizar la interfaz y combinar colores no es lo tuyo. Deberás contratar a un diseñador para mejorar la UX de tu sistema.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_USABILITY', 42);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (43, 0, 'MAIL', 'User interface is not responding', '#FBA0E3', 'Product (Usability)',
+        'Pay $150',
+        'Situation',
+        'You didn’t realise that most of your users prefer to connect to the system through a smart phone. Your interface is perfect . . . . but only on a desktop.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (43, 1, 'MAIL', 'La IU no es responsiva', '#FBA0E3', 'Producto (Usabilidad)',
+        'Paga $150',
+        'Situación',
+        'Nunca te diste cuenta de que la mayoría de tus usuarios prefieren conectarse desde dispositivos móviles al sistema. Tu interfaz es perfecta... pero sólo la versión de escritorio.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_USABILITY', 43);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (44, 0, 'MAIL', 'Is it a button or a link or a label or a tag?', '#FBA0E3', 'Product (Usability)',
+        'Pay $200',
+        'Situation',
+        'The UI was developed without any agreed standard, so now with the integration done you realize that buttons lack consistency. The buttons are different from one another, the hyperlinks are the same as the simple text and the text boxes have become lost in the background.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (44, 1, 'MAIL', 'Es un botón, un link o una etiqueta?', '#FBA0E3', 'Producto (Usabilidad)',
+        'Paga $200',
+        'Situación',
+        'La IU la desarrollaron sin acordar un estándar, ahora que la integraron los botónes no son consistentes entre sí, los links no se diferencían del texto simple y las cajas de texto se pierden con el fondo de la pantalla.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_USABILITY', 44);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (45, 0, 'MAIL', 'Frozen Screen', '#FF8C69', 'Product (Efficiency)',
+        'Pay $250',
+        'Situation',
+        'The system has suddenly frozen! You didn''t take into account that the log has been increasing quickly and it ran out of memory.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (45, 1, 'MAIL', 'Se quedó pasmado', '#FF8C69', 'Producto (Eficiencia)',
+        'Paga $250',
+        'Situación',
+        'Sin más, el sistema se congeló, nada reacciona. No tomaste en cuenta que el log crecía demasiado rápido y se acabó la memoria.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_EFFICIENCY', 45);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (46, 0, 'MAIL', 'Database running slowly', '#FF8C69', 'Product (Efficiency)',
+        'Pay $300',
+        'Situation',
+        'You decided to run database queries in plain SQL as stored procedures are not your thing. Now you have been waiting for 45 minutes for a query to be executed.',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (46, 1, 'MAIL', 'La base de datos no responde', '#FF8C69', 'Producto (Eficiencia)',
+        'Paga $300',
+        'Situación',
+        'Las consultas a la base de datos las decidiste hacer en SQL plano, los procedimientos almacenados no son para ti. Llevas 45 minutos esperando a que termine la ejecución de la consulta.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_EFFICIENCY', 46);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (47, 0, 'MAIL','Users mobile data is all gone', '#FF8C69', 'Product (Efficiency)',
+        'Pay $100',
+        'Situation',
+        'Your new app for facial recognition processes everything in the server. You did not take into consideration that sending images through mobile data eats up the clients balance',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (47, 1, 'MAIL', 'Se acaban los datos del cliente', '#FF8C69', 'Producto (Eficiencia)',
+        'Paga $100',
+        'Situación',
+        'Tu nueva app de reconocimiento facial procesa todo en el servidor, nunca consideraste que enviar imágenes por la red de datos se acabaría el crédito de tus usuarios.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_EFFICIENCY', 47);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (48, 0, 'MAIL','Programming language not supported', '#C04000', 'Product (Maintainability)',
+        'Pay $100',
+        'Situation',
+        'The programming language you have chosen to use sped up the development, however it has gone out of trend and is not supported any more.',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (48, 1, 'MAIL', 'El metalenguaje ya no es soportado', '#C04000', 'Producto (Mantenibilidad)',
+        'Paga $100',
+        'Situación',
+        'Decidiste utilizar un metalenguaje que aceleró el desarrollo, sin embargo pasó de moda y ya no tiene soporte.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_MAINTAINABILITY', 48);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (49, 0, 'MAIL','A better thought on the architecture', '#C04000', 'Product (Maintainability)',
+        'Pay $300',
+        'Situation',
+        'Your architecture design is the same as usual, but now the system cannot scale up to address new functionalities and needs.',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (49, 1, 'MAIL', 'Debiste pensar mejor la arquitectura', '#C04000', 'Producto (Mantenibilidad)',
+        'Paga $300',
+        'Situación',
+        'Diseñaste siguiendo la arquitectura de siempre, ahora el sistema no puede ser escalado para atender las nuevas necesidades.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_MAINTAINABILITY', 49);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (50, 0, 'MAIL','Development, testing and production', '#C04000', 'Product (Maintainability)',
+        'Receive $200',
+        'Situation',
+        'Your team is working hard on performing corrective maintenance on a critical function of the system.Luckily, you have three environments and will be able to run some tests before deploying it.',
+        200.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (50, 1, 'MAIL', 'Desarrollo, pruebas y producción', '#C04000', 'Producto (Mantenibilidad)',
+        'Recibe $200',
+        'Situación',
+        'Tu equipo está concentrado en realizar un mantenimiento correctivo a una función crítica del sistema, afortunadamente como cuentas con tres ambientes podrás probarlo antes de subirlo a producción.',
+        200.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_MAINTAINABILITY', 50);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (51, 0, 'MAIL','One of the other, but not both', '#E2062C', 'Product (Portability)',
+        'Pay $250',
+        'Situation',
+        'The library you are using for this painstaking function cannot coexist with the other critically important library on the server. You will not be able to deliver the module in this state.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (51, 1, 'MAIL', 'Uno u otro pero no los dos', '#E2062C', 'Producto (Portabilidad)',
+        'Paga $250',
+        'Situación',
+        'La biblioteca que utilizas para llevar a cabo esa función que tanto trabajo te costó no puede coexistir en el servidor de aplicaciones con otra biblioteca crítica. Así no podrás liberar tu módulo.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_PORTABILITY', 51);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (52, 0, 'MAIL','All in the README', '#E2062C', 'Product (Portability)',
+        'Pay $300',
+        'Situation',
+        'Installing the system on the new computers is a nightmare for the technical support staff. You left a README with instructions that only you understand. Why haven’t you got a wizard?',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (52, 1, 'MAIL', 'Todo está en el README', '#E2062C', 'Producto (Portabilidad)',
+        'Paga $300',
+        'Situación',
+        'Instalar tu sistema en las máquinas nuevas es una pesadilla para los de soporte técnico. Dejaste un README con instrucciones que ya sólo tú entiendes, por qué no creaste un wizard?',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_PORTABILITY', 52);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (53, 0, 'MAIL','Virtual Machines', '#E2062C', 'Product (Portability)',
+        'Receive $150',
+        'Situation',
+        'Your team decided to use virtual machines to emulate the precise operation environment of the future system. Delivery and operation ran as smoothly as ever.',
+        150.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (53, 1, 'MAIL', 'Máquinas virtuales', '#E2062C', 'Producto (Portabilidad)',
+        'Recibe $150',
+        'Situación',
+        'Tu equipo decidió utilizar máquinas virtuales emulando de manera precisa el ambiente donde operará el sistema. La liberación y operación fluyeron como nunca.',
+        150.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_PORTABILITY', 53);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (54, 0, 'MAIL','No problems with the old module?', '#FF4500', 'Product (Compatibility)',
+        'Pay $100',
+        'Situation',
+        'The system that you have just delivered cannot communicate with the legacy system of the client. Did any one test compatibility?',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (54, 1, 'MAIL', 'El módulo viejo no causará problemas', '#FF4500', 'Producto (Compatibilidad)',
+        'Paga $100',
+        'Situación',
+        'El sistema que acabas de liberar no se puede comunicar con el módulo legado de tu cliente. Nadie hizo pruebas para verificar la compatibilidad?',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_COMPATIBILITY', 54);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (55, 0, 'MAIL','Retro Compatibility? Not this time!', '#FF4500', 'Product (Compatibility)',
+        'Pay $150',
+        'Situation',
+        'It seemed like no big deal when you worked with the 2019 version during the project, but the rest of the clients system is still under the 2016 version. Now the "old" stuff has stopped working.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (55, 1, 'MAIL', 'Retro-compatibilidad? No esta vez', '#FF4500', 'Producto (Compatibilidad)',
+        'Paga $150',
+        'Situación',
+        'Parecía no ser grave, trabajaste con la versión 2018 durante todo el proyecto pero el resto de sistemas del cliente siguen corriendo en la 2016. Ahora lo "viejo" no funciona.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_COMPATIBILITY', 55);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (56, 0, 'MAIL','Not only expensive! Its also incompatible!', '#FF4500', 'Product (Compatibility)',
+        'Pay $200',
+        'Situation',
+        'Compatibility of Apple products is always a problem. The library you are using works well with all operating systems, except for this one.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (56, 1, 'MAIL', 'Además de caros, incompatibles', '#FF4500', 'Producto (Compatibilidad)',
+        'Paga $200',
+        'Situación',
+        'La compatibilidad de los productos de Apple siempre es un problema, la biblioteca que utilizaste funciona bien en todos los demás sistemas operativos menos en éste.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_COMPATIBILITY', 56);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (57, 0, 'MAIL','Pirates Aboard', '#FF7518', 'Product (Security)',
+        'Pay $250',
+        'Situation',
+        'Since you have not implemented an SSL, all the client’s information was intercepted and stolen. We are in big trouble now.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (57, 1, 'MAIL', 'Piratas al abordaje', '#FF7518', 'Producto (Seguridad)',
+        'Paga $250',
+        'Situación',
+        'Como no implementaste un SSL, toda la información de la organización fue interceptada y robada. Estamos en problemas.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_SECURITY', 57);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (58, 0, 'MAIL','Default username and password', '#FF7518', 'Product (Security)',
+        'Pay $300',
+        'Situation',
+        'It didn’t seem important to change default usernames, passwords and ports for the application server and SMBD. Somebody took advantage of your vulnerability and hacked you.',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (58, 1, 'MAIL', 'Usaste la contraseña y usuario por defecto', '#FF7518', 'Producto (Seguridad)',
+        'Paga $300',
+        'Situación',
+        'No te pareció importante cambiar los usuarios, contraseñas y puertos por defecto del servidor de aplicaciones y del SMBD. Alguien aprovechó tu vulnerabilidad y te ha hackeado.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_SECURITY', 58);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (59, 0, 'MAIL','A Simple Selfie', '#FF7518', 'Product (Security)',
+        'Pay $100',
+        'Situation',
+        'You took a selfie with your laptop while working and you have not realized that there was your client’s confidential information on the screen background.',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (59, 1, 'MAIL', 'Una selfie', '#FF7518', 'Producto (Seguridad)',
+        'Paga $100',
+        'Situación',
+        'Te tomaste una selfie "aquí trabajando" y no te diste cuenta que en el fondo tu laptop tenía información confidencial del cliente.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_SECURITY', 59);
+
+
+-- todo
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (60, 0, 'MAIL','Technologically Agnostic AP', '#2A52BE', 'Process (Planning)',
+        'Pay $300',
+        'Situation',
+        'The face of the team is the AP but ours does not have much technical knowledge and has said yes to some technologically complex requests.',
+        300.00, 'OUT');
+-- todo
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (60, 1, 'MAIL', 'AP tecnologicamente "agnóstico"', '#2A52BE', 'Proceso (Planeación)',
+        'Paga $300',
+        'Situación',
+        'La cara del equipo es el AP, el nuestro no tiene mucha idea de la parte técnica y ha dicho que sí a peticiones tecnológicamente complejas. Ahora tenemos la soga al cuello.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_PLANNING', 60);
+
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (61, 0, 'MAIL','Resource Management', '#2A52BE', 'Process (Planning)',
+        'Pay $150',
+        'Situation',
+        'The delivery date is planned for tomorrow. Unfortunately your team is not going to make the deadline because you did not allocate your resources properly. ',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (61, 1, 'MAIL', 'Manejo de recursos', '#2A52BE', 'Proceso (Planeación)',
+        'Paga $150',
+        'Situación',
+        'La entrega está planeada para mañana, pero no vamos a llegar, todo por no saber administrar correctamente los recursos del proyecto.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_PLANNING', 61);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (62, 0, 'MAIL','What a good estimate!', '#2A52BE', 'Process (Planning)',
+        'Receive $150',
+        'Situation',
+        'You decide to use "Planning Poker" and your teams estimates are much more accurate.',
+        150.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (62, 1, 'MAIL', 'Qué buena estimación', '#2A52BE', 'Proceso (Planeación)',
+        'Recibe $150',
+        'Situación',
+        'Decidiste usar "Planning Poker" y las estimaciones del equipo son mucho más acertadas.',
+        150.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_PLANNING', 62);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (63, 0, 'MAIL','When in Doubt', '#4997D0', 'Process (Requirements)',
+        'Pay $250',
+        'Situation',
+        'You had a question but decided to document the clients requirements without finding the answer. You never imagined that such a "small detail" was so important to the clients business process.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (63, 1, 'MAIL', 'Te quedaste con la duda', '#4997D0', 'Proceso (Requerimientos)',
+        'Paga $250',
+        'Situación',
+        'Te dio pena preguntar y decidiste documentar los requerimientos sin resolver tus dudas. Nunca imaginaste que un detalle tan "pequeño" fuera tan importante para el proceso de negocio del cliente.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_REQUIREMENTS', 63);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (64, 0, 'MAIL','Stakeholders Identified', '#4997D0', 'Process (Requirements)',
+        'Pay $200',
+        'Situation',
+        'The key stakeholders for identifying customer needs have just been integrated into the project, now it appears that most of what they have worked on is not all that "valuable".',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (64, 1, 'MAIL', 'Stakeholders identificados', '#4997D0', 'Proceso (Requerimientos)',
+        'Paga $200',
+        'Situación',
+        'Los stakeholders clave para identificar las necesidades del cliente se acaban de integrar al proyecto, ahora resulta que la mayor parte de lo que han trabajado no es tan "valiosa".',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_REQUIREMENTS', 64);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (65, 0, 'MAIL','"Get it out fast"', '#4997D0', 'Process (Requirements)',
+        'Pay $150',
+        'Situation',
+        'In an interview with the client about a new requirement, your product analyst did not think before saying that the team will "get it out fast". After analyzing it is much more complicated than expected and will require a lot of work.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (65, 1, 'MAIL', '"Sale rápido"', '#4997D0', 'Proceso (Requerimientos)',
+        'Paga $150',
+        'Situación',
+        'El nuevo analista se entrevistó con el cliente y sin pensarlo mucho dijo que el requerimiento "salía rápido", después de analizarlo es mucho más complicado y requerirá mucho trabajo.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_REQUIREMENTS', 65);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (66, 0, 'MAIL','The most elegant solution...', '#6495ED', 'Process (Design)',
+        'Pay $100',
+        'Situation',
+        '...is not always the most efficient. The design proposed by the external consultants is too complex for the required solution. You are building a thousand-headed monster.',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (66, 1, 'MAIL', 'La solución más elegante…', '#6495ED', 'Proceso (Diseño)',
+        'Paga $100',
+        'Situación',
+        '…no siempre es la más eficiente. El diseño propuesto por los consultores externos es demasiado complejo para la solución requerida. Estás construyendo un monstruo de mil cabezas.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_DESIGN', 66);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (67, 0, 'MAIL','Relational would have been enough', '#6495ED', 'Process (Design)',
+        'Pay $150',
+        'Situation',
+        'You fell into the fashion of non-relational databases and proposed to use one even though it was clear that the system would be functional and efficient with a relational database.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (67, 1, 'MAIL', 'Relacional hubiera sido suficiente', '#6495ED', 'Proceso (Diseño)',
+        'Paga $150',
+        'Situación',
+        'Caíste en la moda de las bases de datos no relacionales y propusiste usar una cuando era claro que el sistema sería funcional y eficiente con una base de datos relacional.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_DESIGN', 67);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (68, 0, 'MAIL','Design emerges over time', '#6495ED', 'Process (Design)',
+        'Pay $200',
+        'Situation',
+        'You believed the Agile principle of "your overall system design will emerge over time, evolving to fulfill new requirements and take advantage of new technologies as appropriate". Too bad this is almost never fulfilled.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (68, 1, 'MAIL', 'El diseño emerge con el tiempo', '#6495ED', 'Proceso (Diseño)',
+        'Paga $200',
+        'Situación',
+        'Te creiste el principio ágil de "Your overall system design will emerge over time, evolving to fulfill new requirements and take advantage of new technologies as appropriate", lástima que no se cumple casi nunca.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_DESIGN', 68);
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (69, 0, 'MAIL','No one knows the language', '#DF73FF', 'Process (Construction)',
+        'Pay $250',
+        'Situation',
+        'No one on your team is a master of the programming language requested by the client. The learning curve will be long.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (69, 1, 'MAIL', 'No conoces el lenguaje de programación', '#DF73FF', 'Proceso (Construcción)',
+        'Paga $250',
+        'Situación',
+        'El lenguaje de programación solicitado por el cliente no lo dominas, la curva de aprendizaje será larga.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 69);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (70, 0, 'MAIL','Different Environments', '#DF73FF', 'Process (Construction)',
+        'Pay $200',
+        'Situation',
+        'Its the same technology but not the same version so the development environments do not match. Thats why what is working on your machine is not working on anyone elses.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (70, 1, 'MAIL', 'Ambientes diferentes', '#DF73FF', 'Proceso (Construcción)',
+        'Paga $200',
+        'Situación',
+        'Era la misma tecnología pero no la misma versión, los ambientes de desarrollo no coinciden. Lo que funciona en tu máquina no funciona en la de nadie más.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 70);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (71, 0, 'MAIL','Peer Programming', '#DF73FF', 'Process (Construction)',
+        'Receive $150',
+        'Situation',
+        'You applied the peer programming technique. In addition to learning a lot from your colleagues, you are also now more familiar with other modules.',
+        150.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (71, 1, 'MAIL', 'Programación entre pares', '#DF73FF', 'Proceso (Construcción)',
+        'Recibe $150',
+        'Situación',
+        'Aplicaste la técnica de programación entre pares, además de que aprendiste mucho de tu colega, ahora estás más familiarizado con otros módulos.',
+        150.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 71);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (72, 0, 'MAIL','Different Versions', '#20B2AA', 'Process (Integration)',
+        'Pay $200',
+        'Situation',
+        'Your colleague developed an entire module using a different version than yours. It is not possible to integrate for the work for this week.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (72, 1, 'MAIL', 'Diferentes versiones', '#20B2AA', 'Proceso (Integración)',
+        'Paga $200',
+        'Situación',
+        'Tu colega desarrolló todo el módulo utilizando una versión diferente a la tuya, no es posible integrar el trabajo de la semana.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_INTEGRATION', 72);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (73, 0, 'MAIL','Merge Conflicts', '#20B2AA', 'Process (Integration)',
+        'Pay $200',
+        'Situation',
+        'Your team waited too long to merge and now there are so many conflicts that it is impossible to merge all of the branches.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (73, 1, 'MAIL', 'Conflictos en el merge', '#20B2AA', 'Proceso (Integración)',
+        'Paga $200',
+        'Situación',
+        'El equipo y tú esperaron demasiado y ahora hay tantos conflictos que nos es posible completar el merge de sus branches.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_INTEGRATION', 73);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (74, 0, 'MAIL','Continuous Integration', '#20B2AA', 'Process (Integration)',
+        'Receive $200',
+        'Situation',
+        'Although it was painful at first, having lifted the continuous integration server has accelerated the builds and made the releases more frequent.',
+        200.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (74, 1, 'MAIL', 'Integración continua', '#20B2AA', 'Proceso (Integración)',
+        'Recibe $200',
+        'Situación',
+        'Si bien fue doloroso al principio, el haber levantado el servidor de integración continua ha acelerado los builds y hecho más frecuentes las liberaciones.',
+        200.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_INTEGRATION', 74);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (75, 0, 'MAIL','Testing is the "last" phase', '#96DED1', 'Process (Testing)',
+        'Pay $250',
+        'Situation',
+        'You thought you could leave the testing until the end of the process. Now you do not have any time left to test properly and the defects have slipped passed.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (75, 1, 'MAIL', 'Pruebas es la "última" fase', '#96DED1', 'Proceso (Pruebas)',
+        'Paga $250',
+        'Situación',
+        'Creiste que probar lo podías hacer hasta el final del proceso, ahora no tienes tiempo para probar adecuadamente y los defectos se fugaron.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_TESTING', 75);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (76, 0, 'MAIL','Oh no, a bug!', '#96DED1', 'Process (Testing)',
+        'Pay $300',
+        'Situation',
+        'A bug discovered at the last moment prevents the system from being released.',
+        300.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (76, 1, 'MAIL', 'Oh no, un "bug"!', '#96DED1', 'Proceso (Pruebas)',
+        'Paga $300',
+        'Situación',
+        'Un bug descubierto en el último momento impide que se pueda liberar el sistema.',
+        300.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_TESTING', 76);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (77, 0, 'MAIL','Automated Testing', '#96DED1', 'Process (Testing)',
+        'Receive $150',
+        'Situation',
+        'You invested a lot of effort into automating unit tests. Now you are rewarded by being able to execute all the test cases of your module with just a click.',
+        150.00, 'IN');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (77, 1, 'MAIL', 'Pruebas automatizadas', '#96DED1', 'Proceso (Pruebas)',
+        'Paga $150',
+        'Situación',
+        'Invertiste más esfuerzo en automatizar las pruebas unitarias, ahora llegó la recompensa cuando con un click puedes ejecutar todos los casos de prueba de tu módulo.',
+        150.00, 'IN');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_TESTING', 77);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (78, 0, 'MAIL','Where is that email?', '#73C2FB', 'Process (Monitoring)',
+        'Pay $200',
+        'Situation',
+        'You are sure that your colleague sent you a description of a bug that needs to be fixed, however you can not find anything in your notes or emails.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (78, 1, 'MAIL', 'En dónde está ese correo?', '#73C2FB', 'Proceso (Seguimiento)',
+        'Paga $200',
+        'Situación',
+        'Estás seguro que tu colega te envió la descripción de ese bug que debes corregir, sin embargo no puedes encontrarlo ni en tu correo ni en tus notas.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_MONITORING', 78);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (79, 0, 'MAIL','Reporting our activities', '#73C2FB', 'Process (Monitoring)',
+        'Pay $100',
+        'Situation',
+        'The board where each team member reports their activities has not been updated in weeks and nobody knows how we are doing.',
+        100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (79, 1, 'MAIL', 'Reportando nuestras actividades', '#73C2FB', 'Proceso (Seguimiento)',
+        'Paga $100',
+        'Situación',
+        'El trablero de control donde cada integrante del equipo reporta sus actividades no se ha actualizado en semanas, ya nadie sabe cómo vamos.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_MONITORING', 79);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (80, 0, 'MAIL','Meeting after meeting and still nothing', '#73C2FB', 'Process (Monitoring)',
+        'Pay $250',
+        'Situation',
+        'As a result of this weeks meeting, everyone agrees to convene for another urgent meeting to decide if we are having productive meetings.',
+        250.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (80, 1, 'MAIL', 'Junta tras junta y nada', '#73C2FB', 'Proceso (Seguimiento)',
+        'Paga $250',
+        'Situación',
+        'Como resultado de la junta de esta semana, acuerdan convocar otra junta urgente para decidir si las juntas están siendo productivas.',
+        250.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_MONITORING', 80);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (81, 0, 'MAIL','Releasing does not mean operating', '#E0B0FF', 'Process (Closure)',
+        'Pay $200',
+        'Situation',
+        'The day has come and it is finally time to release the system! Unfortunately the client believed releasing meant that his employees could already use the system.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (81, 1, 'MAIL', 'Liberar no implica operar', '#E0B0FF', 'Proceso (Cierre)',
+        'Paga $200',
+        'Situación',
+        'Llegó el día, liberaste el sistema! El problema es que el cliente entendió que liberar significaba que ya todos sus empleados podrían usar el sistema.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CLOSURE', 81);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (82, 0, 'MAIL','Change is complicated', '#E0B0FF', 'Process (Closure)',
+        'Pay $200',
+        'Situation',
+        'Resistance to change is always a complicated obstacle. If you had integrated the end users of the system earlier, maybe they would not be complaining so much about the new system.',
+        200.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (82, 1, 'MAIL', 'Cambiar es complicado', '#E0B0FF', 'Proceso (Cierre)',
+        'Paga $200',
+        'Situación',
+        'La resistencia al cambio es siempre un obstáculo complicado. Si hubieras integrado a los usuarios finales del sistema antes, tal vez hoy no se quejarían tanto del nuevo sistema.',
+        200.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CLOSURE', 82);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (83, 0, 'MAIL','We are at 95%', '#E0B0FF', 'Process (Closure)',
+        'Pay $150',
+        'Situation',
+        'When asked "what is the progress of the project?" we respond that we are at 95%. What does that mean? No body knows for sure, but we have responded the same way for the past two months.',
+        150.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (83, 1, 'MAIL', 'Estamos al 95%', '#E0B0FF', 'Proceso (Cierre)',
+        'Paga $150',
+        'Situación',
+        'Al preguntarnos cuál es el avance del proyecto respondemos que estamos al 95%. Qué significa eso? Nadie lo sabe con certeza, pero hemos respondido lo mismo los últimos dos meses.',
+        150.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CLOSURE', 83);

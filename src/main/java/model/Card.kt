@@ -12,7 +12,8 @@ enum class CardType {
 enum class FlowDirection {
     OUT,
     IN,
-    ALL
+    ALL_IN,
+    ALL_OUT
 }
 
 
