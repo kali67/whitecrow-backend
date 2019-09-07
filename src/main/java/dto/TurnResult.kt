@@ -32,6 +32,7 @@ class TurnResult {
     var moneyDifference: Float = 0f
     var hasTriggeredSetBack: Boolean = false
     var currentDay: Int = 0
+    var cardCancelled: Boolean = false
 
 
     fun findLastTurnResult(): TurnResult {

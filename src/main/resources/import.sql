@@ -605,3 +605,20 @@ INSERT INTO card_category(category, card_id)
 VALUES ('PRODUCT_SECURITY', 35);
 INSERT INTO card_category(category, card_id)
 VALUES ('PRODUCT_RELIABILITY', 35);
+
+
+---------------------------------------------
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (36, 0, 'MAIL', 'I didnt want that', '#32CD32', 'Product (Functionality)',
+        'Pay $100',
+        'Situation', 'Because of not getting your doubts clear with the clients, you implemented an unnecessary functionality, which means wasted ' ||
+                     'time and effort.', 100.00, 'OUT');
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (36, 1, 'MAIL', 'Pero no quise decir eso', '#8B008B', 'Producto (Funcionalidad)',
+        'Paga $100',
+        'Situación',
+        'Por no resolver tus dudas con el cliente, implementaste una funcionalidad innecesaria, eso implica esfuerzo y tiempo perdido.',
+        100.00, 'OUT');
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_FUNCTIONALITY', 36);

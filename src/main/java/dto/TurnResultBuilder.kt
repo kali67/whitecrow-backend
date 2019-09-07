@@ -30,6 +30,10 @@ class TurnResultBuilder(playerId: Int, currentDay: Int) {
         return this
     }
 
+    fun setCardCancelled(cardCancelled: Boolean): TurnResultBuilder {
+        this.turnResult.cardCancelled = cardCancelled
+        return this
+    }
 
     fun setTurnStage(turnStage: TurnProgress): TurnResultBuilder {
         this.turnResult.turnStage = turnStage

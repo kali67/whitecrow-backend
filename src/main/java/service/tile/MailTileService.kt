@@ -27,10 +27,9 @@ class MailTileService : TileServiceBase() {
         playerOpportunityCards = mailCardServiceImpl.loadTransients(playerOpportunityCards)
         val categoriesOwnedByPlayer: List<CardCategory> = playerOpportunityCards.flatMap { it.cardCategory!! }
         if (card.cardCategory!!.first() in categoriesOwnedByPlayer) {
-            val playerMessage = "You're recent investment has disregarded this mail card!"
             val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
             return turnResultBuilder.apply {
-                setMessage(playerMessage)
+                setCardCancelled(true)
                 setTurnStage(TurnProgress.COMPLETED)
                 setMailCard(card)
             }.build()
