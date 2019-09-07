@@ -7,11 +7,15 @@ import org.mockito.*
 import org.mockito.junit.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 import whitecrow.service.tile.*
 
 @RunWith(MockitoJUnitRunner.Silent::class)
 class MailTileServiceTest {
+
+    @Mock
+    private lateinit var playerServiceImpl: PlayerServiceImpl
 
     @Mock
     private lateinit var playerRepository: IPlayerRepository

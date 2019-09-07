@@ -41,6 +41,5 @@ class MailCardServiceImpl @Autowired constructor(
         val card = mailCardRepositoryImpl.findById(CardId(cardId, systemLanguage.id))
         player.cards.add(card)
         playerRepositoryImpl.update(player)
-        playerServiceImpl.deductMoney(playerId, card.cost)
     }
 }
