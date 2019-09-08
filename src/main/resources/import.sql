@@ -1331,3 +1331,188 @@ VALUES (83, 1, 'MAIL', 'Estamos al 95%', '#E0B0FF', 'Proceso (Cierre)',
         150.00, 'OUT');
 INSERT INTO card_category(category, card_id)
 VALUES ('PROCESS_CLOSURE', 83);
+
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (84, 0, 'OPPORTUNITY', 'PMP Certification', '#D3D3D3',
+        'Opportunity for Improvement',
+        'Cost: $500',
+        'Effect',
+        'Upon certification you have discovered that not only is the scope, time and cost of the project important. Now you are able to integrate elements of human resources, communication, acquisitions, risks, quality and stakeholders, achieving a complete vision of your project.' ||
+        'Cancel all the risks of "Planning" and "Environment".',
+        500.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (84, 1, 'OPPORTUNITY', 'Certificación PMP', '#D3D3D3',
+        'Oportunidad de Mejora',
+        'Costo: 500',
+        'Efecto',
+        'Al certificarte has descubierto que no sólo es importante el alcance, tiempo y costo del proyecto. Ahora eres capaz de integrar elementos de recursos humanos, comunicación, adquisiciones, riesgos, calidad y stakeholders, logrando una visión completa de tu proyecto.' ||
+        'Cancela todos los riesgos de "Planeación" y "Entorno".',
+        500.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_PLANNING', 84);
+INSERT INTO card_category(category, card_id)
+VALUES ('PEOPLE_ENVIRONMENT', 84);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (85, 0, 'OPPORTUNITY', 'User Stories', '#D3D3D3',
+        'Opportunity for Improvement',
+        'Cost: $350',
+        'Effect',
+        'Documenting the requirements through user stories allows the team to understand customer needs and focus on what is valuable for the business.' ||
+        'It cancels all the risks of "Requirements" and "Functionality".',
+        350.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (85, 1, 'OPPORTUNITY', 'Historias de Usuario', '#D3D3D3',
+        'Oportunidad de Mejora',
+        'Costo: 350',
+        'Efecto',
+        'Documentar los requerimientos a través de historias de usuario permite al equipo entender las necesidades del cliente y enfocarse en lo que es valioso para el negocio.' ||
+        'Cancela todos los riesgos de "Requerimientos" y "Funcionalidad".',
+        350.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_REQUIREMENTS', 85);
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_FUNCTIONALITY', 85);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (86, 0, 'OPPORTUNITY', 'Development framework', '#964B00',
+        'Opportunity for Improvement',
+        'Cost: $300',
+        'Effect',
+        'The use of a development framework has increased the speed of the equipment, facilitates following the chosen architectural pattern and reduces the configuration effort.' ||
+        'It cancels all the risks of "Design" and "Maintainability".',
+        300.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (86, 1, 'OPPORTUNITY', 'Framework de desarrollo', '#964B00',
+        'Oportunidad de Mejora',
+        'Costo: 300',
+        'Efecto',
+        'El uso de un framework de desarrollo ha incrementado la velocidad del equipo, facilita seguir el patrón arquitectónico elegido y reduce el esfuerzo de configuración.' ||
+        'Cancela todos los riesgos de "Diseño" y "Mantenibilidad".',
+        300.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_DESIGN', 86);
+INSERT INTO card_category(category, card_id)
+VALUES ('PRODUCT_MAINTAINABILITY', 86);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (87, 0, 'OPPORTUNITY', 'Repository with version control system', '#964B00',
+        'Opportunity for Improvement',
+        'Cost: $300',
+        'Effect',
+        'The version control system has turned out to be wonderful, you don''t waste time looking for files, downloading libraries or worrying about the latest version of the code.' ||
+        'It cancels all the risks of "Construction" and "Integration".',
+        300.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (87, 1, 'OPPORTUNITY', 'Repositorio con sistema de control de versiones', '#964B00',
+        'Oportunidad de Mejora',
+        'Costo: 300',
+        'Efecto',
+        'El sistema de control de versiones ha resultado ser una maravilla, no pierdes el tiempo buscando archivos, descargando bibliotecas ni preocupado por cuál será la última versión del código.' ||
+        'Cancela todos los riesgos de "Construcción" e "Integración".',
+        300.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 87);
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_INTEGRATION', 87);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (88, 0, 'OPPORTUNITY', 'Integration and continuous deployment system', '#FFC0CB',
+        'Opportunity for Improvement',
+        'Cost: $300',
+        'Effect',
+        'With the continuous integration system they installed, now integrating the code and deploying the system is much faster and requires less effort.' ||
+        'It cancels all the risks of "Integration" and "Testing".',
+        300.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (88, 1, 'OPPORTUNITY', 'Sistema de intregración y despliegue continuo', '#FFC0CB',
+        'Oportunidad de Mejora',
+        'Costo: 300',
+        'Efecto',
+        'Con el sistema de integración continua que instalaron, ahora integrar el código y desplegar el sistema es mucho más rápido y requiere menos esfuerzo.' ||
+        'Cancela todos los riesgos de "Integración" y "Pruebas".',
+        300.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 88);
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_TESTING', 88);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (89, 0, 'OPPORTUNITY', 'Bug tracker', '#FFC0CB',
+        'Opportunity for Improvement',
+        'Cost: $350',
+        'Effect',
+        'The bug tracker that they installed has allowed them to keep an adequate control of all the defects found during the tests and assign them to the programmers for their attention. Nothing overlaps.' ||
+        'It cancels all the risks of "Testing" and "Construction."',
+        350.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (89, 1, 'OPPORTUNITY', 'Sistema de intregración y despliegue continuo', '#FFC0CB',
+        'Oportunidad de Mejora',
+        'Costo: 350',
+        'Efecto',
+        'El bug tracker que instalaron les ha permitido llevar un control adecuado de todos los defectos encontrados durante las pruebas y asignarlos a los programadores para su atención. Nada se traspapela.' ||
+        'Cancela todos los riesgos de "Pruebas" y "Construcción".',
+        350.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CONSTRUCTION', 89);
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_TESTING', 89);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (90, 0, 'OPPORTUNITY', 'Activities outside of work', '#BFFF00',
+        'Opportunity for Improvement',
+        'Cost: $550',
+        'Effect',
+        'Going to the gym at the end of the day or playing basketball on Thursdays with your work colleagues has improved coexistence, creating a healthier and closer work environment.' ||
+        'It cancels all the risks of "Monitoring" and "Collaboration."',
+        550.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (90, 1, 'OPPORTUNITY', 'Actividades fuera del trabajo', '#BFFF00',
+        'Oportunidad de Mejora',
+        'Costo: 550',
+        'Efecto',
+        'Ir al gimnasio al final del día o jugar basquetbol los jueves con tus colegas del trabajo ha mejorado la convivencia, generando un ambiente de trabajo más sano y cercano.' ||
+        'Cancela todos los riesgos de "Seguimiento" y "Colaboración".',
+        550.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PEOPLE_COLLABORATION', 90);
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_MONITORING', 90);
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (91, 0, 'OPPORTUNITY', 'Frequent releases', '#BFFF00',
+        'Opportunity for Improvement',
+        'Cost: $550',
+        'Effect',
+        'By segmenting the system into modules with low coupling and high cohesion, the device is able to release functional software more frequently. With this, the client can test it and provide feedback to the team, avoiding rework.' ||
+        'It cancels all the risks of "Closure" and "Communication".',
+        550.00, 'OUT');
+
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
+VALUES (91, 1, 'OPPORTUNITY', 'Liberaciones frecuentes', '#BFFF00',
+        'Oportunidad de Mejora',
+        'Costo: 550',
+        'Efecto',
+        'Al segmentar el sistema en módulos con bajo acomplamiento y alta cohesión, el equipo es capaz de liberar software funcional de manera más frecuente. Con ello el cliente puede probarlo y retroalimentar al equipo, evitando retrabajo.' ||
+        'Cancela todos los riesgos de "Cierre" y "Comunicación".',
+        550.00, 'OUT');
+
+INSERT INTO card_category(category, card_id)
+VALUES ('PROCESS_CLOSURE', 91);
+INSERT INTO card_category(category, card_id)
+VALUES ('PEOPLE_COMMUNICATION', 91);
