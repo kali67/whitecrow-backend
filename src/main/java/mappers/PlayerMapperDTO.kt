@@ -30,7 +30,7 @@ class PlayerMapperDTO : IMapper<Player, PlayerDTO> {
             "UglyJellyfish", "CuteBanana", "ToastedBagel", "BuffPin", "FluffyTiger", "AngryWalrus", "StrongHyena",
             "CheesyPizza", "HappyDeer", "SpeedyTortoise", "SleepySloth", "JuicyMango", "FriendlyHedgehog",
             "HandsomeLion", "SugaryCoffee", "SweetPeach", "QuietBunny", "SwiftCheetah", "ChocolateCookie",
-            "StealthyFox", "BreakfastBurrito", "IceCreamSundae", "", "RoseSee",
+            "StealthyFox", "BreakfastBurrito", "IceCreamSundae", "RoseSee",
             "RunningFaith", "RunningMidnight", "ShiyaDoll"
         )
         return usernameChoices[id.rem(usernameChoices.size)]

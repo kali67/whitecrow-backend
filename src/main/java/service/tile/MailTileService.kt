@@ -26,7 +26,7 @@ class MailTileService : TileServiceBase() {
         val playerCards = playerRepository.findOne(player.id).cards
         val playerMailCardIds = playerCards.filter { it.cardType == CardType.MAIL }.map { it.id.cardId }.toIntArray()
         val drawnCard = mailCardServiceImpl.findCardHand(playerMailCardIds)
-
+        mailCardServiceImpl.addMailCard(player.id, drawnCard.id.cardId)
         if (ownsOpportunityCardToCancel(playerCards, drawnCard)) {
             val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
             return turnResultBuilder.apply {
@@ -40,8 +40,6 @@ class MailTileService : TileServiceBase() {
         val moneyDifference = if (drawnCard.flowDirection == FlowDirection.ALL_IN || drawnCard.flowDirection == FlowDirection.IN) {
             drawnCard.cost
         } else -drawnCard.cost
-
-        mailCardServiceImpl.addMailCard(player.id, drawnCard.id.cardId)
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
             setTurnStage(TurnProgress.COMPLETED)
