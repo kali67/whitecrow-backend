@@ -21,7 +21,7 @@ INSERT INTO card_category(category, card_id)
 VALUES ('PEOPLE_ORGANISATION', 0);
 
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
-VALUES (1, 0, 'MAIL', '“Process-itis”', '#008000', 'People (Organization)', 'Pay $250', 'Situation',
+VALUES (1, 0, 'MAIL', '"Process-itis"', '#008000', 'People (Organization)', 'Pay $250', 'Situation',
         'In this organization everything has to be done following a process that was defined years ago. Currently nobody remembers why the things are don this way.',
         250.00, 'OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
@@ -339,14 +339,14 @@ VALUES (23, 0, 'OPPORTUNITY', 'Scrum Master', '#FFEF00',
         'Opportunity for Improvement',
         'Cost: $500',
         'Effect',
-        'What you learned in the Scrum Master certification has allowed you to improve the interaction of the team and you have been able to remove obstacles efficiently. It cancels all the risks of “Organization” and “Closure”.',
+        'What you learned in the Scrum Master certification has allowed you to improve the interaction of the team and you have been able to remove obstacles efficiently. It cancels all the risks of "Organization" and "Closure".',
         500.00, 'OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (23, 1, 'OPPORTUNITY', 'Scrum Master', '#FFEF00', 'Oportunidad de Mejora',
         'Costo: $500',
         'Efecto',
         'Lo que aprendiste en la certificaci ́on de Scrum Master te ha permitido mejorar la interacci ́on del equipo y has sido capaz de ' ||
-        'remover obst ́aculos de manera eficiente. Cancela todos los riesgos de “Organizaci ́on” y “Cierre”.', 500.00, 'OUT');
+        'remover obst ́aculos de manera eficiente. Cancela todos los riesgos de "Organizaci ́on" y "Cierre".', 500.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)
 VALUES ('PEOPLE_ORGANISATION', 23);
@@ -359,7 +359,7 @@ VALUES (25, 0, 'OPPORTUNITY', 'Kanban board', '#FFEF00',
         'Cost: $450',
         'Effect',
         'With the board you placed in the common area of the team, the distribution of tasks was simplified and Everyone knows how each person is ' ||
-        'moving forward. Cancel all the risks of “Collaboration” and "Planning."',
+        'moving forward. Cancel all the risks of "Collaboration" and "Planning."',
         450.00, 'OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (25, 1, 'OPPORTUNITY', 'Tablero Kanban', '#FFEF00',
@@ -367,7 +367,7 @@ VALUES (25, 1, 'OPPORTUNITY', 'Tablero Kanban', '#FFEF00',
         'Costo: $450',
         'Efecto',
         'Con el tablero que colocaste en el  ́area com ́un del equipo, la distribuci ́on de tareas se simplific ́o y todos saben en qu ́e est ́a ' ||
-        'avanzando cada qui ́en. Cancela todos los riesgos de “Colaboraci ́on” y “Planeaci ́on”.',
+        'avanzando cada qui ́en. Cancela todos los riesgos de "Colaboraci ́on" y "Planeaci ́on".',
         450.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)
@@ -390,7 +390,7 @@ VALUES (26, 1, 'OPPORTUNITY', 'Daily Scrum', '#F4BBFF',
         'Costo: $650',
         'Efecto',
         'Incorporar reuniones breves y concisas todos los d́ıas ha mejorado la comunicaci ́on del equipo. Ahora todos tenemos una visi ́on clara ' ||
-        'del progreso d ́ıa a d ́ıa del proyecto. Cancela todos los riesgos de “Comunicaci ́on” y “Seguimiento”.',
+        'del progreso d ́ıa a d ́ıa del proyecto. Cancela todos los riesgos de "Comunicaci ́on" y "Seguimiento".',
         650.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)
@@ -404,7 +404,7 @@ VALUES (27, 0, 'OPPORTUNITY', 'Revitalized human factors', '#F4BBFF',
         'Cost: $650',
         'Effect',
         'Keep in mind that the items they take out all work are people makes values and take care of human aspects as motivation, Respect and trust' ||
-        '. It cancels all the risks of “Environment” and “Organization”.',
+        '. It cancels all the risks of "Environment" and "Organization".',
         650.00, 'OUT');
 
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
@@ -413,7 +413,7 @@ VALUES (27, 1, 'OPPORTUNITY', 'Factores humanos revitalizados', '#F4BBFF',
         'Costo: $650',
         'Efecto',
         'Tener en cuenta que los elementos que sacan todo el trabajo son personas hace que valores y cuides aspectos humanos como motivaci ́on,' ||
-        'respeto y confianza. Cancela todos los riesgos de “Entorno” y “Organizaci ́on”.',
+        'respeto y confianza. Cancela todos los riesgos de "Entorno" y "Organizaci ́on".',
         650.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)
@@ -436,7 +436,7 @@ VALUES (28, 1, 'OPPORTUNITY', 'Factores humanos revitalizados', '#BF00FF',
         'Costo: $300',
         'Efecto',
         'El usuario est ́a expresando en voz alta lo que piensa mientras prueba el sistema. Con esta t ́ecnica para validar la funcionalidad y la ' ||
-        'usabilidad del sistema matas dos p ́ajaros de un tiro. Cancela todos los riesgos de “Funcionalidad” y “Usabilidad”.',
+        'usabilidad del sistema matas dos p ́ajaros de un tiro. Cancela todos los riesgos de "Funcionalidad" y "Usabilidad".',
         300.00, 'OUT');
 INSERT INTO card_category(category, card_id)
 VALUES ('PRODUCT_FUNCTIONALITY', 28);
@@ -460,7 +460,7 @@ VALUES (29, 1, 'OPPORTUNITY', 'Respaldos semanales', '#BF00FF',
         'Efecto',
         'Contar con tareas programadas para respaldar la informaci ́on as ́ı como un servidor en un lugar seguro para almacenarlos es necesario en ' ||
         'cualquier proyecto. Cada madrugada todos los sistemas cr ́ıticos se respaldan, no hay nada de qu ́e preocuparse. Cancela todos los riesgos' ||
-        ' de “Confiabilidad” y “Requerimientos”.',
+        ' de "Confiabilidad" y "Requerimientos".',
         350.00, 'OUT');
 
 INSERT INTO card_category(category, card_id)
