@@ -27,6 +27,8 @@ abstract class TurnStrategy {
 
     fun isPlayersTurn(gameId: Int, player: Player): Boolean {
         val game = gameSharedServiceImpl.findOne(gameId)
+        println(game.next)
+        println(player)
         return game.next == player
     }
 
