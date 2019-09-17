@@ -45,6 +45,8 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun findCurrentPlayer(gameId: Int): PlayerDTO {
         val currentUser = userServiceImpl.currentUser()
+        println("*****************")
+        println(currentUser)
         val players = gameRepositoryImpl.findAllPlayers(gameId)
         val game = gameRepositoryImpl.findOne(gameId)
         val playerDTO = playerMapperDTO.to(players.first { it.user?.id == currentUser.id })
