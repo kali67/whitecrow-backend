@@ -51,8 +51,14 @@ class UserServiceImpl @Autowired constructor(
 
     override fun update(userDto: UserDto) {
         val user = userSharedService.currentUser()
-        user.language = languageRepositoryImpl.findByCode(userDto.languageCode)
-        user.userName = userDto.username
+        if (userDto.languageCode != null) {
+            user.language = languageRepositoryImpl.findByCode(userDto.languageCode)
+        }
+        if (userDto.username != null) {
+            user.userName = userDto.username
+        }
+
+        user.hasCompletedPreTest = userDto.hasCompletedPreTest
         userRepositoryImpl.update(user)
     }
 
