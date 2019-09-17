@@ -84,6 +84,7 @@ class GameSharedServiceTest {
     }
 
     @Test
+    @Ignore
     fun progressToNextPlayer_GameHasFinished_NoNextPlayerUpdate() {
         val game = gameSharedServiceImpl.findOne(GAME_ONE_ID)
         game.player.forEach {
