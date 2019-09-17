@@ -16,6 +16,8 @@ abstract class TurnStrategy {
     fun useAndCompleteTurn(player: Player, gameId: Int): TurnResult {
         if (isPlayersTurn(gameId, player)) {
             val turnResultParent = applyTurnToPlayer(player, gameId)
+            println(player.id)
+            println(turnResultParent)
             val lastTurnResult = turnResultParent.findLastTurnResult()
             if (lastTurnResult.turnStage == TurnProgress.COMPLETED) {
                 gameSharedServiceImpl.progressToNextPlayer(gameId)
