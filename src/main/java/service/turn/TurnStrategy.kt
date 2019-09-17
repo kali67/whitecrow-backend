@@ -22,7 +22,10 @@ abstract class TurnStrategy {
             val lastTurnResult = turnResultParent.findLastTurnResult()
             println(lastTurnResult)
             if (lastTurnResult.turnStage == TurnProgress.COMPLETED) {
+                println("should be progressing turn ??")
                 gameSharedServiceImpl.progressToNextPlayer(gameId)
+            } else {
+                println("not progressed?????")
             }
             return turnResultParent
         }
