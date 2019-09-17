@@ -22,6 +22,7 @@ abstract class TurnStrategy {
             }
             return turnResultParent
         }
+        println("ksdgagsha;ldkgh;sgkhsdgkhsd;gksah;gkash;gkl")
         throw InvalidPlayerRequestException()
     }
 
