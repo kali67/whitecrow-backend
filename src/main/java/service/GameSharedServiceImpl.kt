@@ -48,6 +48,7 @@ class GameSharedServiceImpl @Autowired constructor(
         println("*****************")
         println(currentUser)
         val players = gameRepositoryImpl.findAllPlayers(gameId)
+
         val game = gameRepositoryImpl.findOne(gameId)
         val playerDTO = playerMapperDTO.to(players.first { it.user?.id == currentUser.id })
         playerDTO.hasFinishedGame = playerDTO.day >= findFinalDay(game)
@@ -104,11 +105,10 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun progressToNextPlayer(gameId: Int) {
         val game = gameRepositoryImpl.findOne(gameId)
-        if (!gameHasFinished(game)) {
-            val nextPlayer = findNextPlayer(game)
-            game.next = nextPlayer
-            update(game)
-        }
+        val nextPlayer = findNextPlayer(game)
+        game.next = nextPlayer
+        println(nextPlayer)
+        update(game)
     }
 
     override fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
