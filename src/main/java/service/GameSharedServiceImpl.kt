@@ -113,6 +113,11 @@ class GameSharedServiceImpl @Autowired constructor(
         return day >= ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
+    override fun findFinishedGames(): List<GameDto> {
+        val user = userServiceImpl.currentUser()
+        return gameRepositoryImpl.findAllFinishedGamesByUser(user).map { gameMapperDTO.to(it) }
+    }
+
     override fun update(game: Game) {
         gameRepositoryImpl.update(game)
     }

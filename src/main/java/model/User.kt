@@ -32,4 +32,6 @@ data class User(
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = [CascadeType.ALL])
     var players: MutableList<Player> = mutableListOf()
+
+    var hasCompletedPreTest: Boolean? = false
 }

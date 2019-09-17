@@ -64,6 +64,11 @@ class GameApiController @Autowired constructor(
         return gameSharedServiceImpl.calculateEndGameScore(id)
     }
 
+    @GetMapping("/games/finished")
+    fun findFinishedGames(): List<GameDto> {
+        return gameSharedServiceImpl.findFinishedGames()
+    }
+
     @RequestMapping(method = [RequestMethod.OPTIONS], value = ["/*"]) // todo: pre flight requests
     @ResponseBody
     fun handleOptions(): ResponseEntity<Any> {

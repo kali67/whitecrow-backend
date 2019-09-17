@@ -8,7 +8,10 @@ import whitecrow.model.*
 class UserMapperDTO : IMapper<User, UserDto> {
 
     override fun to(from: User): UserDto {
-        return UserDto(from.userName, from.language.code)
+        var hasCompletedPreTest = true
+        if (from.hasCompletedPreTest == null)
+            hasCompletedPreTest = false
+        return UserDto(from.userName, from.language.code, from.id, hasCompletedPreTest)
     }
 
     override fun from(from: UserDto): User {

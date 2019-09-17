@@ -8,6 +8,8 @@ import whitecrow.mappers.GameMapperDTO
 import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
 import whitecrow.service.interfaces.*
+import java.time.*
+import java.time.format.*
 import javax.transaction.Transactional
 
 @Service
@@ -53,14 +55,14 @@ class SinglePlayerGameService @Autowired constructor(
 
     @Transactional
     override fun makePlayerTurns(id: Int): List<TurnResult> {
+        println(DateTimeFormatter.ISO_INSTANT.format(Instant.now()))
         val game = gameRepositoryImpl.findOne(id)
-        val requesterPlayer = gameSharedServiceImpl.findCurrentPlayer(id)
-        val players = gameSharedServiceImpl.findAllPlayers(id).sortedBy { it.order }
+        val players = gameRepositoryImpl.findAllPlayers(id).sortedBy { it.playOrder }
         val nextPlayer = game.next
         val turnResults = mutableListOf<TurnResult>()
         if (nextPlayer != null) {
             var index = nextPlayer.playOrder
-            while (index != requesterPlayer.order) { // make turns until it gets back to user
+            while (players[index].user == null) { // make turns until it gets back to user
                 val turnResult = playerServiceImpl.useTurn(players[index].id, id)
                 turnResults.add(turnResult)
                 index = (index + 1).rem(players.size)

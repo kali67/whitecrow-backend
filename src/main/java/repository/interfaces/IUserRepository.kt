@@ -1,7 +1,7 @@
 package whitecrow.repository.interfaces
 
 import org.springframework.data.repository.NoRepositoryBean
-import whitecrow.model.User
+import whitecrow.model.*
 import java.util.*
 
 @NoRepositoryBean
