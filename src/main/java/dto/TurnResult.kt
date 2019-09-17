@@ -41,4 +41,8 @@ class TurnResult {
         }
         return this
     }
+
+    override fun toString(): String {
+        return String.format("Turnresult: %s, %s %s %s", this.turnResult, opportunityCardResult, currentDay, hasFinishedGame)
+    }
 }
