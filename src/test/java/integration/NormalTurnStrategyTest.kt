@@ -69,7 +69,7 @@ class NormalTurnStrategyTest {
         val expectedNumberOfCards = 1
         whenever(die.rollDie()).thenReturn(OPPORTUNITY_CARD_DIE_ROLL).thenReturn(OPPORTUNITY_DECISION_ROLL_ACCEPT)
         authenticationService.authenticate("bob", "welcome1")
-        normalTurnStrategy.useAndCompleteTurn(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
+        normalTurnStrategy.applyTurnToPlayer(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
 
         val playerTwo = playerServiceImpl.findOne(PLAYER_TWO_ID)
         Assert.assertEquals(expectedNumberOfCards, playerServiceImpl.findOne(PLAYER_TWO_ID).cards.size)
@@ -90,7 +90,7 @@ class NormalTurnStrategyTest {
         val expectedNumberOfCards = 0
         whenever(die.rollDie()).thenReturn(OPPORTUNITY_CARD_DIE_ROLL).thenReturn(OPPORTUNITY_DECISION_ROLL_DECLINE)
         authenticationService.authenticate("bob", "welcome1")
-        normalTurnStrategy.useAndCompleteTurn(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
+        normalTurnStrategy.applyTurnToPlayer(playerServiceImpl.findOne(PLAYER_TWO_ID), GAME_ONE_ID)
         Assert.assertEquals(expectedNumberOfCards, playerServiceImpl.findOne(PLAYER_TWO_ID).cards.size)
 
         val playerTwo = playerServiceImpl.findOne(PLAYER_TWO_ID)
