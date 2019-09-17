@@ -1007,7 +1007,7 @@ INSERT INTO card (cardId, langId, card_type, title, color, category_description,
 VALUES (62, 0, 'MAIL','What a good estimate!', '#2A52BE', 'Process (Planning)',
         'Receive $150',
         'Situation',
-        'You decide to use "Planning Poker" and your teams estimates are much more accurate.',
+        'You decide to use Planning Poker" and your teams estimates are much more accurate.',
         150.00, 'IN');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (62, 1, 'MAIL', 'Qué buena estimación', '#2A52BE', 'Proceso (Planeación)',

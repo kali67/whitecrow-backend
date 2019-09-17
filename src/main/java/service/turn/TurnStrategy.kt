@@ -3,6 +3,7 @@ package whitecrow.service.turn
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
+import whitecrow.exceptions.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
 
@@ -13,13 +14,20 @@ abstract class TurnStrategy {
     private lateinit var gameSharedServiceImpl: IGameSharedService
 
     fun useAndCompleteTurn(player: Player, gameId: Int): TurnResult {
-        val turnResultParent = applyTurnToPlayer(player, gameId)
-
-        val lastTurnResult = turnResultParent.findLastTurnResult()
-        if (lastTurnResult.turnStage == TurnProgress.COMPLETED) {
-            gameSharedServiceImpl.progressToNextPlayer(gameId)
+        if (isPlayersTurn(gameId, player)) {
+            val turnResultParent = applyTurnToPlayer(player, gameId)
+            val lastTurnResult = turnResultParent.findLastTurnResult()
+            if (lastTurnResult.turnStage == TurnProgress.COMPLETED) {
+                gameSharedServiceImpl.progressToNextPlayer(gameId)
+            }
+            return turnResultParent
         }
-        return turnResultParent
+        throw InvalidPlayerRequestException()
+    }
+
+    fun isPlayersTurn(gameId: Int, player: Player): Boolean {
+        val game = gameSharedServiceImpl.findOne(gameId)
+        return game.next == player
     }
 
     abstract fun applyTurnToPlayer(player: Player, gameId: Int): TurnResult
