@@ -19,7 +19,7 @@ class PlayerRepositoryImpl @Autowired constructor(val sessionFactory: SessionFac
 
     override fun update(player: Player) {
         val session = sessionFactory.currentSession
-        session.merge(player)
+        session.saveOrUpdate(player)
     }
 
     override fun findAll(): List<Player> {
