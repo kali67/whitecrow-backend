@@ -17,6 +17,7 @@ abstract class TurnStrategy {
         if (isPlayersTurn(gameId, player)) {
             val turnResultParent = applyTurnToPlayer(player, gameId)
             println(player.id)
+            println(gameId)
             println(turnResultParent)
             val lastTurnResult = turnResultParent.findLastTurnResult()
             println(turnResultParent)
