@@ -43,6 +43,6 @@ class TurnResult {
     }
 
     override fun toString(): String {
-        return String.format("Turnresult: %s, %s %s %s", this.turnResult, opportunityCardResult, currentDay, hasFinishedGame)
+        return String.format("Turnresult: %s, %s %s %s %s", this.turnResult, opportunityCardResult, currentDay, hasFinishedGame, turnStage)
     }
 }
