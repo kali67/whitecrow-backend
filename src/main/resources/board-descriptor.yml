@@ -291,12 +291,12 @@ tiles:
     dateTextColor: "#FFFFFF"
     descriptionColor: "#FFFFFF"
   - date: "20"
-    type: "SET_BACK"
-    cost: "0"
-    titleResourceString: "CHANGE_TITLE"
-    descriptionResourceString: "CHANGE_DESCRIPTION"
-    actionResourceString: ~
-    color: "#D63D82"
+    type: "BONUS"
+    cost: "250"
+    titleResourceString: "BONUS_TITLE"
+    descriptionResourceString: "BONUS_DESCRIPTION_DAY_EIGHT"
+    actionResourceString: "BONUS_ACTION_DAY_EIGHT"
+    color: "#612E73"
     dateColor: "#F2EB67"
     dateTextColor: ~
     descriptionColor: "#FFFFFF"
