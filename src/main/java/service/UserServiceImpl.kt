@@ -57,8 +57,9 @@ class UserServiceImpl @Autowired constructor(
         if (userDto.username != null) {
             user.userName = userDto.username
         }
-
-        user.hasCompletedPreTest = userDto.hasCompletedPreTest
+        if (userDto.hasCompletedPreTest != null) {
+            user.hasCompletedPreTest = userDto.hasCompletedPreTest
+        }
         userRepositoryImpl.update(user)
     }
 
