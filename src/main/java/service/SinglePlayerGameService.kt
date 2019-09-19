@@ -55,7 +55,6 @@ class SinglePlayerGameService @Autowired constructor(
 
     @Transactional
     override fun makePlayerTurns(id: Int): List<TurnResult> {
-        println(DateTimeFormatter.ISO_INSTANT.format(Instant.now()))
         val game = gameRepositoryImpl.findOne(id)
         val players = gameRepositoryImpl.findAllPlayers(id).sortedBy { it.playOrder }
         val nextPlayer = game.next

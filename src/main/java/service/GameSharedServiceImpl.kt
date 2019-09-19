@@ -45,8 +45,6 @@ class GameSharedServiceImpl @Autowired constructor(
 
     override fun findCurrentPlayer(gameId: Int): PlayerDTO {
         val currentUser = userServiceImpl.currentUser()
-        println("*****************")
-        println(currentUser)
         val players = gameRepositoryImpl.findAllPlayers(gameId)
 
         val game = gameRepositoryImpl.findOne(gameId)
@@ -107,7 +105,6 @@ class GameSharedServiceImpl @Autowired constructor(
         val game = gameRepositoryImpl.findOne(gameId)
         val nextPlayer = findNextPlayer(game)
         game.next = nextPlayer
-        println(nextPlayer)
         update(game)
     }
 
