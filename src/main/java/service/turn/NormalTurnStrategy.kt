@@ -20,7 +20,6 @@ class NormalTurnStrategy @Autowired constructor(
         val game = gameSharedServiceImpl.findOne(gameId)
         var playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)
         if (playerHasFinishedGame) {
-            println("skipping player turn")
             return skipPlayerTurn(player)
         }
 
