@@ -4,7 +4,7 @@
 
 ## Configurations
 
-### Local Development
+### Local Environment
 The applications entry point (Main Class) to start spring boot is `whitecrow.application`, located in root of `/java`.
 
 
@@ -18,6 +18,10 @@ Ensure this is in the JDBC format.
 
 This file must include the following variables: `url=jdbc:postgresql://localhost:5432/postgres`, `username=yourusername`, `password=yourpassword`
 
+
+### Test Environment
+Please set the usual variable `spring_profiles_active=test`. You will not need any other database configurations as they application will handle
+the H2 in memory db for you. 
 
 ### Configuration Extension
 In order to add a different db provider i.e. `mysql`, you must extend the datasource base class.
