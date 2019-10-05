@@ -8,8 +8,7 @@
 The applications entry point (Main Class) to start spring boot is `whitecrow.application`, located in root of `/java`.
 
 
-Before running the application, please set the following environment variables:
-* `spring_profiles_active=local`
+Before running the application, please set the following environment variables: `spring_profiles_active=local`
 
 You will also need to create a 'persistence-local.properties' file in the root of the `/resources` directory. This is 
 for the database environment variables. DO NOT ADD TO VERSION CONTROL! 
@@ -17,10 +16,7 @@ for the database environment variables. DO NOT ADD TO VERSION CONTROL!
 You will need the url to access the local database i.e. you should have a local instance running on your machine. 
 Ensure this is in the JDBC format.
 
-This file must include the following variables:
-* `url=jdbc:postgresql://localhost:5432/postgres`
-* `username=yourusername`
-* `password=yourpassword`
+This file must include the following variables: `url=jdbc:postgresql://localhost:5432/postgres`, `username=yourusername`, `password=yourpassword`
 
 
 ### Configuration Extension
