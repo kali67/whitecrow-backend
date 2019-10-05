@@ -21,7 +21,7 @@ This file must include the following variables: `url=jdbc:postgresql://localhost
 
 ### Test Environment
 Please set the usual variable `spring_profiles_active=test`. You will not need any other database configurations as they application will handle
-the H2 in memory db for you. 
+the H2 in memory db for you. To run the tests, `gradle test` from the root directory will do the trick.
 
 ### Configuration Extension
 In order to add a different db provider i.e. `mysql`, you must extend the datasource base class.
