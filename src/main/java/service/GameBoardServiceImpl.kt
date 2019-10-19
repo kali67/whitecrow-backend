@@ -6,14 +6,14 @@ import whitecrow.config.LocaleHelper
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameBoardRepository
-import whitecrow.service.interfaces.IGameBoardService
 import whitecrow.service.tile.*
 import whitecrow.model.BoardTile
 import whitecrow.model.GameBoard
 
 @Service
-class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepository: IGameBoardRepository) :
-    IGameBoardService {
+class GameBoardServiceImpl
+@Autowired
+constructor(private val gameBoardRepository: IGameBoardRepository) {
 
     @Autowired
     private lateinit var localeHelper: LocaleHelper
@@ -21,7 +21,10 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     @Autowired
     lateinit var tileServiceFactory: TileServiceFactory
 
-    override fun load(): GameBoard {
+    /**
+     * Loads game board
+     */
+    fun load(): GameBoard {
         val gameBoard = gameBoardRepository.load()
         gameBoard.description = localeHelper.translate(gameBoard.description)
         gameBoard.title = localeHelper.translate(gameBoard.title)
@@ -35,12 +38,12 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
         return gameBoard
     }
 
-    override fun findTileByDate(date: Int): BoardTile {
+    fun findTileByDate(date: Int): BoardTile {
         val gameBoard = gameBoardRepository.load()
         return gameBoard.tiles.first { date == it.date }
     }
 
-    override fun applyTileActionToPlayer(player: Player, game: Game): TurnResult {
+    fun applyTileActionToPlayer(player: Player, game: Game): TurnResult {
         val tile = findTileByDate(player.currentDay.rem(NUMBER_DAYS_MONTH + 1))
         val service = tileServiceFactory.invoke(player, tile.type)
         return service.applyTileAction(player, game, tile)

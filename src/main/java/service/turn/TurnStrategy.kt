@@ -5,13 +5,14 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.exceptions.*
 import whitecrow.model.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 
 @Component
 abstract class TurnStrategy {
 
     @Autowired
-    private lateinit var gameSharedServiceImpl: IGameSharedService
+    private lateinit var gameSharedServiceImpl: GameSharedServiceImpl
 
     /**
      * Method to be implemented by those extending a [TurnStrategy]

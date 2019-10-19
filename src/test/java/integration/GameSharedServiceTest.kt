@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.*
 import whitecrow.*
 import whitecrow.dto.*
 import whitecrow.model.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 
 @RunWith(SpringRunner::class)
@@ -26,7 +27,7 @@ import whitecrow.service.interfaces.*
 class GameSharedServiceTest {
 
     @Autowired
-    private lateinit var gameSharedServiceImpl: IGameSharedService
+    private lateinit var gameSharedServiceImpl: GameSharedServiceImpl
 
     @Autowired
     private lateinit var playerService: IPlayerService

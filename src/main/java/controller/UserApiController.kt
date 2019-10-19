@@ -32,9 +32,4 @@ class UserApiController @Autowired constructor(val userServiceImpl: IUserService
         userServiceImpl.updatePassword(password)
     }
 
-    @PutMapping("/user/pretest")
-    fun updatePreTestStatus() {
-//        userServiceImpl.updatePreTestStatus()
-    }
-
 }

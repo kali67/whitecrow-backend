@@ -5,12 +5,13 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 
 @Component
 class NormalTurnStrategy @Autowired constructor(
-    private val gameSharedServiceImpl: IGameSharedService,
-    private val gameBoardServiceImpl: IGameBoardService,
+    private val gameSharedServiceImpl: GameSharedServiceImpl,
+    private val gameBoardServiceImpl: GameBoardServiceImpl,
     private val playerRepository: IPlayerRepository,
     private val die: IRandomDieRoller
 ) :

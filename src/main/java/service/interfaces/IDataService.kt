@@ -4,7 +4,7 @@ import java.io.Serializable
 
 interface IDataService<T, ID : Serializable> {
 
-    fun delete(deleted: T)
+    fun update(obj: T)
 
     fun findAll(): List<T>
 

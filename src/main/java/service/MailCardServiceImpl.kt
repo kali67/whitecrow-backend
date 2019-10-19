@@ -16,18 +16,18 @@ class MailCardServiceImpl @Autowired constructor(
     val playerServiceImpl: IPlayerService,
     val playerRepositoryImpl: IPlayerRepository,
     val userSharedService: IUserSharedService
-) : IMailCardService {
+)  {
 
-    override fun loadTransients(card: List<Card>): List<Card> {
+    fun loadTransients(card: List<Card>): List<Card> {
         return mailCardRepositoryImpl.loadTransients(card)
     }
 
-    override fun findById(id: Int): Card {
+    fun findById(id: Int): Card {
         val systemLanguage = userSharedService.currentUser().language
         return mailCardRepositoryImpl.findById(CardId(id, systemLanguage.id))
     }
 
-    override fun findCardHand(excluding: IntArray): Card {
+    fun findCardHand(excluding: IntArray): Card {
         val systemLanguage = userSharedService.currentUser().language
         var cards = mailCardRepositoryImpl.findAll(systemLanguage)
         cards = cards.filter { !excluding.contains(it.id.cardId) }
@@ -35,7 +35,7 @@ class MailCardServiceImpl @Autowired constructor(
         return cards[index]
     }
 
-    override fun addMailCard(playerId: Int, cardId: Int) {
+    fun addMailCard(playerId: Int, cardId: Int) {
         val systemLanguage = userSharedService.currentUser().language
         val player = playerRepositoryImpl.findOne(playerId)
         val card = mailCardRepositoryImpl.findById(CardId(cardId, systemLanguage.id))

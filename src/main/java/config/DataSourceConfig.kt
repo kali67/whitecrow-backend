@@ -13,6 +13,14 @@ import javax.sql.DataSource
 @EnableTransactionManagement
 abstract class DataSourceConfig {
 
+    /**
+     * To be implemented by all extending this class.
+     * Requires a datasource configuration for db
+     * implementations.
+     *
+     * See [whitecrow.config.PostgresHibernateConfigLocal] for an example.
+     * @return datasource object
+     */
     abstract fun dataSource(): DataSource
 
     @Bean
@@ -31,6 +39,13 @@ abstract class DataSourceConfig {
         return transactionManager
     }
 
+    /**
+     *  To be implemented by all extending this class.
+     *  Must detail properties for the database implementation, i.e. dialect etc.
+     *
+     *  See [whitecrow.config.PostgresHibernateConfigLocal] for an example.
+     *  @return properties for hibernate configuration
+     */
     abstract fun hibernateProperties(): Properties
 
 }

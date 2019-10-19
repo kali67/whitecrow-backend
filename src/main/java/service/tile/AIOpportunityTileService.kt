@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 import kotlin.random.*
 
@@ -19,7 +20,7 @@ class AIOpportunityTileService : TileServiceBase() {
     private lateinit var die: IRandomDieRoller
 
     @Autowired
-    private lateinit var opCardServiceImpl: IOpCardService
+    private lateinit var opCardServiceImpl: OpCardServiceImpl
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val excludingIds = player.cards.filter { it.cardType == CardType.OPPORTUNITY }.map { it.id.cardId }.toIntArray()

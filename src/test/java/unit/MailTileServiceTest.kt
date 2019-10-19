@@ -21,7 +21,7 @@ class MailTileServiceTest {
     private lateinit var playerRepository: IPlayerRepository
 
     @Mock
-    private lateinit var mailCardServiceImpl: IMailCardService
+    private lateinit var mailCardServiceImpl: MailCardServiceImpl
 
     @InjectMocks
     private lateinit var mailTileService: MailTileService

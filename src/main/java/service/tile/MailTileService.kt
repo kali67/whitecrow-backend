@@ -5,6 +5,7 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 import javax.transaction.*
 
@@ -12,7 +13,7 @@ import javax.transaction.*
 class MailTileService : TileServiceBase() {
 
     @Autowired
-    private lateinit var mailCardServiceImpl: IMailCardService
+    private lateinit var mailCardServiceImpl: MailCardServiceImpl
 
     @Autowired
     private lateinit var playerRepository: IPlayerRepository

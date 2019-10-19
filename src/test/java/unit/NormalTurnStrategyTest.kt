@@ -8,6 +8,7 @@ import org.mockito.junit.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 import whitecrow.service.turn.*
 
@@ -15,10 +16,10 @@ import whitecrow.service.turn.*
 class NormalTurnStrategyTest {
 
     @Mock
-    private lateinit var gameSharedService: IGameSharedService
+    private lateinit var gameSharedService: GameSharedServiceImpl
 
     @Mock
-    private lateinit var gameBoardService: IGameBoardService
+    private lateinit var gameBoardService: GameBoardServiceImpl
 
     @Mock
     private lateinit var playerRepository: IPlayerRepository

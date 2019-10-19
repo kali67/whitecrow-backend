@@ -5,10 +5,14 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 
 @Component
-class SetBackTurnStrategy @Autowired constructor(val gameSharedServiceImpl: IGameSharedService, val gameBoardServiceImpl: IGameBoardService) :
+class SetBackTurnStrategy @Autowired constructor(
+    val gameSharedServiceImpl: GameSharedServiceImpl,
+    val gameBoardServiceImpl: GameBoardServiceImpl
+) :
     TurnStrategy() {
 
     @Autowired

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
-import whitecrow.service.interfaces.*
+import whitecrow.service.*
 
 /**
  * Implements logic for opportunity tiles. This is
@@ -15,7 +15,7 @@ import whitecrow.service.interfaces.*
 class OpportunityTileService : TileServiceBase() {
 
     @Autowired
-    private lateinit var opCardServiceImpl: IOpCardService
+    private lateinit var opCardServiceImpl: OpCardServiceImpl
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
         val excludingIds = player.cards.filter { it.cardType == CardType.OPPORTUNITY }.map { it.id.cardId }.toIntArray()

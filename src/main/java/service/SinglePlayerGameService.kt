@@ -17,19 +17,19 @@ import javax.transaction.Transactional
 class SinglePlayerGameService @Autowired constructor(
     private val userServiceImpl: IUserSharedService,
     private val playerServiceImpl: IPlayerService,
-    private val gameSharedServiceImpl: IGameSharedService,
+    private val gameSharedServiceImpl: GameSharedServiceImpl,
     private val gameRepositoryImpl: IGameRepository
-) : ISinglePlayerGameService {
+)  {
 
     private val gameMapperDTO = GameMapperDTO()
 
-    override fun setUpGame(game: GameDto): GameDto {
+    fun setUpGame(game: GameDto): GameDto {
         val newGame = create(game)
         gameSharedServiceImpl.assignPlayerOrder(newGame)
         return gameMapperDTO.to(newGame)
     }
 
-    override fun create(game: GameDto): Game {
+    fun create(game: GameDto): Game {
         val gameCreator = userServiceImpl.currentUser()
         val player = Player()
         player.user = gameCreator
@@ -48,13 +48,11 @@ class SinglePlayerGameService @Autowired constructor(
         return entity
     }
 
-    @Transactional
-    override fun start(id: Int): List<TurnResult> {
+    fun start(id: Int): List<TurnResult> {
         return makePlayerTurns(id)
     }
 
-    @Transactional
-    override fun makePlayerTurns(id: Int): List<TurnResult> {
+    fun makePlayerTurns(id: Int): List<TurnResult> {
         val game = gameRepositoryImpl.findOne(id)
         val players = gameRepositoryImpl.findAllPlayers(id).sortedBy { it.playOrder }
         val nextPlayer = game.next

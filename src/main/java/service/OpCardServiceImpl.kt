@@ -15,14 +15,14 @@ class OpCardServiceImpl @Autowired constructor(
     val opCardRepositoryImpl: IOpCardRepository,
     val playerServiceImpl: IPlayerService,
     val playerRepositoryImpl: IPlayerRepository,
-    val mailCardServiceImpl: IMailCardService,
+    val mailCardServiceImpl: MailCardServiceImpl,
     val userSharedService: IUserSharedService
-) : IOpCardService {
+) {
 
     @Autowired
-    private lateinit var flowService: IFlowService
+    private lateinit var flowService: FlowService
 
-    override fun findHand(excluding: IntArray): List<Card> {
+    fun findHand(excluding: IntArray): List<Card> {
         var cards = opCardRepositoryImpl.findAll(userSharedService.currentUser().language)
         cards = cards.filter { !excluding.contains(it.id.cardId) }
         val list = mutableListOf<Card>()
@@ -30,7 +30,7 @@ class OpCardServiceImpl @Autowired constructor(
         return list.toList()
     }
 
-    override fun addOpportunityCard(playerId: Int, cardId: Int) {
+    fun addOpportunityCard(playerId: Int, cardId: Int) {
         val player = playerRepositoryImpl.findOne(playerId)
         val card = mailCardServiceImpl.findById(cardId)
         player.cards.add(card)

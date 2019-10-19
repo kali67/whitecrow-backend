@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod
 import org.springframework.web.bind.annotation.RequestMapping
 import whitecrow.dto.PlayerDTO
 import whitecrow.mappers.*
-import whitecrow.service.interfaces.IGameSharedService
-import whitecrow.service.interfaces.ISinglePlayerGameService
+import whitecrow.service.*
 
 @RestController
 @CrossOrigin
 class GameApiController @Autowired constructor(
-    val singlePlayerGameService: ISinglePlayerGameService,
-    val gameSharedServiceImpl: IGameSharedService
+    val singlePlayerGameService: SinglePlayerGameService,
+    val gameSharedServiceImpl: GameSharedServiceImpl
 ) {
 
     private val gameMapperDTO = GameMapperDTO()

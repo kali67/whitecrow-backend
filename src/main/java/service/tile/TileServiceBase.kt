@@ -5,13 +5,14 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
+import whitecrow.service.*
 import whitecrow.service.interfaces.*
 
 @Service
 abstract class TileServiceBase {
 
     @Autowired
-    protected lateinit var gameSharedServiceImpl: IGameSharedService
+    protected lateinit var gameSharedServiceImpl: GameSharedServiceImpl
 
     @Autowired
     protected lateinit var gameRepository: IGameRepository

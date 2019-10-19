@@ -55,12 +55,8 @@ class PlayerServiceImpl @Autowired constructor(
         playerRepositoryImpl.save(persisted)
     }
 
-    override fun update(player: Player) {
-        playerRepositoryImpl.update(player)
-    }
-
-    override fun delete(deleted: Player) {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
+    override fun update(obj: Player) {
+        playerRepositoryImpl.update(obj)
     }
 
     override fun findAll(): List<Player> {

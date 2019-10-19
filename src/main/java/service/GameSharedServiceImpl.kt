@@ -8,9 +8,7 @@ import whitecrow.mappers.GameMapperDTO
 import whitecrow.mappers.PlayerMapperDTO
 import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameRepository
-import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.GameBoardServiceImpl.Companion.NUMBER_DAYS_MONTH
-import whitecrow.service.interfaces.IGameSharedService
 import whitecrow.service.interfaces.IPlayerService
 import whitecrow.service.interfaces.IUserSharedService
 import javax.transaction.Transactional
@@ -21,7 +19,7 @@ class GameSharedServiceImpl @Autowired constructor(
     private var gameRepositoryImpl: IGameRepository,
     private var userServiceImpl: IUserSharedService,
     private var playerServiceImpl: IPlayerService
-) : IGameSharedService {
+) {
 
     @Autowired
     private lateinit var playerShufflerFacade: IPlayerShuffler
@@ -29,11 +27,11 @@ class GameSharedServiceImpl @Autowired constructor(
     private val gameMapperDTO = GameMapperDTO()
     private val playerMapperDTO = PlayerMapperDTO()
 
-    override fun findAll(): List<Game> {
+    fun findAll(): List<Game> {
         return gameRepositoryImpl.findAll()
     }
 
-    override fun findAllPlayers(id: Int): List<PlayerDTO> {
+    fun findAllPlayers(id: Int): List<PlayerDTO> {
         val game = gameRepositoryImpl.findOne(id)
         val players = gameRepositoryImpl.findAllPlayers(id)
         return players.map {
@@ -43,7 +41,7 @@ class GameSharedServiceImpl @Autowired constructor(
         }
     }
 
-    override fun findCurrentPlayer(gameId: Int): PlayerDTO {
+    fun findCurrentPlayer(gameId: Int): PlayerDTO {
         val currentUser = userServiceImpl.currentUser()
         val players = gameRepositoryImpl.findAllPlayers(gameId)
 
@@ -53,7 +51,7 @@ class GameSharedServiceImpl @Autowired constructor(
         return playerDTO
     }
 
-    override fun assignPlayerOrder(game: Game) {
+    fun assignPlayerOrder(game: Game) {
         val players = game.player
         val shuffledCollection = playerShufflerFacade.shufflePlayers(players)
         shuffledCollection.forEachIndexed { index, player ->
@@ -64,12 +62,12 @@ class GameSharedServiceImpl @Autowired constructor(
         update(game)
     }
 
-    override fun gameHasFinished(game: Game): Boolean {
+    fun gameHasFinished(game: Game): Boolean {
         val playersInGame = gameRepositoryImpl.findAllPlayers(game.id)
         return playersInGame.all { it.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds }
     }
 
-    override fun calculateEndGameScore(id: Int): GameDto {
+    fun calculateEndGameScore(id: Int): GameDto {
         val game = gameRepositoryImpl.findOne(id)
         if (gameHasFinished(game)) {
             val playersInGame = gameRepositoryImpl.findAllPlayers(id)
@@ -86,7 +84,7 @@ class GameSharedServiceImpl @Autowired constructor(
         return gameMapperDTO.to(game)
     }
 
-    override fun findFinalDay(game: Game): Int {
+    fun findFinalDay(game: Game): Int {
         return ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
@@ -101,35 +99,31 @@ class GameSharedServiceImpl @Autowired constructor(
         return nextPlayer
     }
 
-    override fun progressToNextPlayer(gameId: Int) {
+    fun progressToNextPlayer(gameId: Int) {
         val game = gameRepositoryImpl.findOne(gameId)
         val nextPlayer = findNextPlayer(game)
         game.next = nextPlayer
         update(game)
     }
 
-    override fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
+    fun hasGonePassedFinalDay(day: Int, game: Game): Boolean {
         return day >= ((NUMBER_DAYS_MONTH * game.numberRounds) + game.numberRounds - 1)
     }
 
-    override fun findFinishedGames(): List<GameDto> {
+    fun findFinishedGames(): List<GameDto> {
         val user = userServiceImpl.currentUser()
         return gameRepositoryImpl.findAllFinishedGamesByUser(user).map { gameMapperDTO.to(it) }
     }
 
-    override fun update(game: Game) {
+    fun update(game: Game) {
         gameRepositoryImpl.update(game)
     }
 
-    override fun findOne(id: Int): Game {
+    fun findOne(id: Int): Game {
         return gameRepositoryImpl.findOne(id)
     }
 
-    override fun delete(deleted: Game) {
-        gameRepositoryImpl.delete(deleted)
-    }
-
-    override fun save(persisted: Game) {
+    fun save(persisted: Game) {
         gameRepositoryImpl.save(persisted)
     }
 }

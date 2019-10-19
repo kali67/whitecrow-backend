@@ -2,12 +2,11 @@ package whitecrow.controller
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import whitecrow.model.Card
-import whitecrow.service.interfaces.IMailCardService
+import whitecrow.service.*
 
 @RestController
 @CrossOrigin
-class MailCardApiController @Autowired constructor(val mailCardService: IMailCardService) {
+class MailCardApiController @Autowired constructor(val mailCardService: MailCardServiceImpl) {
 
     @PostMapping("/player/{playerId}/add/mail/{mailId}")
     fun addMailCard(@PathVariable playerId: Int, @PathVariable mailId: Int) {
