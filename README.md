@@ -61,7 +61,7 @@ Once this is complete you may build the docker image by using the following comm
 `docker build -t whitecrow .` (ensure the '.' is also there).
 
 In order to run the docker image use something like 
-`docker run -e spring_profiles_active='production' -e url='remote_db_url' -e username='yourusername' -password='yourpassword'` as you will need 
+`docker run -e spring_profiles_active='production' -e url='remote_db_url' -e username='yourusername' -password='yourpassword' whitecrow` as you will need 
 to pass environment variables to the container.
 
 
