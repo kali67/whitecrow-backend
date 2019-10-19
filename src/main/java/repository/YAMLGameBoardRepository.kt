@@ -4,16 +4,16 @@ import com.esotericsoftware.yamlbeans.YamlReader
 import org.springframework.core.io.ClassPathResource
 import org.springframework.stereotype.Repository
 import whitecrow.repository.interfaces.IGameBoardRepository
-import whitecrow.static_objects.BoardTile
-import whitecrow.static_objects.GameBoard
-import whitecrow.static_objects.TileType
+import whitecrow.model.BoardTile
+import whitecrow.model.GameBoard
+import whitecrow.model.TileType
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
 @Repository
 class YAMLGameBoardRepository : IGameBoardRepository {
 
-    override fun find(): GameBoard {
+    override fun load(): GameBoard {
         val resource = ClassPathResource("board-descriptor.yml").inputStream
         val reader = YamlReader(BufferedReader(InputStreamReader(resource)))
 

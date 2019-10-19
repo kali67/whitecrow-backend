@@ -5,10 +5,15 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 import javax.transaction.*
 
 @Service
+/**
+ * This service class is used for the final day, White Crow.
+ * The logic of this tile simply involves an increase in player
+ * funds by the amount specified on the tile.
+ *
+ */
 class WhitecrowTileService : TileServiceBase() {
 
     @Autowired

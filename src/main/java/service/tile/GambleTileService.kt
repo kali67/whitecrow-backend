@@ -5,8 +5,10 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 
+/**
+ * Implements gambling logic for the gamble tile.
+ */
 @Service
 class GambleTileService : TileServiceBase() {
 

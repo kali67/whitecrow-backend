@@ -3,12 +3,15 @@ package whitecrow.service.tile
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
-import whitecrow.mappers.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 import kotlin.random.*
 
+/**
+ * This service object applies actions to AI players
+ * who land on an opportunity tile. Not to be used for
+ * human players as it includes decision making for cards.
+ */
 @Service
 class AIOpportunityTileService : TileServiceBase() {
 
@@ -33,6 +36,10 @@ class AIOpportunityTileService : TileServiceBase() {
         }.build()
     }
 
+    /**
+     * Given a list of cards, chose one card and make a random decision to accept or decline it
+     * @param cards list of cards to choose from
+     */
     private fun makeOpportunityDecision(cards: List<Card>): OpportunityCardResult {
         val card = cards[Random.nextInt(cards.size)]
         val shouldAcceptCard = die.rollDie() >= die.size.div(2) //greater or equal to half the die size

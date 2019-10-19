@@ -1,4 +1,4 @@
-package whitecrow.static_objects
+package whitecrow.model
 
 enum class TileType(value: String) {
     MAIL("MAIL"),

@@ -5,12 +5,12 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
-import whitecrow.service.*
-import whitecrow.service.interfaces.*
 import whitecrow.service.turn.*
-import whitecrow.static_objects.*
 import javax.transaction.*
 
+/**
+ * This service object implements logic for the setback/last minute change day.
+ */
 @Service
 class SetBackTileService : TileServiceBase() {
 

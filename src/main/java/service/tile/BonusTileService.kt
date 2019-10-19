@@ -5,8 +5,11 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 
+/**
+ * This service object is reserved for those days that require actions
+ * for bonus tiles.
+ */
 @Service
 class BonusTileService : TileServiceBase() {
 

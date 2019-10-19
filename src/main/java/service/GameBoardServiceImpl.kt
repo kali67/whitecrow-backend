@@ -8,8 +8,8 @@ import whitecrow.model.*
 import whitecrow.repository.interfaces.IGameBoardRepository
 import whitecrow.service.interfaces.IGameBoardService
 import whitecrow.service.tile.*
-import whitecrow.static_objects.BoardTile
-import whitecrow.static_objects.GameBoard
+import whitecrow.model.BoardTile
+import whitecrow.model.GameBoard
 
 @Service
 class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepository: IGameBoardRepository) :
@@ -22,7 +22,7 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     lateinit var tileServiceFactory: TileServiceFactory
 
     override fun load(): GameBoard {
-        val gameBoard = gameBoardRepository.find()
+        val gameBoard = gameBoardRepository.load()
         gameBoard.description = localeHelper.translate(gameBoard.description)
         gameBoard.title = localeHelper.translate(gameBoard.title)
         gameBoard.days = gameBoard.days.map { localeHelper.translate(it) }
@@ -36,7 +36,7 @@ class GameBoardServiceImpl @Autowired constructor(private val gameBoardRepositor
     }
 
     override fun findTileByDate(date: Int): BoardTile {
-        val gameBoard = gameBoardRepository.find()
+        val gameBoard = gameBoardRepository.load()
         return gameBoard.tiles.first { date == it.date }
     }
 

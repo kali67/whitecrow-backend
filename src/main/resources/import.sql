@@ -22,7 +22,8 @@ VALUES ('PEOPLE_ORGANISATION', 0);
 
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (1, 0, 'MAIL', '"Process-itis"', '#008000', 'People (Organization)', 'Pay $250', 'Situation',
-        'In this organization everything has to be done following a process that was defined years ago. Currently nobody remembers why the things are don this way.',
+        'In this organization everything has to be done following a process that was defined years ago. Currently nobody remembers why the things ' ||
+        'are done this way.',
         250.00, 'OUT');
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (1, 1, 'MAIL', '"Proceso-itis"', '#008000', 'Personas (Organización)', 'Paga $250', 'Situación',

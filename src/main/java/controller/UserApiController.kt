@@ -3,7 +3,7 @@ package whitecrow.controller
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
 import whitecrow.dto.*
-import whitecrow.model.User
+import whitecrow.model.*
 import whitecrow.service.interfaces.IUserService
 import java.util.*
 
@@ -31,4 +31,10 @@ class UserApiController @Autowired constructor(val userServiceImpl: IUserService
     fun updatePassword(@RequestBody password: String) {
         userServiceImpl.updatePassword(password)
     }
+
+    @PutMapping("/user/pretest")
+    fun updatePreTestStatus() {
+//        userServiceImpl.updatePreTestStatus()
+    }
+
 }

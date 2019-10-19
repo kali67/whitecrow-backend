@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import whitecrow.service.interfaces.IGameBoardService
-import whitecrow.static_objects.GameBoard
+import whitecrow.model.GameBoard
 
 @RestController
 @CrossOrigin

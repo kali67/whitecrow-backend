@@ -3,11 +3,14 @@ package whitecrow.service.tile
 import org.springframework.beans.factory.annotation.*
 import org.springframework.stereotype.*
 import whitecrow.dto.*
-import whitecrow.mappers.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 
+/**
+ * Implements logic for opportunity tiles. This is
+ * reserved for real players and not AI. A DECISION_PENDING should be
+ * returned to client to await their decision event.
+ */
 @Service
 class OpportunityTileService : TileServiceBase() {
 

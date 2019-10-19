@@ -6,7 +6,6 @@ import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 import javax.transaction.*
 
 @Service
@@ -48,6 +47,9 @@ class MailTileService : TileServiceBase() {
         }.build()
     }
 
+    /**
+     *
+     */
     private fun applyCostsOfCard(player: Player, drawnCard: Card, game: Game) {
         when {
             drawnCard.flowDirection == FlowDirection.IN -> {
@@ -65,6 +67,9 @@ class MailTileService : TileServiceBase() {
         }
     }
 
+    /**
+     *
+     */
     private fun ownsOpportunityCardToCancel(playerCards: List<Card>, card: Card): Boolean {
         var playerOpportunityCards = playerCards.filter { it.cardType == CardType.OPPORTUNITY }
         playerOpportunityCards = mailCardServiceImpl.loadTransients(playerOpportunityCards)

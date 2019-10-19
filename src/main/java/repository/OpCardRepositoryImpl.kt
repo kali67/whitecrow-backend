@@ -4,10 +4,10 @@ import org.hibernate.SessionFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Repository
 import whitecrow.model.*
-import whitecrow.repository.interfaces.IOpCardRespository
+import whitecrow.repository.interfaces.IOpCardRepository
 
 @Repository
-class OpCardRepositoryImpl @Autowired constructor(val sessionFactory: SessionFactory) : IOpCardRespository {
+class OpCardRepositoryImpl @Autowired constructor(val sessionFactory: SessionFactory) : IOpCardRepository {
 
     override fun findAll(language: Language): List<Card> {
         val session = sessionFactory.currentSession

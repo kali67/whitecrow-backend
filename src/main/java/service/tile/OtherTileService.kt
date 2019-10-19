@@ -3,9 +3,13 @@ package whitecrow.service.tile
 import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
-import whitecrow.static_objects.*
 
 @Service
+/**
+ * This tile service is reserved for days on the game board
+ * that does not require any updating to player attributes such as
+ * rest days.
+ */
 class OtherTileService : TileServiceBase() {
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {

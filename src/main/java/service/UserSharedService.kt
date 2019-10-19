@@ -27,7 +27,7 @@ class UserSharedService @Autowired constructor(private val userRepositoryImpl: I
 
     override fun currentUser(): whitecrow.model.User {
         val userDetails = authenticationFacadeImpl.authentication().name
-        return userRepositoryImpl.findByUserName(userDetails) ?: throw NoResultException() // todo
+        return userRepositoryImpl.findByUserName(userDetails) ?: throw NoResultException()
     }
 
     override fun loadUserDetByUsername(username: String): whitecrow.model.User {

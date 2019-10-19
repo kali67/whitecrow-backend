@@ -2,10 +2,13 @@ package whitecrow.repository.interfaces
 
 import org.springframework.data.repository.NoRepositoryBean
 import org.springframework.data.repository.Repository
-import whitecrow.static_objects.GameBoard
+import whitecrow.model.GameBoard
 
 @NoRepositoryBean
 interface IGameBoardRepository : Repository<GameBoard, Int> {
 
-    fun find(): GameBoard
+    /**
+     * Loads the board game object
+     */
+    fun load(): GameBoard
 }

@@ -3,7 +3,7 @@ package whitecrow.service.tile
 import org.springframework.context.ApplicationContext
 import org.springframework.stereotype.Service
 import whitecrow.model.Player
-import whitecrow.static_objects.TileType
+import whitecrow.model.TileType
 import org.springframework.beans.factory.annotation.Autowired
 
 @Service
@@ -11,6 +11,14 @@ class TileServiceFactory {
 
     @Autowired
     private lateinit var appContext: ApplicationContext
+
+    /**
+     * Factory pattern to construct correct tile service based on
+     * the type of tile that has been landed on.
+     * @param player player to build service tile for
+     * @param tileType type of tile the player has landed on and the
+     * type of tile service to be created.
+     */
 
     fun invoke(player: Player, tileType: TileType): TileServiceBase {
         when {

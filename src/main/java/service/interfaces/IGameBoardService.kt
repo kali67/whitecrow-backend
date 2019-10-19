@@ -2,8 +2,6 @@ package whitecrow.service.interfaces
 
 import whitecrow.dto.*
 import whitecrow.model.*
-import whitecrow.static_objects.BoardTile
-import whitecrow.static_objects.GameBoard
 
 interface IGameBoardService {
 

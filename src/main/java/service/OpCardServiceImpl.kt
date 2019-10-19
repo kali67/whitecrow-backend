@@ -3,7 +3,7 @@ package whitecrow.service
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import whitecrow.model.Card
-import whitecrow.repository.interfaces.IOpCardRespository
+import whitecrow.repository.interfaces.IOpCardRepository
 import whitecrow.repository.interfaces.IPlayerRepository
 import whitecrow.service.interfaces.*
 import javax.transaction.Transactional
@@ -12,7 +12,7 @@ import kotlin.random.Random
 @Service
 @Transactional
 class OpCardServiceImpl @Autowired constructor(
-    val opCardRepositoryImpl: IOpCardRespository,
+    val opCardRepositoryImpl: IOpCardRepository,
     val playerServiceImpl: IPlayerService,
     val playerRepositoryImpl: IPlayerRepository,
     val mailCardServiceImpl: IMailCardService,

@@ -5,9 +5,12 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
-import whitecrow.static_objects.*
 import javax.transaction.*
 
+/**
+ * This service object implements logic for day 29,
+ * cost reduction.
+ */
 @Service
 class CostReductionTileService : TileServiceBase() {
 

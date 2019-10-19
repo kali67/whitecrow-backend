@@ -16,6 +16,14 @@ class NormalTurnStrategy @Autowired constructor(
 ) :
     TurnStrategy() {
 
+    /**
+     * Implements from base class [TurnStrategy].
+     * Carries out the turn of the player by rolling die, applying
+     * tile action etc.
+     *
+     * @param player player whos turn will be used
+     * @param gameId id of the current game
+     */
     override fun applyTurnToPlayer(player: Player, gameId: Int): TurnResult {
         val game = gameSharedServiceImpl.findOne(gameId)
         var playerHasFinishedGame = gameSharedServiceImpl.hasGonePassedFinalDay(player.currentDay, game)

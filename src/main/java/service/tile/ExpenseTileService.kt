@@ -5,7 +5,6 @@ import org.springframework.stereotype.*
 import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
-import whitecrow.static_objects.*
 
 @Service
 class ExpenseTileService : TileServiceBase() {
@@ -17,7 +16,6 @@ class ExpenseTileService : TileServiceBase() {
         playerServiceImpl.deductMoney(player.id, tile!!.cost)
         val turnResultBuilder = TurnResultBuilder(player.id, player.currentDay)
         return turnResultBuilder.apply {
-            setMessage(tile.description)
             setTurnStage(TurnProgress.COMPLETED)
             setMoneyDifference(-tile.cost)
         }.build()

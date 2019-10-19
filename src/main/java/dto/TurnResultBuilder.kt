@@ -2,6 +2,14 @@ package whitecrow.dto
 
 import whitecrow.model.*
 
+/**
+ * Builder class for [TurnResult].
+ * This should be used when creating a TurnResult as it
+ * simplifies object creation from a clients point of view
+ *
+ * @param playerId id of player to build result around
+ * @param currentDay current day of player
+ */
 class TurnResultBuilder(playerId: Int, currentDay: Int) {
 
     private val turnResult = TurnResult()
