@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository
 import whitecrow.model.*
 import whitecrow.repository.interfaces.IUserRepository
 import java.util.*
-import org.hibernate.criterion.Restrictions
-import com.sun.deploy.association.utility.MacOSXBundleUtil.createAlias
-import java.awt.print.Book
-import javax.persistence.criteria.*
 
 
 @Repository
