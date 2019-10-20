@@ -9,7 +9,7 @@ import whitecrow.service.*
 @CrossOrigin
 class SinglePlayerApiController @Autowired constructor(private val singlePlayerApiController: SinglePlayerGameService) {
 
-    @PostMapping("/game/single/{id}/query_turns")
+    @PostMapping("/game/single/{id}/start")
     fun start(@PathVariable id: Int): List<TurnResult> {
         return singlePlayerApiController.makePlayerTurns(id)
     }
