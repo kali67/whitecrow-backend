@@ -48,11 +48,6 @@ class GameApiController @Autowired constructor(
         return gameMapperDTO.to(game)
     }
 
-    @PostMapping("/game/start/{id}")
-    fun start(@PathVariable id: Int) {
-        singlePlayerGameService.start(id)
-    }
-
     @GetMapping("/game/{id}/player")
     fun findCurrentPlayer(@PathVariable id: Int): PlayerDTO {
         return gameSharedServiceImpl.findCurrentPlayer(id)

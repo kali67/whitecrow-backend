@@ -67,6 +67,7 @@ class GameSharedServiceImpl @Autowired constructor(
         return playersInGame.all { it.currentDay >= NUMBER_DAYS_MONTH * game.numberRounds }
     }
 
+
     fun calculateEndGameScore(id: Int): GameDto {
         val game = gameRepositoryImpl.findOne(id)
         if (gameHasFinished(game)) {

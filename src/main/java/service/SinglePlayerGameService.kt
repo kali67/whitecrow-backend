@@ -48,10 +48,6 @@ class SinglePlayerGameService @Autowired constructor(
         return entity
     }
 
-    fun start(id: Int): List<TurnResult> {
-        return makePlayerTurns(id)
-    }
-
     fun makePlayerTurns(id: Int): List<TurnResult> {
         val game = gameRepositoryImpl.findOne(id)
         val players = gameRepositoryImpl.findAllPlayers(id).sortedBy { it.playOrder }

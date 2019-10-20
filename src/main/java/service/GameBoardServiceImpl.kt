@@ -21,9 +21,6 @@ constructor(private val gameBoardRepository: IGameBoardRepository) {
     @Autowired
     lateinit var tileServiceFactory: TileServiceFactory
 
-    /**
-     * Loads game board
-     */
     fun load(): GameBoard {
         val gameBoard = gameBoardRepository.load()
         gameBoard.description = localeHelper.translate(gameBoard.description)

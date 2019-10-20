@@ -19,7 +19,6 @@ class TileServiceFactory {
      * @param tileType type of tile the player has landed on and the
      * type of tile service to be created.
      */
-
     fun invoke(player: Player, tileType: TileType): TileServiceBase {
         when {
             tileType == TileType.MAIL -> {

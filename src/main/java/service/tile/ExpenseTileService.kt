@@ -6,6 +6,10 @@ import whitecrow.dto.*
 import whitecrow.model.*
 import whitecrow.service.interfaces.*
 
+/**
+ * Service object reserved for expense tiles on the board. This consists
+ * of just a deduction of player funds.
+ */
 @Service
 class ExpenseTileService : TileServiceBase() {
 
