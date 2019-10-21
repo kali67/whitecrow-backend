@@ -71,11 +71,11 @@ INSERT INTO card_category(category, card_id)
 VALUES ('PEOPLE_ORGANISATION', 4);
 
 
-INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction) -- TODO
+INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (5, 0, 'MAIL', 'Tamales yatole - BBQ, Fish’n’Chips', '#008000', 'People (Organization)', 'Each player gives $100.',
         'Situation',
-        'Next Friday is the office party and everyone brings a plate to share. The player who is closest to square 13 gets half of all the contributed money.',
-        100.00, 'OUT');
+        'Next Friday is the office party and everyone brings a plate to share.',
+        100.00, 'OUT'); --TODO
 INSERT INTO card (cardId, langId, card_type, title, color, category_description, action, sub_title, description, cost, flow_direction)
 VALUES (5, 1, 'MAIL', 'Tamales yatole - BBQ, Fish’n’Chips', '#008000', 'Personas (Organización)', 'Cada jugador da $100.',
         'Situación',

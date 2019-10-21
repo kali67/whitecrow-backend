@@ -1,4 +1,4 @@
-package unit
+package unit.tile
 
 import com.nhaarman.mockitokotlin2.*
 import org.junit.*
@@ -8,7 +8,6 @@ import org.mockito.junit.*
 import whitecrow.model.*
 import whitecrow.repository.interfaces.*
 import whitecrow.service.*
-import whitecrow.service.interfaces.*
 import whitecrow.service.tile.*
 
 @RunWith(MockitoJUnitRunner.Silent::class)

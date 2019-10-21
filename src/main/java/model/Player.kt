@@ -25,7 +25,8 @@ data class Player(
     @JoinColumn(name = "user_id")
     var user: User? = null
 
-) {
+) : Comparable<Player> {
+
 
     @ManyToOne
     var game: Game? = null
@@ -58,4 +59,14 @@ data class Player(
 
     @Column(name = "triggered_last_setback")
     var triggeredLastSetBack: Boolean = false
+
+    override fun compareTo(other: Player): Int {
+        if (other.id == this.id) {
+            return 0
+        }
+        if (this.id < other.id) {
+            return -1
+        }
+        return 1
+    }
 }

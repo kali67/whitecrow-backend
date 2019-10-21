@@ -19,7 +19,7 @@ class GambleTileService : TileServiceBase() {
     private lateinit var playerServiceImpl: IPlayerService
 
     @Autowired
-    private lateinit var sixSidedDieRoller: SixSidedDieRoller
+    private lateinit var sixSidedDieRoller: IRandomDieRoller
 
 
     override fun applyTileAction(player: Player, game: Game, tile: BoardTile?): TurnResult {
@@ -32,9 +32,14 @@ class GambleTileService : TileServiceBase() {
         game.player.forEach {
             it.money -= tile.cost
             val roll = sixSidedDieRoller.rollDie()
-            if (roll >= highestRoll)
-                highestRoll = roll
+            if (roll == highestRoll) {
                 highestRollPlayers.add(it)
+            }
+            if (roll > highestRoll) {
+                highestRoll = roll
+                highestRollPlayers.clear()
+                highestRollPlayers.add(it)
+            }
             playerServiceImpl.update(it)
         }
 
