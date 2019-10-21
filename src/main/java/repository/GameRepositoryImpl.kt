@@ -60,8 +60,4 @@ class GameRepositoryImpl @Autowired constructor(private val sessionFactory: Sess
         session.persist(persisted)
         return persisted
     }
-
-    override fun delete(deleted: Game) {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
 }

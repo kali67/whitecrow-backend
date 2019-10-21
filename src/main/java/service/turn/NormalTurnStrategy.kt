@@ -40,10 +40,6 @@ class NormalTurnStrategy @Autowired constructor(
             player.currentDay = gameSharedServiceImpl.findFinalDay(game)
         }
 
-        if (player.triggeredLastSetBack) {
-            player.triggeredLastSetBack = false
-        }
-
         val turnResult = gameBoardServiceImpl.applyTileActionToPlayer(player, game)
         turnResult.hasFinishedGame = playerHasFinishedGame
         playerRepository.update(player)

@@ -50,6 +50,8 @@ class SetBackTurnStrategy @Autowired constructor(
             val normalTurnAfterSetBack = normalTurnStrategy.applyTurnToPlayer(player, gameId) //no longer be in set back
             turnResult.turnResult = normalTurnAfterSetBack
         }
+
+        player.triggeredLastSetBack = false
         playerRepository.update(player)
         return turnResult
     }

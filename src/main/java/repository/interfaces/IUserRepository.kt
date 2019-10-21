@@ -15,5 +15,15 @@ interface IUserRepository : IBaseRepository<User, UUID> {
      */
     fun findByUserName(username: String): User?
 
+    /**
+     * Updates a user object, must contain all updated parameters
+     * @param user object to update to persistence
+     */
     fun update(user: User)
+
+    /**
+     * Finds all users within the data source
+     * @return list of users
+     */
+    fun findAll(): List<User>
 }

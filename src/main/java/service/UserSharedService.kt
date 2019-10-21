@@ -50,5 +50,4 @@ class UserSharedService @Autowired constructor(private val userRepositoryImpl: I
         return User(user.userName, user.password, authorities)
     }
 
-
 }

@@ -61,8 +61,4 @@ class UserRepositoryImpl @Autowired constructor(private val sessionFactory: Sess
         )
         return session.createQuery(criteria).singleResult
     }
-
-    override fun delete(deleted: User) {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
 }

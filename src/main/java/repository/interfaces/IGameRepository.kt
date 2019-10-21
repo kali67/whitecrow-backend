@@ -28,4 +28,10 @@ interface IGameRepository : IBaseRepository<Game, Int> {
      * @return a list of players that are within the game of interest
      */
     fun findAllPlayers(id: Int): List<Player>
+
+    /**
+     * Finds all games in persistence
+     * @return list of games
+     */
+    fun findAll(): List<Game>
 }

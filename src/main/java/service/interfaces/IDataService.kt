@@ -6,8 +6,6 @@ interface IDataService<T, ID : Serializable> {
 
     fun update(obj: T)
 
-    fun findAll(): List<T>
-
     fun findOne(id: ID): T
 
     fun save(persisted: T)

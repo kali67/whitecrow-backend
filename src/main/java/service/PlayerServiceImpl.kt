@@ -59,10 +59,6 @@ class PlayerServiceImpl @Autowired constructor(
         playerRepositoryImpl.update(obj)
     }
 
-    override fun findAll(): List<Player> {
-        TODO("not implemented") // To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun findOne(id: Int): Player {
         return playerRepositoryImpl.findOne(id)
     }
